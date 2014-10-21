@@ -16,7 +16,7 @@ public class World01 : MonoBehaviour {
 		GameObject sun1 = (GameObject) Instantiate (Resources.Load ("Prefabs/sun", typeof(GameObject)),new Vector3(0, 0, 2000), Quaternion.identity);
 		sun1.name = "realSUN";
 		Vector3 newPosition = randomPosition("Prefabs/sun", new Vector3(0, 0, 0));
-		Debug.Log("Position: " + newPosition.ToString("F4"));
+		Debug.Log("Position1: " + newPosition.ToString("F4"));
 		Vector3[] cubePosition = getCubePosition ();
 
 		for(int i = 1; i < cubePosition.Length; i++){
@@ -59,7 +59,7 @@ public class World01 : MonoBehaviour {
 
 		GameObject unit = (GameObject) Resources.Load (resource, typeof(GameObject));
 		float positionRange = cubeEdgeLength - unit.transform.localScale.x;           //as all the units in the world will be sphere and localScale.x, localScale.y, localScale.z will be always the same, just need x
-		Debug.Log("LocalScale: " + unit.transform.localScale.ToString("F4"));
+		//Debug.Log("LocalScale: " + unit.transform.localScale.ToString("F4"));
 		//Debug.Log("Seed: " + Random.seed);
 		randomLocalPosition.x = Random.Range (0, positionRange);
 		Random.seed = (int) randomLocalPosition.x;
@@ -72,7 +72,9 @@ public class World01 : MonoBehaviour {
 		randomGlobalPosition.x = randomLocalPosition.x + centerOfCube.x;
 		randomGlobalPosition.y = randomLocalPosition.y + centerOfCube.y;
 		randomGlobalPosition.z = randomLocalPosition.z + centerOfCube.z;
-
+		Debug.Log ("Cube:" + centerOfCube.ToString("F4"));
+		Debug.Log ("Cube Field:" + (centerOfCube.x - 3500).ToString("F1") + " " + (centerOfCube.x + 3500).ToString("F1") + ";" + (centerOfCube.y - 3500).ToString("F1") + " " + (centerOfCube.y + 3500).ToString("F1") + ";" + (centerOfCube.z - 3500).ToString("F1") + " " + (centerOfCube.z + 3500).ToString("F1") + ";");
+		Debug.Log("Position: " + randomGlobalPosition.ToString("F4"));
 		return randomGlobalPosition;
 	}
 }
