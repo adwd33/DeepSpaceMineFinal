@@ -167,6 +167,24 @@ public class World01 : MonoBehaviour {
 		return bounddet;
 	}
 
+	/*
+	 * monitor which cube field is player in currently  
+	 */
+	public Vector3 inCube(GameObject player, ArrayList cubes)
+	{
+		Vector3 curCubePosition = Vector3.zero;
+		float distance = cubeEdgeLength;
+		foreach (Bounds cube in cubes) {
+			if(Vector3.Distance(cube.center, player.transform.position) < distance)
+			{
+				distance = Vector3.Distance(cube.center, player.transform.position);
+				curCubePosition = cube.center;
+			}
+		}
+
+		return curCubePosition;
+	}
+
 
 	//according to the resource's size output random position of a cube base on the centerOfCube
 	public Vector3 randomPositionInCube(string resource, Vector3 centerOfCube){
