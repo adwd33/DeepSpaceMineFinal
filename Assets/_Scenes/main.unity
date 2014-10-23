@@ -228,11 +228,11 @@ Prefab:
     - target: {fileID: 2300000, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0a58941bbd115a7011005aba44295342, type: 2}
+      objectReference: {fileID: 2100000, guid: f36c72c738c55f741afcd674a0b1245f, type: 2}
     - target: {fileID: 2300000, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 6981dccdbd114a7011005aba44295342, type: 2}
+      objectReference: {fileID: 2100000, guid: 8940b037a9b441c4cbd3d2b446838424, type: 2}
     - target: {fileID: 400000, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4816,6 +4816,7 @@ MonoBehaviour:
   currentBound:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  basicElement: {fileID: 0}
   direction: 0
   distanceToBound: 0
   detectionRange: 0
@@ -6388,8 +6389,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 0a58941bbd115a7011005aba44295342, type: 2}
-  - {fileID: 2100000, guid: 6981dccdbd114a7011005aba44295342, type: 2}
+  - {fileID: 2100000, guid: f36c72c738c55f741afcd674a0b1245f, type: 2}
+  - {fileID: 2100000, guid: 8940b037a9b441c4cbd3d2b446838424, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

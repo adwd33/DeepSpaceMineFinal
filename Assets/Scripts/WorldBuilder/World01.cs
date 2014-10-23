@@ -14,6 +14,8 @@ public class World01 : MonoBehaviour {
 	private Bounds initialBound = new Bounds(Vector3.zero, new Vector3 (cubeEdgeLength,cubeEdgeLength,cubeEdgeLength));
 	public Bounds currentBound;
 	public static ArrayList boundsList = new ArrayList();
+	public GameObject basicElement;
+	private int basicElementNum = 1;
 
 	//for test or detection in the future
 	public int direction;
@@ -26,13 +28,6 @@ public class World01 : MonoBehaviour {
 		//try initiate the elements
 		GameObject sun1 = (GameObject) Instantiate (Resources.Load ("Prefabs/sun", typeof(GameObject)),new Vector3(0, 0, 2000), Quaternion.identity);
 		sun1.name = "realSUN";
-		//Vector3 newPosition = randomPosition("Prefabs/sun", new Vector3(0, 0, 0));
-		//Debug.Log("Position1: " + newPosition.ToString("F4"));
-		//Vector3[] cubePosition = getCubePosition ();
-
-		//for(int i = 1; i < cubePosition.Length; i++){
-		//	Instantiate (Resources.Load ("Prefabs/sun", typeof(GameObject)),randomPosition("Prefabs/sun", cubePosition[i]), Quaternion.identity);
-		//}
 
 		//add initial bound to the bounds arrayList
 		boundsList.Add (initialBound);
@@ -85,6 +80,7 @@ public class World01 : MonoBehaviour {
 					if (!boundsList.Contains (bound)) 
 					{
 						boundsList.Add (bound);
+						randomInstantiate("Prefabs/sun", bound);
 						Debug.Log ("Bounds NUM: " + boundsList.Count);
 						Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
 					}
@@ -184,8 +180,10 @@ public class World01 : MonoBehaviour {
 	}
 
 
-	//according to the resource's size output random position of a cube base on the centerOfCube
-	public Vector3 randomPositionInCube(string resource, Vector3 centerOfCube){
+	/*
+	 * according to the resource's size instantiate the object in the currentCube
+	 */
+	public Vector3 randomInstantiate(string resource, Bounds currentBound){
 		Vector3 randomLocalPosition;
 		Vector3 randomGlobalPosition;
 
@@ -201,12 +199,16 @@ public class World01 : MonoBehaviour {
 		//Debug.Log("Seed: " + Random.seed);
 		randomLocalPosition.z = Random.Range (0, positionRange);
 
-		randomGlobalPosition.x = randomLocalPosition.x + centerOfCube.x;
-		randomGlobalPosition.y = randomLocalPosition.y + centerOfCube.y;
-		randomGlobalPosition.z = randomLocalPosition.z + centerOfCube.z;
-		Debug.Log ("Cube:" + centerOfCube.ToString("F4"));
-		Debug.Log ("Cube Field:" + (centerOfCube.x - 3500).ToString("F1") + " " + (centerOfCube.x + 3500).ToString("F1") + ";" + (centerOfCube.y - 3500).ToString("F1") + " " + (centerOfCube.y + 3500).ToString("F1") + ";" + (centerOfCube.z - 3500).ToString("F1") + " " + (centerOfCube.z + 3500).ToString("F1") + ";");
+		randomGlobalPosition.x = randomLocalPosition.x + currentBound.center.x;
+		randomGlobalPosition.y = randomLocalPosition.y + currentBound.center.y;
+		randomGlobalPosition.z = randomLocalPosition.z + currentBound.center.z;
+		Debug.Log ("Cube:" + currentBound.center.ToString("F4"));
 		Debug.Log("Position: " + randomGlobalPosition.ToString("F4"));
+
+		Instantiate (Resources.Load (resource, typeof(GameObject)), randomGlobalPosition, Quaternion.identity);
+
 		return randomGlobalPosition;
 	}
+
+
 }
