@@ -49,7 +49,6 @@ public class World01 : MonoBehaviour {
 		} 
 
 		distanceToBound = closestBoundaryDistance (player,currentBound);;
-		position = player.transform.position;
 
 	}
 
