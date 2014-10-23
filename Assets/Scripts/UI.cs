@@ -17,23 +17,28 @@ public class UI : MonoBehaviour
 		/**This is the screen height*/
 		int screenHeight = Screen.height;
 		/**This is the default button width*/
-		int defaultButtonWidth = 80;
+		static int defaultButtonWidth = 80;
 		/**This is the default button width*/
-		int defaultButtonHeight = 20;
+		static int defaultButtonHeight = 20;
 		/**This is the default side window width*/
 		int defaultSideWindowWidth = Screen.width / 4;
 		/**This is the default side window height*/
 		int defaultSideWindowHeight = Screen.height;
 		/**This is the default space for ui item buffer*/
-		int defaultUIItemBuffer = 10;
+		static int defaultUIItemBuffer = 10;
 		/**This is the styling for the game title on the main screen*/
 		GUIStyle boxGUIStyle;
+		/**This is the player gameobject*/
 		GameObject player;
+		/**This is the playertest gameobject*/
+		GameObject playerTest;
+		/**This is a helpful buffer size*/
+		static int bufferSize = 30;
 		
 		// This will draw the in game menu
 		void drawInGameUI ()
 		{
-			drawResourcesReadout();
+				drawResourcesReadout ();
 
 				// Make the first button. If it is pressed, this will display the players inventory
 				//if (GUI.Button (new Rect ((screenWidth / 2) - 40, (screenHeight / 4) + 40, defaultButtonWidth, defaultButtonHeight), "Inventory")) {
@@ -69,44 +74,39 @@ public class UI : MonoBehaviour
 
 				if (isDrawingGUIBox) {
 						drawAGUIBox (new Rect ((screenWidth / 2) + (40 * 2), defaultUIItemBuffer, (defaultButtonWidth * 6), screenHeight), boxTitle);
-						if(boxTitle.Equals("Warp")){
-							drawWarpMenu ();
-						}else if(boxTitle.Equals("Upgrades")){
-							drawUpgradeMenu ();
+						if (boxTitle.Equals ("Warp")) {
+								drawWarpMenu ();
+						} else if (boxTitle.Equals ("Upgrades")) {
+								drawUpgradeMenu ();
 						}
 				}
 		}
 
-		void drawResourcesReadout(){
-			// Make a background box for the container "Resources", this displays stats, resources, thats about it
-			
-			//Iron, copper, Aluminum, Hydrogen tier 1
-			//Platinum, gold, lead tier 2
-			//Uranium, carbon(diamond), tier 3
-			//Unobtanium tier 4
-			
-		drawAGUIBox (new Rect (defaultUIItemBuffer + (40 * 1), defaultUIItemBuffer, (defaultButtonWidth * 6), screenHeight), "Resources");
-		GUI.Label(new Rect(defaultUIItemBuffer  + (40 * 1), defaultUIItemBuffer, defaultButtonWidth, defaultButtonHeight), "Tier 1", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer  + (40 * 1), defaultUIItemBuffer + 30, defaultButtonWidth, defaultButtonHeight), "Iron", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer  + (40 * 1), defaultUIItemBuffer + 60, defaultButtonWidth, defaultButtonHeight), "Copper", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer  + (40 * 1), defaultUIItemBuffer + 90, defaultButtonWidth, defaultButtonHeight), "Aluminum", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer  + (40 * 1), defaultUIItemBuffer + 120, defaultButtonWidth, defaultButtonHeight), "Hydrogen", boxGUIStyle);
-			
-				
-				//TODO: what offense skills?
-		GUI.Label(new Rect(defaultUIItemBuffer  + (40 * 4), defaultUIItemBuffer, defaultButtonWidth, defaultButtonHeight), "Tier 2", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 4), defaultUIItemBuffer + 30, defaultButtonWidth, defaultButtonHeight), "Platinum", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 4), defaultUIItemBuffer + 60, defaultButtonWidth, defaultButtonHeight), "Gold", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 4), defaultUIItemBuffer + 90, defaultButtonWidth, defaultButtonHeight), "Lead", boxGUIStyle);
-				//TODO: what defense skills?
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 6), defaultUIItemBuffer, defaultButtonWidth, defaultButtonHeight), "Tier 3", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 6), defaultUIItemBuffer + 30, defaultButtonWidth, defaultButtonHeight), "Uranium", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 6), defaultUIItemBuffer + 60, defaultButtonWidth, defaultButtonHeight), "Carbon", boxGUIStyle);
-				//TODO: what utility skills?
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 8), defaultUIItemBuffer, defaultButtonWidth, defaultButtonHeight), "Tier 4", boxGUIStyle);
-		GUI.Label(new Rect(defaultUIItemBuffer + (40 * 8), defaultUIItemBuffer, defaultButtonWidth, defaultButtonHeight), "Unobtanium", boxGUIStyle);
+		void drawResourcesReadout ()
+		{
+				// Make a background box for the container "Resources", this displays stats, resources, thats about it
+				//This will display the read out of current resources collected by the player
+				drawAGUIBox (new Rect (defaultUIItemBuffer + (40 * 1), defaultUIItemBuffer, (defaultButtonWidth * 6), screenHeight), "Resources");
+				//Iron, copper, Aluminum, Hydrogen tier 1
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 1), defaultUIItemBuffer + (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 1", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 1), defaultUIItemBuffer + (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Iron", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 1), defaultUIItemBuffer + (bufferSize * 4), defaultButtonWidth, defaultButtonHeight), "Copper", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 1), defaultUIItemBuffer + (bufferSize * 5), defaultButtonWidth, defaultButtonHeight), "Aluminum", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 1), defaultUIItemBuffer + (bufferSize * 6), defaultButtonWidth, defaultButtonHeight), "Hydrogen", boxGUIStyle);
+				//Platinum, gold, lead tier 2
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 4), defaultUIItemBuffer + (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 2", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 4), defaultUIItemBuffer + (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Platinum", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 4), defaultUIItemBuffer + (bufferSize * 4), defaultButtonWidth, defaultButtonHeight), "Gold", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 4), defaultUIItemBuffer + (bufferSize * 5), defaultButtonWidth, defaultButtonHeight), "Lead", boxGUIStyle);
+				//Uranium, carbon(diamond), tier 3
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 7), defaultUIItemBuffer + (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 3", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 7), defaultUIItemBuffer + (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Uranium", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 7), defaultUIItemBuffer + (bufferSize * 4), defaultButtonWidth, defaultButtonHeight), "Carbon", boxGUIStyle);
+				//Unobtanium tier 4
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 10), defaultUIItemBuffer + (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 4", boxGUIStyle);
+				GUI.Label (new Rect (defaultUIItemBuffer + (40 * 10), defaultUIItemBuffer + (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Unobtanium", boxGUIStyle);
 		}
-
+	
 		//this is going to be called when you click a button and it will draw the 
 		void drawAGUIBox (Rect rect, string boxTitle)
 		{
@@ -118,25 +118,78 @@ public class UI : MonoBehaviour
 				if (isInGameUIEnabled) {
 						drawInGameUI ();
 						//this disables the player object
-						//player.SetActive (false);
-						
+						if (player != null) {
+								//player.SetActive (false);
+						}
+						if (playerTest != null) {
+							//playerTest.SetActive (false);
+						}
+							
+							
 				} else {
 						//this enables the player object
-						//player.SetActive (true);
+						if (player != null) {
+								//player.SetActive (true);
+						}
+						if (playerTest != null) {
+							//playerTest.SetActive (true);
+						}					
 				}
 		}
 		
 		/**
 		 *This method will draw the labels and buttons for the upgrade box.
 		 */
-		
-		void drawUpgradeMenu(){
-			GUI.Label(new Rect((screenWidth / 2) + (40 * 6), defaultUIItemBuffer + 30, defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
-					//TODO: what offense skills?
-			GUI.Label(new Rect((screenWidth / 2) + (40 * 8), defaultUIItemBuffer + 30, defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
-					//TODO: what defense skills?
-			GUI.Label(new Rect((screenWidth / 2) + (40 * 10), defaultUIItemBuffer + 30, defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
-					//TODO: what utility skills?
+		void drawUpgradeMenu ()
+		{
+				GUI.Label (new Rect ((screenWidth / 2) + (40 * 3), defaultUIItemBuffer + (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 3), defaultUIItemBuffer + (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "OffenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 3), defaultUIItemBuffer + (bufferSize * 4), defaultButtonWidth, defaultButtonHeight), "OffenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 3), defaultUIItemBuffer + (bufferSize * 5), defaultButtonWidth, defaultButtonHeight), "OffenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 3), defaultUIItemBuffer + (bufferSize * 6), defaultButtonWidth, defaultButtonHeight), "OffenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 3), defaultUIItemBuffer + (bufferSize * 7), defaultButtonWidth, defaultButtonHeight), "OffenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				GUI.Label (new Rect ((screenWidth / 2) + (40 * 6), defaultUIItemBuffer + (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 6), defaultUIItemBuffer + (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 6), defaultUIItemBuffer + (bufferSize * 4), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 6), defaultUIItemBuffer + (bufferSize * 5), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 6), defaultUIItemBuffer + (bufferSize * 6), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 6), defaultUIItemBuffer + (bufferSize * 7), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				GUI.Label (new Rect ((screenWidth / 2) + (40 * 9), defaultUIItemBuffer + (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 9), defaultUIItemBuffer + (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 9), defaultUIItemBuffer + (bufferSize * 4), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 9), defaultUIItemBuffer + (bufferSize * 5), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 9), defaultUIItemBuffer + (bufferSize * 6), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
+				if(GUI.Button(new Rect ((screenWidth / 2) + (40 * 9), defaultUIItemBuffer + (bufferSize * 7), defaultButtonWidth, defaultButtonHeight), "DefenseUpgrade1")){
+					//TODO: allow the player to buy this upgrade if they have correct amount of resources
+				}
 		}
 		
 		
@@ -145,34 +198,32 @@ public class UI : MonoBehaviour
 		 */
 		void drawWarpMenu ()
 		{
-				// Make the second button. If it is pressed, this will display available upgrades for the player
+				// This will warp the player into the "default" tier one scene
 				if (GUI.Button (new Rect ((screenWidth / 2) + (40 * 4), defaultUIItemBuffer + 30, defaultButtonWidth, defaultButtonHeight), "Tier 1")) {
-						//TODO: need to create the tier 1 scene
-						//Application.LoadLevel ("tier1");
+						Application.LoadLevel ("main");
 				
 				}
-				// Make the thrid button. If it is pressed, this will display levels to warp to
+				// this will set the main scene "difficulty" to tier 2
 				if (GUI.Button (new Rect ((screenWidth / 2) + (40 * 4), defaultUIItemBuffer + 60, defaultButtonWidth, defaultButtonHeight), "Tier 2")) {
-						//TODO: need to create the tier 2 scene
-						//Application.LoadLevel ("tier2");
+						//TODO: need to set the difficulty to tier 2
+						Application.LoadLevel ("main");
 				
 				}
-				// Make the fourth button.If it is pressed, this will save the players game
+				// this will set the main scene "difficulty" to tier 3
 				if (GUI.Button (new Rect ((screenWidth / 2) + (40 * 4), defaultUIItemBuffer + 90, defaultButtonWidth, defaultButtonHeight), "Tier 3")) {
-						//TODO: need to create the tier 3 scene
-						//Application.LoadLevel ("tier3");
+						//TODO: need to set the difficulty to tier 3
+						Application.LoadLevel ("main");
 
 				}
-				// Make the fifth button. If it is pressed, this will display available save files to load for the player
+				// this will set the main scene "difficulty" to tier 4
 				if (GUI.Button (new Rect ((screenWidth / 2) + (40 * 4), defaultUIItemBuffer + 120, defaultButtonWidth, defaultButtonHeight), "Tier 4")) {
-						//TODO: need to create the tier 4 scene
-						//Application.LoadLevel ("tier4");
+						//TODO: need to set the difficulty to tier 4
+						Application.LoadLevel ("main");
 
 				}
-				// Make the six button.If it is pressed, this will exit the game
+				// This will warp the player to the home base scene
 				if (GUI.Button (new Rect ((screenWidth / 2) + (40 * 4), defaultUIItemBuffer + 150, defaultButtonWidth, defaultButtonHeight), "Home Base")) {
-						//TODO: need to create the home base scene
-						//Application.LoadLevel ("home base");
+						Application.LoadLevel ("HomeBase");
 
 				}
 		}
@@ -181,6 +232,7 @@ public class UI : MonoBehaviour
 		void Start ()
 		{
 				player = GameObject.Find ("Player");
+				playerTest = GameObject.Find("PlayerTest");
 				//The style for the main title
 				boxGUIStyle = new GUIStyle ();
 				boxGUIStyle.fontSize = 14;
