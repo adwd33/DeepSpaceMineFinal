@@ -10,10 +10,9 @@ public class World01 : MonoBehaviour {
 	}
 
 	public static int cubeEdgeLength = 10000;
-	public static int cubeNum = 8;
 	public GameObject player;
 	private Bounds initialBound = new Bounds(Vector3.zero, new Vector3 (cubeEdgeLength,cubeEdgeLength,cubeEdgeLength));
-	private Bounds currentBound;
+	public Bounds currentBound;
 	public static ArrayList boundsList = new ArrayList();
 
 	//for test or detection in the future
@@ -41,11 +40,18 @@ public class World01 : MonoBehaviour {
 		distanceToBound = closestBoundaryDistance (player,currentBound).closest;
 		direction = closestBoundaryDistance (player,currentBound).direction;
 
+		//initialize the world with 27 cubes space
+		increaseBound (player, currentBound);
+
 	}
 
 	void FixedUpdate(){
 
-		increaseBound (player,currentBound, detectionRange);
+		if(currentBound != inCube (player, boundsList, currentBound, detectionRange))
+		{
+			currentBound = inCube (player, boundsList, currentBound, detectionRange);
+			increaseBound (player, currentBound);
+		}
 
 		detectionRange = (int) (PlayerControllerTest.speed * 0.03) + 1;
 		distanceToBound = closestBoundaryDistance (player,currentBound).closest;
@@ -55,56 +61,37 @@ public class World01 : MonoBehaviour {
 
 	/*used in FixedUpdate
 	 * according the player's position to determine the expended bound
-	 * of the world (yet not be able to deal with the 8 vertex of cube, but
-	 * guess no user will be able to be that accurate)
+	 * of the world (which means every 26 of surrounded
+	 * cube of current cube will be created)
 	*/
-	public void increaseBound(GameObject player,Bounds currentBound, int detectionRange){
-		boundDet detect = closestBoundaryDistance (player,currentBound);
+	public void increaseBound(GameObject player,Bounds currentBound){
 		float x = currentBound.center.x;
 		float y = currentBound.center.y;
 		float z = currentBound.center.z;
+		Vector3 newCubeCenter = Vector3.zero;
+		Bounds bound = currentBound;
 
-		if (detect.closest <= 1000 + detectionRange && detect.closest > 1000) {
-			Debug.Log ("Ship trigger the increase method!");
-			Bounds bound;
-			switch(detect.direction)
+		for(int i = -1; i <= 1; i++)
+		{
+			for(int j = -1; j <= 1; j++)
 			{
-			case 1:
-				bound = new Bounds (new Vector3 (x + 10000, y, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-				break;
-			case 2:
-				bound = new Bounds (new Vector3 (x, y + 10000, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-				break;
-			case 3:
-				bound = new Bounds (new Vector3 (x, y, z + 10000), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-				break;
-			case -1:
-				bound = new Bounds (new Vector3 (x - 10000, y, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-				break;
-			case -2:
-				bound = new Bounds (new Vector3 (x, y - 10000, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-				break;
-			case -3:
-				bound = new Bounds (new Vector3 (x, y, z - 10000), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-				break;
-			default:
-				bound = new Bounds (Vector3.zero, new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-				break;
-			}
+				for(int k = -1; k <= 1; k++)
+				{
+					newCubeCenter.x = x + i * cubeEdgeLength;
+					newCubeCenter.y = y + j * cubeEdgeLength;
+					newCubeCenter.z = z + k * cubeEdgeLength;
 
-			if (!boundsList.Contains (bound)) 
-			{
-				boundsList.Add (bound);
-				Debug.Log ("Bounds NUM: " + boundsList.Count);
-				Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
-			}
-			else
-			{
-				Debug.Log("Bounds already exist!");
-			}
-		} 
+					bound = new Bounds (newCubeCenter, new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+					if (!boundsList.Contains (bound)) 
+					{
+						boundsList.Add (bound);
+						Debug.Log ("Bounds NUM: " + boundsList.Count);
+						Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
+					}
 
-
+				}
+			}
+		}
 	}
 
 	/*
@@ -170,19 +157,30 @@ public class World01 : MonoBehaviour {
 	/*
 	 * monitor which cube field is player in currently  
 	 */
-	public Vector3 inCube(GameObject player, ArrayList cubes)
+	public Bounds inCube(GameObject player, ArrayList cubes, Bounds currentBound, int detectionRange)
 	{
-		Vector3 curCubePosition = Vector3.zero;
-		float distance = cubeEdgeLength;
-		foreach (Bounds cube in cubes) {
-			if(Vector3.Distance(cube.center, player.transform.position) < distance)
-			{
-				distance = Vector3.Distance(cube.center, player.transform.position);
-				curCubePosition = cube.center;
+		if(closestBoundaryDistance(player, currentBound).closest < detectionRange && closestBoundaryDistance(player, currentBound).closest > 0)
+		{
+			Debug.Log ("Possibly change the current bound.");
+
+			foreach (Bounds cube in cubes) {
+				if(cube.Contains(player.transform.position))
+				{
+					currentBound = cube;
+					break;
+				}
 			}
+
+			Debug.Log ("Current Bound:" + currentBound.center.ToString());
+
+			return currentBound;
+		}
+		else
+		{
+			return currentBound;
 		}
 
-		return curCubePosition;
+
 	}
 
 
