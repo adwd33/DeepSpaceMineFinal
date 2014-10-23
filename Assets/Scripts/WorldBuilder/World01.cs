@@ -3,19 +3,23 @@ using System.Collections;
 
 public class World01 : MonoBehaviour {
 
-	public static int cubeEdgeLength = 10000;
+	public struct boundDet
+	{
+		public float closest;
+		public int direction; //direction can only be -1, 1, -2, 2, -3, 3 represents -x, x, -y, y, -z, z
+	}
 
-	//public static ArrayList units = new ArrayList();
-	//public static ArrayList positions  = new ArrayList();
+	public static int cubeEdgeLength = 10000;
 	public static int cubeNum = 8;
-	//public static ArrayList rotations  = new ArrayList();
 	public GameObject player;
 	private Bounds initialBound = new Bounds(Vector3.zero, new Vector3 (cubeEdgeLength,cubeEdgeLength,cubeEdgeLength));
 	private Bounds currentBound;
 	public static ArrayList boundsList = new ArrayList();
 
 	//for test or detection in the future
+	public int direction;
 	public float distanceToBound;
+	public int detectionRange = 0;
 	//public Vector3 position;
 
 	// Use this for initialization
@@ -23,91 +27,149 @@ public class World01 : MonoBehaviour {
 		//try initiate the elements
 		GameObject sun1 = (GameObject) Instantiate (Resources.Load ("Prefabs/sun", typeof(GameObject)),new Vector3(0, 0, 2000), Quaternion.identity);
 		sun1.name = "realSUN";
-		Vector3 newPosition = randomPosition("Prefabs/sun", new Vector3(0, 0, 0));
-		Debug.Log("Position1: " + newPosition.ToString("F4"));
-		Vector3[] cubePosition = getCubePosition ();
+		//Vector3 newPosition = randomPosition("Prefabs/sun", new Vector3(0, 0, 0));
+		//Debug.Log("Position1: " + newPosition.ToString("F4"));
+		//Vector3[] cubePosition = getCubePosition ();
 
-		for(int i = 1; i < cubePosition.Length; i++){
-			Instantiate (Resources.Load ("Prefabs/sun", typeof(GameObject)),randomPosition("Prefabs/sun", cubePosition[i]), Quaternion.identity);
-		}
+		//for(int i = 1; i < cubePosition.Length; i++){
+		//	Instantiate (Resources.Load ("Prefabs/sun", typeof(GameObject)),randomPosition("Prefabs/sun", cubePosition[i]), Quaternion.identity);
+		//}
 
 		//add initial bound to the bounds arrayList
 		boundsList.Add (initialBound);
 		currentBound = initialBound;
-		distanceToBound = closestBoundaryDistance (player,currentBound);
+		distanceToBound = closestBoundaryDistance (player,currentBound).closest;
+		direction = closestBoundaryDistance (player,currentBound).direction;
 
 	}
 
 	void FixedUpdate(){
-		if (!boundsList.Contains (increaseBound (player, currentBound))) 
-		{
-			boundsList.Add (increaseBound (player, currentBound));
-			for (int i = 0; i<boundsList.Count; i++) 
+
+		increaseBound (player,currentBound, detectionRange);
+
+		detectionRange = (int) (PlayerControllerTest.speed * 0.03) + 1;
+		distanceToBound = closestBoundaryDistance (player,currentBound).closest;
+		direction = closestBoundaryDistance (player,currentBound).direction;
+
+	}
+
+	/*used in FixedUpdate
+	 * according the player's position to determine the expended bound
+	 * of the world (yet not be able to deal with the 8 vertex of cube, but
+	 * guess no user will be able to be that accurate)
+	*/
+	public void increaseBound(GameObject player,Bounds currentBound, int detectionRange){
+		boundDet detect = closestBoundaryDistance (player,currentBound);
+		float x = currentBound.center.x;
+		float y = currentBound.center.y;
+		float z = currentBound.center.z;
+
+		if (detect.closest <= 1000 + detectionRange && detect.closest > 1000) {
+			Debug.Log ("Ship trigger the increase method!");
+			Bounds bound;
+			switch(detect.direction)
 			{
-				Debug.Log ("Bounds:" + boundsList [i]);
+			case 1:
+				bound = new Bounds (new Vector3 (x + 10000, y, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+				break;
+			case 2:
+				bound = new Bounds (new Vector3 (x, y + 10000, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+				break;
+			case 3:
+				bound = new Bounds (new Vector3 (x, y, z + 10000), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+				break;
+			case -1:
+				bound = new Bounds (new Vector3 (x - 10000, y, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+				break;
+			case -2:
+				bound = new Bounds (new Vector3 (x, y - 10000, z), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+				break;
+			case -3:
+				bound = new Bounds (new Vector3 (x, y, z - 10000), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+				break;
+			default:
+				bound = new Bounds (Vector3.zero, new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+				break;
+			}
+
+			if (!boundsList.Contains (bound)) 
+			{
+				boundsList.Add (bound);
+				Debug.Log ("Bounds NUM: " + boundsList.Count);
+				Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
+			}
+			else
+			{
+				Debug.Log("Bounds already exist!");
 			}
 		} 
 
-		distanceToBound = closestBoundaryDistance (player,currentBound);;
 
 	}
 
-	public Bounds increaseBound(GameObject player,Bounds currentBound){
-		if (closestBoundaryDistance(player,currentBound) <= 1000) {
-			Bounds bound = new Bounds (new Vector3 (10000, 0, 0), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-			return bound;
-		} else {
-			Bounds bound = new Bounds (new Vector3 (0, 0, 0), new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-			return bound;		
-		}
-	}
+	/*
+	 * used in FixedUpdate working with increaseBound
+	 * continusely calculate the closest distance between every side of
+	 * current cube and player's position
+	 * output: closest distance & increased direction
+	 */
+	public boundDet closestBoundaryDistance(GameObject player, Bounds currentBound){
+		boundDet bounddet;
+		float closest;
+		int direction;
 
-	public float closestBoundaryDistance(GameObject player, Bounds bound){
-		float closestDistanceX = Mathf.Abs(bound.center.x + cubeEdgeLength / 2 - player.transform.position.x); 
-		float closestDistanceY = Mathf.Abs(bound.center.y + cubeEdgeLength / 2 - player.transform.position.y); 
-		float closestDistanceZ = Mathf.Abs(bound.center.z + cubeEdgeLength / 2 - player.transform.position.z); 
-		float closestDistanceNX = Mathf.Abs(bound.center.x - cubeEdgeLength / 2 - player.transform.position.x); 
-		float closestDistanceNY = Mathf.Abs(bound.center.y - cubeEdgeLength / 2 - player.transform.position.y); 
-		float closestDistanceNZ = Mathf.Abs(bound.center.z - cubeEdgeLength / 2 - player.transform.position.z); 
+		float closestDistanceX = Mathf.Abs(currentBound.center.x + cubeEdgeLength / 2 - player.transform.position.x); 
+		float closestDistanceY = Mathf.Abs(currentBound.center.y + cubeEdgeLength / 2 - player.transform.position.y); 
+		float closestDistanceZ = Mathf.Abs(currentBound.center.z + cubeEdgeLength / 2 - player.transform.position.z); 
+		float closestDistanceNX = Mathf.Abs(currentBound.center.x - cubeEdgeLength / 2 - player.transform.position.x); 
+		float closestDistanceNY = Mathf.Abs(currentBound.center.y - cubeEdgeLength / 2 - player.transform.position.y); 
+		float closestDistanceNZ = Mathf.Abs(currentBound.center.z - cubeEdgeLength / 2 - player.transform.position.z); 
 
 
-		float closest = Mathf.Min (closestDistanceX,closestDistanceY);
+		closest = Mathf.Min (closestDistanceX,closestDistanceY);
 		closest = Mathf.Min (closest,closestDistanceZ);
 		closest = Mathf.Min (closest,closestDistanceNX);
 		closest = Mathf.Min (closest,closestDistanceNY);
 		closest = Mathf.Min (closest,closestDistanceNZ);
-		return closest;
+
+		if(closestDistanceY >= closestDistanceX){
+			closest = closestDistanceX;
+			direction = 1;
+		}
+		else
+		{
+			closest = closestDistanceY;
+			direction = 2;
+		}
+
+		if(closest >= closestDistanceZ){
+			closest = closestDistanceZ;
+			direction = 3;
+		}
+
+		if(closest >= closestDistanceNX){
+			closest = closestDistanceNX;
+			direction = -1;
+		}
+
+		if(closest >= closestDistanceNY){
+			closest = closestDistanceNY;
+			direction = -2;
+		}
+
+		if(closest >= closestDistanceNZ){
+			closest = closestDistanceNZ;
+			direction = -3;
+		}
+
+		bounddet.direction = direction;
+		bounddet.closest = closest;
+		return bounddet;
 	}
 
-	public Vector3[] getCubePosition(){
-		Vector3[] cubePosition = new Vector3[4];
-		cubePosition [0] = new Vector3 (0, 0, 0);
-		//int worldEdge = (int) Mathf.Ceil ( Mathf.Pow (num + 1, (float)1 / 3));
 
-		//for(int i = 1; i <= worldEdge){
-		//
-		//	for(int j = 1; j<=worldEdge; j++){
-		//		for(int k = 0; k <= worldEdge; k++){
-		//			
-		//		}
-		//	}
-		//}
-
-		cubePosition [1] = new Vector3 (7000,0,0);
-		cubePosition [2] = new Vector3 (-7000,0,0);
-		cubePosition [3] = new Vector3 (0,7000,0);
-		//cubePosition [4] = new Vector3 (0,-7000,0);
-		//cubePosition [5] = new Vector3 (0,0,7000);
-
-		return cubePosition;
-
-
-
-
-
-	}
-	
-	public Vector3 randomPosition(string resource, Vector3 centerOfCube){
+	//according to the resource's size output random position of a cube base on the centerOfCube
+	public Vector3 randomPositionInCube(string resource, Vector3 centerOfCube){
 		Vector3 randomLocalPosition;
 		Vector3 randomGlobalPosition;
 
