@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerControllerTest : MonoBehaviour
 {
 	//speed stuff
-	public float speed;
+	public static float speed;
 	public int cruiseSpeed;
 	float deltaSpeed;//(speed - cruisespeed)
 	public int minSpeed;
