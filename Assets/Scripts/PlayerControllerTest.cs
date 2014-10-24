@@ -18,6 +18,10 @@ public class PlayerControllerTest : MonoBehaviour
 	
 	public Vector3 cameraOffset; //I use (0,1,-3)
 
+	//camera stuff
+	private GameObject mainCamera;
+	private GameObject ship;
+
 	//fire stuff
 	public GameObject shot;
 	public Transform shotSpawn;
@@ -28,6 +32,18 @@ public class PlayerControllerTest : MonoBehaviour
 	void Start()
 	{
 		speed = cruiseSpeed;
+		mainCamera = GameObject.Find ("Player2/MainCamera");
+		ship = GameObject.Find ("Player2/Ship");
+
+		/*if (mainCamera != null) {
+			Debug.Log("Camera Not NUll!");
+			//mainCamera.transform.position = new Vector3(0, 30, 0);
+		}
+
+		if(ship != null){
+			Debug.Log ("Ship Not Null!");
+			ship.transform.position = new Vector3(0, 5, 0);
+		}*/
 	}
 	
 	void FixedUpdate()
@@ -35,7 +51,7 @@ public class PlayerControllerTest : MonoBehaviour
 		
 		//ANGULAR DYNAMICS//
 		
-		shipRot = transform.GetChild(1).localEulerAngles; //make sure you're getting the right child (the ship).  I don't know how they're numbered in general.
+		shipRot = ship.transform.localEulerAngles; //make sure you're getting the right child (the ship).  I don't know how they're numbered in general.
 		
 		//since angles are only stored (0,360), convert to +- 180
 		if (shipRot.x > 180) shipRot.x -= 360;
@@ -78,12 +94,12 @@ public class PlayerControllerTest : MonoBehaviour
 		
 		
 		//and finally rotate.  
-		transform.GetChild(1).Rotate(angVel * Time.fixedDeltaTime);
+		ship.transform.Rotate(angVel * Time.fixedDeltaTime);
 		
 		//this limits your rotation, as well as gradually realigns you.  It's a little convoluted, but it's
 		//got the same square magnitude functionality as the angular velocity, plus a constant since x^2
 		//is very small when x is small.  Also realigns faster based on speed.  feel free to tweak
-		transform.GetChild(1).Rotate(-shipRot.normalized * .015f * (shipRot.sqrMagnitude + 500) * (1 + speed / maxSpeed) * Time.fixedDeltaTime);
+		ship.transform.Rotate(-shipRot.normalized * .015f * (shipRot.sqrMagnitude + 500) * (1 + speed / maxSpeed) * Time.fixedDeltaTime);
 		
 		
 		//LINEAR DYNAMICS//
@@ -109,18 +125,18 @@ public class PlayerControllerTest : MonoBehaviour
 		
 		//moves camera (make sure you're GetChild()ing the camera's index)
 		//I don't mind directly connecting this to the speed of the ship, because that always changes smoothly
-		transform.GetChild(3).localPosition = cameraOffset + new Vector3(0, 0, -deltaSpeed * .02f);
+		mainCamera.transform.localPosition = cameraOffset + new Vector3(0, 0, -deltaSpeed * .02f);
+
 		
-		
-		float sqrOffset = transform.GetChild(1).localPosition.sqrMagnitude;
-		Vector3 offsetDir = transform.GetChild(1).localPosition.normalized;
+		float sqrOffset = ship.transform.localPosition.sqrMagnitude;
+		Vector3 offsetDir = ship.transform.localPosition.normalized;
 		
 		
 		//this takes care of realigning after collisions, where the ship gets displaced due to its rigidbody.
 		//I'm pretty sure this is the best way to do it (have the ship and the rig move toward their mutual center)
-		transform.GetChild(1).Translate(-offsetDir * sqrOffset * 20 * Time.fixedDeltaTime);
+		ship.transform.Translate(-offsetDir * sqrOffset * 20 * Time.fixedDeltaTime);
 		//(**************** this ***************) is what actually makes the whole ship move through the world!
-		transform.Translate((offsetDir * sqrOffset * 50 + transform.GetChild(1).forward * speed) * Time.fixedDeltaTime, Space.World);
+		transform.Translate((offsetDir * sqrOffset * 50 + ship.transform.forward * speed) * Time.fixedDeltaTime, Space.World);
 		
 		//comment this out for starfox, remove the x and z components for shadows of the empire, and leave the whole thing for free roam
 		transform.Rotate(shipRot.x * Time.fixedDeltaTime, (shipRot.y * Mathf.Abs(shipRot.y) * .02f) * Time.fixedDeltaTime, shipRot.z * Time.fixedDeltaTime);
