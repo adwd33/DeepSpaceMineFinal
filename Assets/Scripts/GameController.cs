@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 	public GameObject unobtanium;
 	public GameObject uranium;
 
+	private ArrayList spawns = new ArrayList ();
 	public Vector3 spawnValues;
 	public int SpawnMax;
 	public int spawnCount;
@@ -23,6 +24,8 @@ public class GameController : MonoBehaviour
 	public float waveWait;
 	public float innersphere;
 	public float outersphere;
+	public int[] distance = new int[5] {0, 0, 0, 0, 0};
+
 
 	void Start ()
 	{
@@ -61,10 +64,22 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	void FixedUpdate()
+	{
+		spawnCount = spawns.Count;
+		for(int i = 0; i < spawns.Count; i++) {
+			if(Vector3.Distance(((GameObject)spawns[i]).transform.position, transform.position) > outersphere)
+			{
+				Destroy((GameObject)spawns[i]);
+				spawns.RemoveAt(i);
+			}
+		}
+	}
+
 	IEnumerator SpawnWaves ()
 	{
 		yield return new WaitForSeconds (startWait);
-		while (spawnCount <= SpawnMax)
+		while (spawns.Count <= SpawnMax)
 		{
 			Vector3 spawnPosition;
 			GameObject prepareSpawn = randomRock ();
@@ -77,8 +92,18 @@ public class GameController : MonoBehaviour
 			Debug.Log(hitColliders.Length);
 			if(hitColliders.Length == 0)
 			{
-				Instantiate (randomRock (), spawnPosition, spawnRotation);
-				spawnCount++;
+				Instantiate (prepareSpawn, spawnPosition, spawnRotation);
+				spawns.Add(prepareSpawn);
+			}
+
+			for(int i = 0; i < spawns.Count; i++){
+				//Debug.Log("Distance:" + Vector3.Distance(((GameObject)spawns[i]).transform.position, player.transform.position));
+
+				if(Vector3.Distance(((GameObject)spawns[i]).transform.position, transform.position) > outersphere)
+				{
+					Destroy((GameObject)spawns[i]);
+					spawns.RemoveAt(i);
+				}
 			}
 
 			yield return new WaitForSeconds (spawnWait);
