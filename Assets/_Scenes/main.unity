@@ -19,7 +19,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 177a18aa3fce0ff449eb397370f7ac7c, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9803600998c48b140b2f7038d0fc2eb1, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -3364,6 +3364,68 @@ MeshFilter:
   m_PrefabInternal: {fileID: 648623859}
   m_GameObject: {fileID: 989875891}
   m_Mesh: {fileID: 4300006, guid: 299f99669b7d71646a3162922bb0bd0c, type: 3}
+--- !u!1 &1229879669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1229879670}
+  - 108: {fileID: 1229879671}
+  m_Layer: 0
+  m_Name: Spotlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229879670
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229879669}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 2.40136123, z: .10611105}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1425142897}
+--- !u!108 &1229879671
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229879669}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.50999999
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 12100000, guid: 9bdb18c49d114cb4300035184241aa39, type: 2}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1298867088
 GameObject:
   m_ObjectHideFlags: 0
@@ -3462,12 +3524,13 @@ MonoBehaviour:
   unobtanium: {fileID: 100008, guid: f1f00a6a77786454ab61f8f0f0a9b079, type: 2}
   uranium: {fileID: 100000, guid: 427616b81a78d7143b9dcd566431daff, type: 2}
   spawnValues: {x: 6, y: 0, z: 16}
-  hazardCount: 2
+  SpawnMax: 100
+  spawnCount: 0
   spawnWait: 0
   startWait: 1
   waveWait: 0
   innersphere: 20
-  outersphere: 25
+  outersphere: 50
 --- !u!4 &1298867091
 Transform:
   m_ObjectHideFlags: 0
@@ -4855,6 +4918,7 @@ Transform:
   - {fileID: 1298867091}
   - {fileID: 1547941525}
   - {fileID: 1785790556}
+  - {fileID: 1229879670}
   m_Father: {fileID: 0}
 --- !u!114 &1425142898
 MonoBehaviour:
@@ -4867,9 +4931,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15b1b2e977882c4ab512bd762569351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cruiseSpeed: 20
+  cruiseSpeed: 0
   minSpeed: 0
-  maxSpeed: 200
+  maxSpeed: 20
   sensitivity: 1000
   cameraOffset: {x: 0, y: .5, z: -1.5}
   shot: {fileID: 0}
@@ -5036,7 +5100,8 @@ MonoBehaviour:
   unobtanium: {fileID: 100008, guid: f1f00a6a77786454ab61f8f0f0a9b079, type: 2}
   uranium: {fileID: 100000, guid: 427616b81a78d7143b9dcd566431daff, type: 2}
   spawnValues: {x: 6, y: 0, z: 16}
-  hazardCount: 2
+  SpawnMax: 0
+  spawnCount: 0
   spawnWait: 0
   startWait: 1
   waveWait: 0

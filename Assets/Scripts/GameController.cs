@@ -16,7 +16,8 @@ public class GameController : MonoBehaviour
 	public GameObject uranium;
 
 	public Vector3 spawnValues;
-	public int hazardCount;
+	public int SpawnMax;
+	public int spawnCount;
 	public float spawnWait;
 	public float startWait;
 	public float waveWait;
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
 	void Start ()
 	{
 		StartCoroutine (SpawnWaves ());
+		spawnCount = 0;
 	}
 
 	private GameObject randomRock(){
@@ -62,19 +64,25 @@ public class GameController : MonoBehaviour
 	IEnumerator SpawnWaves ()
 	{
 		yield return new WaitForSeconds (startWait);
-		while (true)
+		while (spawnCount <= SpawnMax)
 		{
-			for (int i = 0; i < hazardCount; i++)
+			Vector3 spawnPosition;
+			GameObject prepareSpawn = randomRock ();
+
+			spawnPosition = Random.onUnitSphere * Random.Range(innersphere, outersphere);
+			spawnPosition += transform.position; // Makes the spawn locations always center on this game object (and thus, the player)
+
+			Quaternion spawnRotation = Quaternion.identity;
+			Collider[] hitColliders = Physics.OverlapSphere(prepareSpawn.renderer.bounds.center, prepareSpawn.renderer.bounds.extents.x);
+			Debug.Log(hitColliders.Length);
+			if(hitColliders.Length == 0)
 			{
-				Vector3 spawnPosition;
-
-				spawnPosition = Random.onUnitSphere * Random.Range(innersphere, outersphere);
-				spawnPosition += transform.position; // Makes the spawn locations always center on this game object (and thus, the player)
-
-				Quaternion spawnRotation = Quaternion.identity;
 				Instantiate (randomRock (), spawnPosition, spawnRotation);
-				yield return new WaitForSeconds (spawnWait);
+				spawnCount++;
 			}
+
+			yield return new WaitForSeconds (spawnWait);
+
 			yield return new WaitForSeconds (waveWait);
 		}
 	}
