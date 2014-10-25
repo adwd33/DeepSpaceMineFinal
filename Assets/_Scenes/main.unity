@@ -3524,14 +3524,14 @@ MonoBehaviour:
   unobtanium: {fileID: 100008, guid: f1f00a6a77786454ab61f8f0f0a9b079, type: 2}
   uranium: {fileID: 100000, guid: 427616b81a78d7143b9dcd566431daff, type: 2}
   spawnValues: {x: 6, y: 0, z: 16}
-  SpawnMax: 100
+  SpawnMax: 150
   spawnCount: 0
   spawnWait: 0
   startWait: 1
   waveWait: 0
-  innersphere: 20
-  outersphere: 30
-  distance: 
+  innersphere: 50
+  outersphere: 300
+  deletNum: 0
 --- !u!4 &1298867091
 Transform:
   m_ObjectHideFlags: 0
@@ -4934,7 +4934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cruiseSpeed: 0
   minSpeed: 0
-  maxSpeed: 200
+  maxSpeed: 20
   sensitivity: 1000
   cameraOffset: {x: 0, y: .5, z: -1.5}
   shot: {fileID: 0}
@@ -5108,7 +5108,7 @@ MonoBehaviour:
   waveWait: 0
   innersphere: 20
   outersphere: 25
-  distance: 
+  deletNum: 0
 --- !u!4 &1516926431
 Transform:
   m_ObjectHideFlags: 0

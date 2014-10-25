@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
 	public GameObject uranium;
 
 	private ArrayList spawns = new ArrayList ();
+
 	public Vector3 spawnValues;
 	public int SpawnMax;
 	public int spawnCount;
@@ -24,18 +25,28 @@ public class GameController : MonoBehaviour
 	public float waveWait;
 	public float innersphere;
 	public float outersphere;
-	public int[] distance = new int[5] {0, 0, 0, 0, 0};
+	public int deletNum;
 
 
 	void Start ()
 	{
-		StartCoroutine (SpawnWaves ());
+		//StartCoroutine (SpawnWaves ());
+		//SpawnWaves ();
 		spawnCount = 0;
+	}
+
+
+	void FixedUpdate()
+	{
+		spawnCount = spawns.Count;
+	
+		SpawnDestroy ();
+		//SpawnWaves ();
 	}
 
 	private GameObject randomRock(){
 		int rock = Random.Range (0, 11);
-
+		
 		switch (rock) {
 		case 0:
 			return astroid;
@@ -64,22 +75,70 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate()
+	public void SpawnDestroy()
 	{
-		spawnCount = spawns.Count;
-		for(int i = 0; i < spawns.Count; i++) {
-			if(Vector3.Distance(((GameObject)spawns[i]).transform.position, transform.position) > outersphere)
+		ArrayList deleteSpawns = new ArrayList ();
+		
+		if (spawns.Count < SpawnMax)
+		{
+			Vector3 spawnPosition;
+			GameObject prepareSpawn = randomRock ();
+			
+			spawnPosition = Random.onUnitSphere * Random.Range(innersphere, outersphere);
+			spawnPosition += transform.position; // Makes the spawn locations always center on this game object (and thus, the player)
+			
+			Quaternion spawnRotation = Quaternion.identity;
+			
+			Collider[] hitColliders = Physics.OverlapSphere(prepareSpawn.renderer.bounds.center, Mathf.Max (new float[] {prepareSpawn.renderer.bounds.extents.x, prepareSpawn.renderer.bounds.extents.y, prepareSpawn.renderer.bounds.extents.z}));
+			//Debug.Log(hitColliders.Length);
+			if(hitColliders.Length == 0)
 			{
-				Destroy((GameObject)spawns[i]);
-				spawns.RemoveAt(i);
+				GameObject spawnCopy = (GameObject)Instantiate (prepareSpawn, spawnPosition, spawnRotation);
+				spawns.Add(spawnCopy);
 			}
 		}
+
+		foreach(GameObject spawn in spawns) {
+			//if(spawn != null){
+				if(Vector3.Distance(spawn.transform.position, transform.position) > outersphere && (!deleteSpawns.Contains(spawn)))
+				{
+					deleteSpawns.Add(spawn);
+				}
+			//}
+		}
+
+		deletNum = deleteSpawns.Count;
+
+		foreach(GameObject deleteSpawn in deleteSpawns)
+		{
+			spawns.Remove (deleteSpawn);
+			Destroy (deleteSpawn);
+		}
+
+//		if (spawns.Count < SpawnMax)
+//		{
+//			Vector3 spawnPosition;
+//			GameObject prepareSpawn = randomRock ();
+//			
+//			spawnPosition = Random.onUnitSphere * Random.Range(innersphere, outersphere);
+//			spawnPosition += transform.position; // Makes the spawn locations always center on this game object (and thus, the player)
+//			
+//			Quaternion spawnRotation = Quaternion.identity;
+//			
+//			Collider[] hitColliders = Physics.OverlapSphere(prepareSpawn.renderer.bounds.center, Mathf.Max (new float[] {prepareSpawn.renderer.bounds.extents.x, prepareSpawn.renderer.bounds.extents.y, prepareSpawn.renderer.bounds.extents.z}));
+//			//Debug.Log(hitColliders.Length);
+//			if(hitColliders.Length == 0)
+//			{
+//				GameObject spawnCopy = (GameObject)Instantiate (prepareSpawn, spawnPosition, spawnRotation);
+//				spawns.Add(spawnCopy);
+//			}
+//		}
 	}
 
-	IEnumerator SpawnWaves ()
+
+	public void  SpawnWaves ()
 	{
-		yield return new WaitForSeconds (startWait);
-		while (spawns.Count <= SpawnMax)
+		while (spawns.Count < SpawnMax)
 		{
 			Vector3 spawnPosition;
 			GameObject prepareSpawn = randomRock ();
@@ -88,29 +147,53 @@ public class GameController : MonoBehaviour
 			spawnPosition += transform.position; // Makes the spawn locations always center on this game object (and thus, the player)
 
 			Quaternion spawnRotation = Quaternion.identity;
-			Collider[] hitColliders = Physics.OverlapSphere(prepareSpawn.renderer.bounds.center, prepareSpawn.renderer.bounds.extents.x);
-			Debug.Log(hitColliders.Length);
+
+			Collider[] hitColliders = Physics.OverlapSphere(prepareSpawn.renderer.bounds.center, Mathf.Max (new float[] {prepareSpawn.renderer.bounds.extents.x, prepareSpawn.renderer.bounds.extents.y, prepareSpawn.renderer.bounds.extents.z}));
+			//Debug.Log(hitColliders.Length);
 			if(hitColliders.Length == 0)
 			{
-				Instantiate (prepareSpawn, spawnPosition, spawnRotation);
-				spawns.Add(prepareSpawn);
+				GameObject spawnCopy = (GameObject)Instantiate (prepareSpawn, spawnPosition, spawnRotation);
+				spawns.Add(spawnCopy);
 			}
-
-			for(int i = 0; i < spawns.Count; i++){
-				//Debug.Log("Distance:" + Vector3.Distance(((GameObject)spawns[i]).transform.position, player.transform.position));
-
-				if(Vector3.Distance(((GameObject)spawns[i]).transform.position, transform.position) > outersphere)
-				{
-					Destroy((GameObject)spawns[i]);
-					spawns.RemoveAt(i);
-				}
-			}
-
-			yield return new WaitForSeconds (spawnWait);
-
-			yield return new WaitForSeconds (waveWait);
 		}
 	}
+
+
+//	IEnumerator SpawnWaves ()
+//	{
+//		yield return new WaitForSeconds (startWait);
+//		while (spawns.Count <= SpawnMax)
+//		{
+//			Vector3 spawnPosition;
+//			GameObject prepareSpawn = randomRock ();
+//
+//			spawnPosition = Random.onUnitSphere * Random.Range(innersphere, outersphere);
+//			spawnPosition += transform.position; // Makes the spawn locations always center on this game object (and thus, the player)
+//
+//			Quaternion spawnRotation = Quaternion.identity;
+//			Collider[] hitColliders = Physics.OverlapSphere(prepareSpawn.renderer.bounds.center, prepareSpawn.renderer.bounds.extents.x);
+//			Debug.Log(hitColliders.Length);
+//			if(hitColliders.Length == 0)
+//			{
+//				Instantiate (prepareSpawn, spawnPosition, spawnRotation);
+//				spawns.Add(prepareSpawn);
+//			}
+//
+//			for(int i = 0; i < spawns.Count; i++){
+//				//Debug.Log("Distance:" + Vector3.Distance(((GameObject)spawns[i]).transform.position, player.transform.position));
+//
+//				if(Vector3.Distance(((GameObject)spawns[i]).transform.position, transform.position) > outersphere)
+//				{
+//					Destroy((GameObject)spawns[i]);
+//					spawns.RemoveAt(i);
+//				}
+//			}
+//
+//			yield return new WaitForSeconds (spawnWait);
+//
+//			yield return new WaitForSeconds (waveWait);
+//		}
+//	}
 
 	void OnGUI ()
 	{
