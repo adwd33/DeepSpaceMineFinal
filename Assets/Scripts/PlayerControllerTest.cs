@@ -21,19 +21,30 @@ public class PlayerControllerTest : MonoBehaviour
 	//camera stuff
 	private GameObject mainCamera;
 	private GameObject ship;
+	private GameObject spaceDust;
+	private GameObject PlayerWorld;
 
 	//fire stuff
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float fireRate;
-	
 	private float nextFire;
+
+	//the advance position
+	public float advance = 0;
+
+//	//test
+//	public Vector3 fogPosition;
+//	public Vector3 playerWorldPosition;
 	
 	void Start()
 	{
 		speed = cruiseSpeed;
 		mainCamera = GameObject.Find ("Player2/MainCamera");
 		ship = GameObject.Find ("Player2/Ship");
+		spaceDust = GameObject.Find ("Player2/SpaceDust");
+		PlayerWorld = GameObject.Find ("Player2/PlayerWorld");
+
 
 		/*if (mainCamera != null) {
 			Debug.Log("Camera Not NUll!");
@@ -48,6 +59,8 @@ public class PlayerControllerTest : MonoBehaviour
 	
 	void FixedUpdate()
 	{
+		//proper position
+		//setProperPosition ();
 		
 		//ANGULAR DYNAMICS//
 		
@@ -149,8 +162,16 @@ public class PlayerControllerTest : MonoBehaviour
 			audio.Play ();
 		}
 	}
-	
+
 	void Update()
 	{
 	}
+
+//	public void setProperPosition()
+//	{
+//		spaceDust.transform.position = transform.position + new Vector3 (advance, advance, advance);
+//		PlayerWorld.transform.position = transform.position + new Vector3 (advance, advance, advance);
+//		fogPosition = spaceDust.transform.position;
+//		playerWorldPosition = PlayerWorld.transform.position;
+//	}
 }
