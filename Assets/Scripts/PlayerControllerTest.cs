@@ -34,8 +34,6 @@ public class PlayerControllerTest : MonoBehaviour
 	public float advance = 0;
 
 //	//test
-//	public Vector3 fogPosition;
-//	public Vector3 playerWorldPosition;
 	
 	void Start()
 	{
@@ -45,23 +43,10 @@ public class PlayerControllerTest : MonoBehaviour
 		spaceDust = GameObject.Find ("Player2/SpaceDust");
 		PlayerWorld = GameObject.Find ("Player2/PlayerWorld");
 
-
-		/*if (mainCamera != null) {
-			Debug.Log("Camera Not NUll!");
-			//mainCamera.transform.position = new Vector3(0, 30, 0);
-		}
-
-		if(ship != null){
-			Debug.Log ("Ship Not Null!");
-			ship.transform.position = new Vector3(0, 5, 0);
-		}*/
 	}
 	
 	void FixedUpdate()
 	{
-		//proper position
-		//setProperPosition ();
-		
 		//ANGULAR DYNAMICS//
 		
 		shipRot = ship.transform.localEulerAngles; //make sure you're getting the right child (the ship).  I don't know how they're numbered in general.
@@ -158,7 +143,7 @@ public class PlayerControllerTest : MonoBehaviour
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
 			nextFire = Time.time + fireRate;
-			Instantiate(shot, shotSpawn.position, rigidbody.rotation);
+			Instantiate(shot, shotSpawn.position, transform.rotation);
 			audio.Play ();
 		}
 	}
@@ -166,12 +151,4 @@ public class PlayerControllerTest : MonoBehaviour
 	void Update()
 	{
 	}
-
-//	public void setProperPosition()
-//	{
-//		spaceDust.transform.position = transform.position + new Vector3 (advance, advance, advance);
-//		PlayerWorld.transform.position = transform.position + new Vector3 (advance, advance, advance);
-//		fogPosition = spaceDust.transform.position;
-//		playerWorldPosition = PlayerWorld.transform.position;
-//	}
 }
