@@ -23,7 +23,7 @@ public class rockAttri : MonoBehaviour {
 		if(health < 0f)
 		{
 			Destroy (gameObject);
-			Instantiate (package, position, Quaternion.identity);
+			Instantiate (package, positionl, Quaternion.identity);
 		}
 	}
 
