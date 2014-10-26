@@ -15,7 +15,7 @@ public class World01 : MonoBehaviour {
 	public Bounds currentBound;
 	public static ArrayList boundsList = new ArrayList();
 	public GameObject basicElement;
-	private int basicElementNum = 1;
+	//private int basicElementNum = 1;
 
 	//for test or detection in the future
 	public int direction;
@@ -26,7 +26,7 @@ public class World01 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//try initiate the elements
-		GameObject sun1 = (GameObject) Instantiate (Resources.Load ("Prefabs/sun", typeof(GameObject)),new Vector3(0, 0, 2000), Quaternion.identity);
+		GameObject sun1 = randomInstantiate ("Prefabs/sun", initialBound);
 		sun1.name = "realSUN";
 
 		//add initial bound to the bounds arrayList
@@ -59,14 +59,14 @@ public class World01 : MonoBehaviour {
 	 * of the world (which means every 26 of surrounded
 	 * cube of current cube will be created)
 	*/
-	public void increaseBound(GameObject player,Bounds currentBound){
+	private void increaseBound(GameObject player,Bounds currentBound){
 		float x = currentBound.center.x;
 		float y = currentBound.center.y;
 		float z = currentBound.center.z;
 		Vector3 newCubeCenter = Vector3.zero;
 		Bounds bound = currentBound;
 
-		for(int i = -1; i <= 1; i++)
+		for(int i = -1; i <= 1; i++) 
 		{
 			for(int j = -1; j <= 1; j++)
 			{
@@ -80,7 +80,7 @@ public class World01 : MonoBehaviour {
 					if (!boundsList.Contains (bound)) 
 					{
 						boundsList.Add (bound);
-						randomInstantiate("Prefabs/sun", bound);
+						//randomInstantiate("Prefabs/sun", bound);
 						Debug.Log ("Bounds NUM: " + boundsList.Count);
 						Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
 					}
@@ -96,7 +96,7 @@ public class World01 : MonoBehaviour {
 	 * current cube and player's position
 	 * output: closest distance & increased direction
 	 */
-	public boundDet closestBoundaryDistance(GameObject player, Bounds currentBound){
+	private boundDet closestBoundaryDistance(GameObject player, Bounds currentBound){
 		boundDet bounddet;
 		float closest;
 		int direction;
@@ -175,15 +175,13 @@ public class World01 : MonoBehaviour {
 		{
 			return currentBound;
 		}
-
-
 	}
 
 
 	/*
 	 * according to the resource's size instantiate the object in the currentCube
 	 */
-	public Vector3 randomInstantiate(string resource, Bounds currentBound){
+	public GameObject randomInstantiate(string resource, Bounds currentBound){
 		Vector3 randomLocalPosition;
 		Vector3 randomGlobalPosition;
 
@@ -205,10 +203,6 @@ public class World01 : MonoBehaviour {
 		Debug.Log ("Cube:" + currentBound.center.ToString("F4"));
 		Debug.Log("Position: " + randomGlobalPosition.ToString("F4"));
 
-		Instantiate (Resources.Load (resource, typeof(GameObject)), randomGlobalPosition, Quaternion.identity);
-
-		return randomGlobalPosition;
+		return (GameObject)Instantiate (Resources.Load (resource, typeof(GameObject)), randomGlobalPosition, Quaternion.identity);
 	}
-
-
 }
