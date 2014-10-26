@@ -4,14 +4,24 @@ using System.Collections;
 public class Weapon_0_Ctrl : MonoBehaviour {
 
 	public float Damage = 0f;
-	private GameObject shotSpawn; 
+	private GameObject shotSpawn;
+	public float speed;
 	public GameObject boom;
+	public float lifetime;
+
+//	void Awake()
+//	{
+//		Destroy (gameObject, lifetime);
+//	}
 
 	// Use this for initialization
 	void Start () {
 		shotSpawn = GameObject.Find("Player2/Ship/ShotSpawn");
 		Damage = 1f;
+		speed = 20;
 
+		rigidbody.velocity = transform.forward * (speed + PlayerControllerTest.speed);
+		Destroy (gameObject, lifetime);
 //		RaycastHit hit;
 //		Vector3 fwd = transform.TransformDirection(Vector3.forward);
 //		if (Physics.Raycast(transform.position, fwd, out hit))
@@ -27,7 +37,7 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.gameObject.tag != "player")
+		if(other.gameObject.tag != "player" && other.gameObject.tag != "package")
 		{
 			other.rigidbody.AddForce(transform.forward * 200);
 			other.transform.SendMessage("ApplyDamage",Damage,SendMessageOptions.DontRequireReceiver);

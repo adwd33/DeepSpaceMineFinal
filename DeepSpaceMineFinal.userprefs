@@ -4,10 +4,11 @@
     <Files>
       <File FileName="Assets\Scripts\WorldBuilder\World01.cs" Line="17" Column="21" />
       <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapon\Weapon_0_Ctrl.cs" Line="35" Column="83" />
-      <File FileName="Assets\Scripts\rocks\rockAttri.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon\Weapon_0_Ctrl.cs" Line="12" Column="5" />
+      <File FileName="Assets\Scripts\rocks\rockAttri.cs" Line="26" Column="69" />
       <File FileName="Assets\Scripts\package\PackageAttri.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerControllerTest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon\Boom_0.cs" Line="8" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
