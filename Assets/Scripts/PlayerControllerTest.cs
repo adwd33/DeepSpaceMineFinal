@@ -29,9 +29,9 @@ public class PlayerControllerTest : MonoBehaviour
 	public Transform shotSpawn;
 	public float fireRate;
 	private float nextFire;
-
-	//the advance position
-	public float advance = 0;
+	
+	//resources record
+	public int[] resources = new int[11];
 
 //	//test
 	
@@ -42,6 +42,10 @@ public class PlayerControllerTest : MonoBehaviour
 		ship = GameObject.Find ("Player2/Ship");
 		spaceDust = GameObject.Find ("Player2/SpaceDust");
 		PlayerWorld = GameObject.Find ("Player2/PlayerWorld");
+
+		resources = new int[11] {0, 0, 0, 0,
+			0, 0, 0, 0,
+			0, 0, 0};
 
 	}
 	
@@ -149,5 +153,17 @@ public class PlayerControllerTest : MonoBehaviour
 
 	void Update()
 	{
+	}
+
+	public void resourceCollector(int type, int amount)
+	{
+		Debug.Log ("Be Called");
+		Debug.Log (type + " " + amount);
+		resources [type] += amount;
+	}
+
+	public int[] getResourceList()
+	{
+		return resources;
 	}
 }
