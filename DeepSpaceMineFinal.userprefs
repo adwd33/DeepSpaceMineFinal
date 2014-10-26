@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Mover.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\rocks\rockAttri.cs">
     <Files>
       <File FileName="Assets\Scripts\GameController.cs" Line="40" Column="3" />
       <File FileName="Assets\Scripts\WorldBuilder\World01.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerControllerTest.cs" Line="75" Column="9" />
+      <File FileName="Assets\Scripts\PlayerControllerTest.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerControler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Mover.cs" Line="6" Column="21" />
+      <File FileName="Assets\Scripts\rocks\rockAttri.cs" Line="12" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

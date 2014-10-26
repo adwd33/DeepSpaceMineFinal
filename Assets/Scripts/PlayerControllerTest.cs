@@ -143,8 +143,7 @@ public class PlayerControllerTest : MonoBehaviour
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
 			nextFire = Time.time + fireRate;
-			Instantiate(shot, shotSpawn.position, transform.rotation);
-			audio.Play ();
+			Instantiate(shot, shotSpawn.position, ship.rigidbody.rotation);
 		}
 	}
 
