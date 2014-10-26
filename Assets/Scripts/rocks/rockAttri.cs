@@ -2,17 +2,18 @@
 using System.Collections;
 
 public class rockAttri : MonoBehaviour {
-	public float health = 0f;
+	public float health;
 	public int resources;
-	public string type;
-	public GameObject package;
+	public GameController gc;
+	public GameObject PlayerWorld;
 
 	// Use this for initialization
 	void Start () {
+		PlayerWorld = GameObject.Find("Player2/PlayerWorld");
+		gc = PlayerWorld.GetComponent<GameController>();
+
 		health = Random.Range (5, 10);
 		resources = Random.Range (5, 50);
-		type = this.name;
-	
 	}
 
 	public void ApplyDamage(float DamageAmount)
@@ -22,10 +23,13 @@ public class rockAttri : MonoBehaviour {
 
 		if(health < 0f)
 		{
-			Destroy (gameObject);
-			Instantiate (package, positionl, Quaternion.identity);
+			gc.SpawnRemoved(gameObject); //call function in GameController.cs
 		}
 	}
 
+	public int getResource()
+	{
+		return resources;
+	}
 
 }

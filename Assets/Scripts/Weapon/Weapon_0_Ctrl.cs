@@ -9,7 +9,7 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		shotSpawn = GameObject.Find("Player2/Ship/ShotSpawn");
-		Damage = 1f;
+		Damage = 10f;
 
 //		RaycastHit hit;
 //		Vector3 fwd = transform.TransformDirection(Vector3.forward);
@@ -23,15 +23,7 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
-
 	}
-
-//	void OnCollisionEnter(Collision collision) {
-//		Destroy (gameObject);
-//		
-//	}
 
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.tag != "player")
