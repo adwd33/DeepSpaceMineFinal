@@ -5,6 +5,8 @@ public class rockAttri : MonoBehaviour {
 	public float health = 0f;
 	public int resources;
 	public string type;
+	public GameObject package;
+
 	// Use this for initialization
 	void Start () {
 		health = Random.Range (5, 10);
@@ -16,10 +18,12 @@ public class rockAttri : MonoBehaviour {
 	public void ApplyDamage(float DamageAmount)
 	{
 		health -= DamageAmount;
+		Vector3 position = transform.position;
 
 		if(health < 0f)
 		{
 			Destroy (gameObject);
+			Instantiate (package, position, Quaternion.identity);
 		}
 	}
 

@@ -36,7 +36,7 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.tag != "player")
 		{
-			other.rigidbody.AddForce(transform.forward * 500);
+			other.rigidbody.AddForce(transform.forward * 200);
 			other.transform.SendMessage("ApplyDamage",Damage,SendMessageOptions.DontRequireReceiver);
 			Destroy(gameObject);
 		}
