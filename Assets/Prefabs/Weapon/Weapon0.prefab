@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
-  speed: 0
+  speed: 20
   boom: {fileID: 100010, guid: 480ac876a5400e84fb2edb1c7bff4ccc, type: 2}
   lifetime: 1.5
 --- !u!136 &13600000

@@ -17,8 +17,6 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		shotSpawn = GameObject.Find("Player2/Ship/ShotSpawn");
-		Damage = 1f;
-		speed = 20;
 
 		rigidbody.velocity = transform.forward * (speed + PlayerControllerTest.speed);
 		Destroy (gameObject, lifetime);
@@ -37,8 +35,9 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.gameObject.tag != "player" && other.gameObject.tag != "package")
+		if(other.gameObject.tag != "Player" && other.gameObject.tag != "package")
 		{
+			Debug.Log (other.name);
 			other.rigidbody.AddForce(transform.forward * 200);
 			other.transform.SendMessage("ApplyDamage",Damage,SendMessageOptions.DontRequireReceiver);
 			Destroy(gameObject);
