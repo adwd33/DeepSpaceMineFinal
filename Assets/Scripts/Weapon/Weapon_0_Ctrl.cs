@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Weapon_0_Ctrl : MonoBehaviour {
 
-	public float Damage = 0f;
+	public float Damage;
 	private GameObject shotSpawn;
 	public float speed;
 	public GameObject boom;
