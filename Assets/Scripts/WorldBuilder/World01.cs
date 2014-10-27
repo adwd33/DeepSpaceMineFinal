@@ -14,8 +14,8 @@ public class World01 : MonoBehaviour {
 	private Bounds initialBound = new Bounds(Vector3.zero, new Vector3 (cubeEdgeLength,cubeEdgeLength,cubeEdgeLength));
 	public Bounds currentBound;
 	public static ArrayList boundsList = new ArrayList();
-	public GameObject basicElement;
-	//private int basicElementNum = 1;
+
+	//Initialize basicElement
 
 	//for test or detection in the future
 	public int direction;
@@ -37,14 +37,13 @@ public class World01 : MonoBehaviour {
 
 		//initialize the world with 27 cubes space
 		increaseBound (player, currentBound);
-
 	}
 
 	void FixedUpdate(){
 
-		if(currentBound != inCube (player, boundsList, currentBound, detectionRange))
+		if(currentBound != inCube (player, boundsList, currentBound))
 		{
-			currentBound = inCube (player, boundsList, currentBound, detectionRange);
+			currentBound = inCube (player, boundsList, currentBound);
 			increaseBound (player, currentBound);
 		}
 
@@ -80,7 +79,19 @@ public class World01 : MonoBehaviour {
 					if (!boundsList.Contains (bound)) 
 					{
 						boundsList.Add (bound);
-						//randomInstantiate("Prefabs/sun", bound);
+						int num = Random.Range(1,20);
+						if(num%3 == 1)
+						{
+							randomInstantiate("Prefabs/ThunderSun", bound);
+						}
+						else if(num%3 == 2)
+						{
+							randomInstantiate("Prefabs/testDimond", bound);
+						}
+						else
+						{
+							randomInstantiate("Prefabs/sun", bound);
+						}
 						Debug.Log ("Bounds NUM: " + boundsList.Count);
 						Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
 					}
@@ -153,7 +164,7 @@ public class World01 : MonoBehaviour {
 	/*
 	 * monitor which cube field is player in currently  
 	 */
-	public Bounds inCube(GameObject player, ArrayList cubes, Bounds currentBound, int detectionRange)
+	private Bounds inCube(GameObject player, ArrayList cubes, Bounds currentBound)
 	{
 		if(closestBoundaryDistance(player, currentBound).closest < detectionRange && closestBoundaryDistance(player, currentBound).closest > 0)
 		{
@@ -175,6 +186,11 @@ public class World01 : MonoBehaviour {
 		{
 			return currentBound;
 		}
+	}
+
+	public Bounds getCurrentBound()
+	{
+		return currentBound;
 	}
 
 

@@ -157,7 +157,7 @@ public class PlayerControllerTest : MonoBehaviour
 
 	public void resourceCollector(int type, int amount)
 	{
-		Debug.Log ("Be Called");
+		//Debug.Log ("Be Called");
 		Debug.Log (type + " " + amount);
 		resources [type] += amount;
 	}

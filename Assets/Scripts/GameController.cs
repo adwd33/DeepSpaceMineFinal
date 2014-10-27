@@ -262,6 +262,11 @@ public class GameController : MonoBehaviour
 		newPackage.transform.SendMessage("setResourceNum", resourceNum,SendMessageOptions.DontRequireReceiver);
 	}
 
+	public int[] getEachSpawnNum()
+	{
+		return EachSpawnNum;
+	}
+
 
 
 
