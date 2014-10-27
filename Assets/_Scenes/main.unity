@@ -524,7 +524,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 299f99669b7d71646a3162922bb0bd0c, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: ShipBody
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 299f99669b7d71646a3162922bb0bd0c, type: 3}
       propertyPath: m_TagString
@@ -1676,7 +1676,6 @@ GameObject:
   - 92: {fileID: 701860781}
   - 124: {fileID: 701860780}
   - 81: {fileID: 701860779}
-  - 114: {fileID: 701860784}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1745,28 +1744,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 865373271}
---- !u!114 &701860784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 701860778}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27acebc9ad1110f6d00074c88d76c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 881578986}
-  distance: 5
-  defaultZDistance: -5.03999996
-  defaultYDistance: 2.04999995
-  xSpeed: 250
-  ySpeed: 120
-  yMinLimit: -20
-  yMaxLimit: 80
-  maxDist: 10
-  minDist: 1
-  zoomSpeed: 2
 --- !u!1 &750934397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3001,7 +2978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &865373271
 Transform:
   m_ObjectHideFlags: 0
@@ -3013,7 +2990,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 701860783}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1425142897}
 --- !u!114 &865373272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,16 +3053,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  boundary:
-    xMin: -6
-    xMax: 6
-    zMin: -2
-    zMax: 8
   shot: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
   shotSpawn: {fileID: 490466008}
   fireRate: .25
   cameraRod: {fileID: 865373270}
   movementLevel: 3
+  resources: 
 --- !u!64 &881578988
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4784,6 +4757,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1425142897}
   - 114: {fileID: 1425142898}
+  - 114: {fileID: 1425142899}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -4801,6 +4775,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 865373271}
   - {fileID: 1298867091}
   - {fileID: 1547941525}
   - {fileID: 1785790556}
@@ -4813,7 +4788,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1425142896}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e15b1b2e977882c4ab512bd762569351, type: 3}
   m_Name: 
@@ -4826,6 +4801,24 @@ MonoBehaviour:
   shot: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
   shotSpawn: {fileID: 1955985504}
   fireRate: .25
+  resources: 
+--- !u!114 &1425142899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1425142896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7086117993df83048b4296eecba4fb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  shot: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
+  shotSpawn: {fileID: 1955985504}
+  fireRate: .25
+  cameraRod: {fileID: 865373270}
+  movementLevel: 3
   resources: 
 --- !u!1 &1494344258
 GameObject:
@@ -5070,7 +5063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1544942721
 Transform:
   m_ObjectHideFlags: 0
@@ -5119,7 +5112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1547941525
 Transform:
   m_ObjectHideFlags: 0
@@ -5294,7 +5287,7 @@ GameObject:
   - 54: {fileID: 1785790557}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Player
+  m_TagString: ShipBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5352,10 +5345,10 @@ Rigidbody:
   m_GameObject: {fileID: 1785790553}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_Drag: 1
+  m_AngularDrag: 10
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

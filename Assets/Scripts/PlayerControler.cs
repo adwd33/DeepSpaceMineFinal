@@ -2,15 +2,11 @@
 using System.Collections;
 
 [System.Serializable]
-public class Boundary
-{
-	public float xMin, xMax, zMin, zMax;
-}
 
 public class PlayerControler : MonoBehaviour
 {
+	private GameObject ship;
 	public float speed;
-	public Boundary boundary;
 	
 	public GameObject shot;
 	public Transform shotSpawn;
@@ -24,9 +20,18 @@ public class PlayerControler : MonoBehaviour
 	public float movementLevel;
 	// End stuff having to do with upgrades
 
+	//resources record
+	public int[] resources = new int[11];
+
+
 	void Start ()
 	{
-		cameraRod = GameObject.Find ("cameraRod");
+		cameraRod = GameObject.Find ("Player2/cameraRod");
+		ship = GameObject.Find ("Player2/Ship");
+
+		resources = new int[11] {0, 0, 0, 0,
+			0, 0, 0, 0,
+			0, 0, 0};
 	}
 	
 	void Update ()
@@ -44,7 +49,7 @@ public class PlayerControler : MonoBehaviour
 		}
 
 		// Rotate the ship towards the camera's angle based on the turning speed
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, cameraRod.transform.rotation, turnSpeed * Time.deltaTime);
+		ship.transform.rotation = Quaternion.RotateTowards(ship.transform.rotation, cameraRod.transform.rotation, turnSpeed * Time.deltaTime);
 	}
 	
 	void FixedUpdate ()
@@ -54,8 +59,7 @@ public class PlayerControler : MonoBehaviour
 		{
 			nextFire = Time.time + fireRate;
 			//GameObject clone = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
-			Instantiate(shot, shotSpawn.position, rigidbody.rotation);
-			audio.Play ();
+			Instantiate(shot, shotSpawn.position, ship.rigidbody.rotation);
 		}
 
 		// Set the movement speed based on the ship's movement level
@@ -76,17 +80,29 @@ public class PlayerControler : MonoBehaviour
 
 		// Move the player in the direction of any buttons being pressed
 		if (Input.GetButton("Forward"))
-			rigidbody.AddRelativeForce(Vector3.forward * moveSpeed);
+			ship.rigidbody.AddRelativeForce(Vector3.forward * moveSpeed);
 		if (Input.GetButton("Back"))
-			rigidbody.AddRelativeForce(Vector3.back * moveSpeed);
+			ship.rigidbody.AddRelativeForce(Vector3.back * moveSpeed);
 		if (Input.GetButton("Left"))
-			rigidbody.AddRelativeForce(Vector3.left * moveSpeed);
+			ship.rigidbody.AddRelativeForce(Vector3.left * moveSpeed);
 		if (Input.GetButton("Right"))
-			rigidbody.AddRelativeForce(Vector3.right * moveSpeed);
+			ship.rigidbody.AddRelativeForce(Vector3.right * moveSpeed);
 		if (Input.GetButton("Up"))
-			rigidbody.AddRelativeForce(Vector3.up * moveSpeed);
+			ship.rigidbody.AddRelativeForce(Vector3.up * moveSpeed);
 		if (Input.GetButton("Down"))
-			rigidbody.AddRelativeForce(Vector3.down * moveSpeed);
+			ship.rigidbody.AddRelativeForce(Vector3.down * moveSpeed);
 
+	}
+
+	public void resourceCollector(int type, int amount)
+	{
+		//Debug.Log ("Be Called");
+		Debug.Log (type + " " + amount);
+		resources [type] += amount;
+	}
+	
+	public int[] getResourceList()
+	{
+		return resources;
 	}
 }

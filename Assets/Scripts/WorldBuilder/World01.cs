@@ -80,11 +80,11 @@ public class World01 : MonoBehaviour {
 					{
 						boundsList.Add (bound);
 						int num = Random.Range(1,20);
-						if(num%3 == 1)
+						if(num%5 == 1 || num%5 == 2 || num%5 == 4)
 						{
 							randomInstantiate("Prefabs/ThunderSun", bound);
 						}
-						else if(num%3 == 2)
+						else if(num%5 == 3)
 						{
 							randomInstantiate("Prefabs/testDimond", bound);
 						}

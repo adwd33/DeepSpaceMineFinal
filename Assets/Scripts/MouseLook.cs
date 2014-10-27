@@ -14,7 +14,7 @@ public class MouseLook : MonoBehaviour {
 
 	void Start ()
 	{
-		player = GameObject.Find ("Player");
+		player = GameObject.Find ("Player2/Ship");
 	}
 
 	void Update ()

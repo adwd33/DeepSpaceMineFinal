@@ -53,7 +53,7 @@ public class PlayerControllerTest : MonoBehaviour
 	{
 		//ANGULAR DYNAMICS//
 		
-		shipRot = ship.transform.localEulerAngles; //make sure you're getting the right child (the ship).  I don't know how they're numbered in general.
+		shipRot = ship.transform.localEulerAngles; //make sure getting the ship.
 		
 		//since angles are only stored (0,360), convert to +- 180
 		if (shipRot.x > 180) shipRot.x -= 360;
@@ -61,17 +61,16 @@ public class PlayerControllerTest : MonoBehaviour
 		if (shipRot.z > 180) shipRot.z -= 360;
 		
 		//vertical stick adds to the pitch velocity
-		//         (*************************** this *******************************) is a nice way to get the square without losing the sign of the value
 		angVel.x += Input.GetAxis("Vertical") * Mathf.Abs(Input.GetAxis("Vertical")) * sensitivity * Time.fixedDeltaTime;
 		
-		//horizontal stick adds to the roll and yaw velocity... also thanks to the .5 you can't turn as fast/far sideways as you can pull up/down
+		//horizontal stick adds to the roll and yaw velocity
 		float turn = Input.GetAxis("Horizontal") * Mathf.Abs(Input.GetAxis("Horizontal")) * sensitivity * Time.fixedDeltaTime;
 		angVel.y += turn * .5f;
 		angVel.z -= turn * .5f;
 		
 		
 		//shoulder buttons add to the roll and yaw.  No deltatime here for a quick response
-		//comment out the .y parts if you don't want to turn when you hit them
+		//comment out the .y parts if don't want to turn when hit them
 		if (Input.GetKey(KeyCode.Joystick1Button4) || Input.GetKey(KeyCode.I))
 		{
 			angVel.y -= 20;
@@ -87,10 +86,10 @@ public class PlayerControllerTest : MonoBehaviour
 		}
 		
 		
-		//your angular velocity is higher when going slower, and vice versa.  There probably exists a better function for this.
+		//the angular velocity is higher when going slower, and vice versa.
 		angVel /= 1 + deltaSpeed * .001f;
 		
-		//this is what limits your angular velocity.  Basically hard limits it at some value due to the square magnitude, you can
+		//this is what limits your angular velocity.  Basically hard limits it at some value due to the square magnitude, can
 		//tweak where that value is based on the coefficient
 		angVel -= angVel.normalized * angVel.sqrMagnitude * .08f * Time.fixedDeltaTime;
 		
