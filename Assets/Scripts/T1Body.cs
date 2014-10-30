@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class T1SVisible : MonoBehaviour {
+public class T1Body : MonoBehaviour {
 
 	public GameObject menu;
 	// Use this for initialization
