@@ -24,14 +24,14 @@ Material:
         first:
           name: _RefractTex
         second:
-          m_Texture: {fileID: 8900000, guid: 51e3f49dbd110a7011005aba44295342, type: 2}
+          m_Texture: {fileID: 8900000, guid: 92439ca99b5183e4b9ead41e36a0db40, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _ReflectTex
         second:
-          m_Texture: {fileID: 8900000, guid: 25793ebbbd111a7011005aba44295342, type: 2}
+          m_Texture: {fileID: 8900000, guid: 51e3f49dbd110a7011005aba44295342, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -46,7 +46,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: .419708014, b: .52527535, a: 1}
+        second: {r: .556444585, g: .588300824, b: .911764681, a: 1}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6
