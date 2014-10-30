@@ -9,7 +9,7 @@ public class World01 : MonoBehaviour {
 		public int direction; //direction can only be -1, 1, -2, 2, -3, 3 represents -x, x, -y, y, -z, z
 	}
 
-	public static int cubeEdgeLength = 10000;
+	public static int cubeEdgeLength = 8000;
 	public GameObject player;
 	private Bounds initialBound = new Bounds(Vector3.zero, new Vector3 (cubeEdgeLength,cubeEdgeLength,cubeEdgeLength));
 	public Bounds currentBound;
@@ -71,31 +71,29 @@ public class World01 : MonoBehaviour {
 			{
 				for(int k = -1; k <= 1; k++)
 				{
-					newCubeCenter.x = x + i * cubeEdgeLength;
-					newCubeCenter.y = y + j * cubeEdgeLength;
-					newCubeCenter.z = z + k * cubeEdgeLength;
-
-					bound = new Bounds (newCubeCenter, new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
-					if (!boundsList.Contains (bound)) 
+					if(!(i == 0 && j == 0 && k == 0))
 					{
-						boundsList.Add (bound);
-						int num = Random.Range(1,20);
-						if(num%5 == 1 || num%5 == 2 || num%5 == 4)
-						{
-							randomInstantiate("Prefabs/ThunderSun", bound);
-						}
-						else if(num%5 == 3)
-						{
-							randomInstantiate("Prefabs/testDimond", bound);
-						}
-						else
-						{
-							randomInstantiate("Prefabs/sun", bound);
-						}
-						Debug.Log ("Bounds NUM: " + boundsList.Count);
-						Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
-					}
+						newCubeCenter.x = x + i * cubeEdgeLength;
+						newCubeCenter.y = y + j * cubeEdgeLength;
+						newCubeCenter.z = z + k * cubeEdgeLength;
 
+						bound = new Bounds (newCubeCenter, new Vector3 (cubeEdgeLength, cubeEdgeLength, cubeEdgeLength));
+						if (!boundsList.Contains (bound)) 
+						{
+							boundsList.Add (bound);
+							int num = Random.Range(1,20);
+							if(num%5 == 1 || num%5 == 2 || num%5 == 4)
+							{
+								randomInstantiate("Prefabs/ThunderSun", bound);
+							}
+							else
+							{
+								randomInstantiate("Prefabs/sun", bound);
+							}
+							Debug.Log ("Bounds NUM: " + boundsList.Count);
+							Debug.Log ("New Bound Position: " + boundsList[boundsList.Count - 1]);
+						}
+					}
 				}
 			}
 		}
