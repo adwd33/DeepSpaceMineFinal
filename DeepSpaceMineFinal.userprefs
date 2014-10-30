@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PauseMenu.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\turrets\T4SVisible.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\PauseMenu.js" Line="1" Column="1" />
-=======
-      <File FileName="Assets\Scripts\WorldBuilder\World01.cs" Line="76" Column="301" />
->>>>>>> origin/master
+      <File FileName="Assets\Scripts\turrets\T4CVisible.cs" Line="15" Column="49" />
+      <File FileName="Assets\Scripts\turrets\T4SVisible.cs" Line="15" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
