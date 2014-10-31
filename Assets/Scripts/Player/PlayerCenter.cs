@@ -6,6 +6,7 @@ public class PlayerCenter : MonoBehaviour {
 	//for switch between two control
 	public GameObject cameraRod;
 	public GameObject MainCamera;
+	public float PlayerHealth;
 
 	//resources record
 	public int[] resources = new int[11];
@@ -26,6 +27,9 @@ public class PlayerCenter : MonoBehaviour {
 		resources = new int[11] {0, 0, 0, 0,
 			0, 0, 0, 0,
 			0, 0, 0};
+
+		//Initialize the player health
+		PlayerHealth = 10f;
 	}
 	
 	// Update is called once per frame
@@ -48,5 +52,21 @@ public class PlayerCenter : MonoBehaviour {
 	public int[] getResourceList()
 	{
 		return resources;
+	}
+
+	public void ApplyDamage(float DamageAmount)
+	{
+		PlayerHealth -= DamageAmount;
+		//Vector3 position = transform.position;
+		
+		if(PlayerHealth < 0f)
+		{
+			Application.LoadLevel("Main"); //call function in GameController.cs
+		}
+	}
+
+	public float GetPlayerHealth()
+	{
+		return PlayerHealth;
 	}
 }

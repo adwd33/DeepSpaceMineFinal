@@ -2095,7 +2095,7 @@ MonoBehaviour:
   startWait: 1
   waveWait: 0
   innersphere: 60
-  outersphere: 200
+  outersphere: 150
   deletNum: 0
   EachSpawnNum: 
 --- !u!4 &1298867091
@@ -2195,9 +2195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15b1b2e977882c4ab512bd762569351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cruiseSpeed: 10
+  cruiseSpeed: 0
   minSpeed: 0
-  maxSpeed: 150
+  maxSpeed: 20
   sensitivity: 1000
   cameraOffset: {x: 0, y: .5, z: -1.5}
   shot: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
@@ -2233,6 +2233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraRod: {fileID: 0}
   MainCamera: {fileID: 0}
+  PlayerHealth: 0
   resources: 
 --- !u!1 &1494344258
 GameObject:
