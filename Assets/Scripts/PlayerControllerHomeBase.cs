@@ -12,7 +12,7 @@ public class PlayerControllerHomeBase : MonoBehaviour {
 	public float speed;
 	public float tilt;
 	public Boundary boundary;
-	
+
 	void FixedUpdate ()
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
