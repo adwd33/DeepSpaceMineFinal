@@ -57,6 +57,12 @@ public class UI : MonoBehaviour
 			
 		float buttonCenterPosX;
 		float rightBoxPosX;
+
+	//Test
+	public int[] resources;
+	public GameObject Player2;
+	public Component PC;
+	public float health;
 			
 			
 		// This will draw the in game menu
@@ -267,11 +273,13 @@ public class UI : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-		playerController = (PlayerCenter)FindObjectOfType(typeof(PlayerCenter));
-		if(playerController != null){
+
+		//playerController = (PlayerCenter)FindObjectOfType(typeof(PlayerCenter));
+		//if(playerController != null){
 			//Debug.Log ("Player controller is NOT null!");
-			int[] resources = playerController.getResourceList();
-		}
+		//	resources = playerController.getResourceList();
+			//Debug.Log ("resrouces: "+ resources.GetLength.ToString());
+		//}
 				ironIcon = Resources.Load ("UITextures/ironIcon", typeof(Texture2D)) as Texture2D;
 				copperIcon = Resources.Load ("UITextures/copperIcon", typeof(Texture2D)) as Texture2D;
 				alumIcon = Resources.Load ("UITextures/alumIcon", typeof(Texture2D)) as Texture2D;
@@ -319,6 +327,11 @@ public class UI : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+		Player2 = GameObject.Find ("Player2");
+		PC = Player2.GetComponent<PlayerCenter> ();
+		resources = Player2.GetComponent<PlayerCenter> ().getResourceList ();
+		health = Player2.GetComponent<PlayerCenter> ().GetPlayerHealth ();		
+
 				//Reese 9/26/2014 This will trigger the menu for the player
 				if (Input.GetKeyDown (KeyCode.Escape)) {
 						isInGameUIEnabled = !isInGameUIEnabled;
