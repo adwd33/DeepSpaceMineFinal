@@ -3,10 +3,10 @@ using System.Collections;
 
 public class MoverHomeBase : MonoBehaviour {
 
-	public float speed;
+	public float speed = 5;
 	
 	void Start ()
 	{
-		rigidbody.velocity = transform.forward * speed;
+		rigidbody.velocity = transform.localScale * speed;
 	}
 }
