@@ -4,6 +4,7 @@ using System.Collections;
 // Reese 9/26/2014 Created this class to do all the "UIey" stuff
 public class UI : MonoBehaviour
 {
+		/**This enables*/
 		PlayerCenter playerController;
 		/**This variable will control the Ui displaying so that it does not dissapear after the user releases the "escape" key*/
 		bool isInGameUIEnabled = false;
@@ -58,16 +59,19 @@ public class UI : MonoBehaviour
 		float buttonCenterPosX;
 		float rightBoxPosX;
 
-	//Test
-	public int[] resources;
-	public GameObject Player2;
-	public Component PC;
-	public float health;
+		/**This contains the array of resources that the player collects.*/
+		int[] resources;
+		/**This is the players health.*/
+		float health;
 			
 			
 		// This will draw the in game menu
 		void drawInGameUI ()
 		{
+				if(isLevelHomeBase){
+					drawHomeBaseUpgradeMenu();
+				}
+
 				drawResourcesReadout ();
 					
 				// Make the second button. If it is pressed, this will display available upgrades for the player
@@ -107,7 +111,26 @@ public class UI : MonoBehaviour
 						}
 				}
 		}
-	
+
+		/**
+		 * This method drawHomeBaseUpgradeMenu will draw the upgrade menu if the scene is "HomeBase"
+		 * 
+		 * */
+		void drawHomeBaseUpgradeMenu(){
+			//TODO: implement me
+		}
+		/**
+		 * This method drawPlayerHealthReadout will draw a life bar on the screen for the user to see.
+		 * 
+		 * */
+		void drawPlayerHealthReadout ()
+		{
+				//TODO: implement me!
+		}
+		/**
+		 * This method drawResourcesReadout draws the ui screen for the read out of resources the player has gathered.
+		 * 
+		 * */
 		void drawResourcesReadout ()
 		{
 				// Make a background box for the container "Resources", this displays stats, resources, thats about it
@@ -190,8 +213,9 @@ public class UI : MonoBehaviour
 		}
 			
 		/**
-			 *This method will draw the labels and buttons for the upgrade box.
-			 */
+		 * This method will draw the labels and buttons for the upgrade box.
+		 * 
+		 * */
 		void drawUpgradeMenu ()
 		{
 				GUI.Label (new Rect (tierOneRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
@@ -232,13 +256,13 @@ public class UI : MonoBehaviour
 			
 			
 		/**
-			 *This method draws the warp buttons
-			 */
+		 *This method draws the warp buttons
+		 **/
 		void drawWarpMenu ()
 		{
 			
 				// This will warp the player to the home base scene
-			if (GUI.Button (new Rect (tierOneRightColumnXPos, 30, defaultButtonWidth, defaultButtonHeight), "Home Base")) {
+				if (GUI.Button (new Rect (tierOneRightColumnXPos, 30, defaultButtonWidth, defaultButtonHeight), "Home Base")) {
 						Application.LoadLevel ("HomeBase");
 						
 				}
@@ -273,13 +297,6 @@ public class UI : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-
-		//playerController = (PlayerCenter)FindObjectOfType(typeof(PlayerCenter));
-		//if(playerController != null){
-			//Debug.Log ("Player controller is NOT null!");
-		//	resources = playerController.getResourceList();
-			//Debug.Log ("resrouces: "+ resources.GetLength.ToString());
-		//}
 				ironIcon = Resources.Load ("UITextures/ironIcon", typeof(Texture2D)) as Texture2D;
 				copperIcon = Resources.Load ("UITextures/copperIcon", typeof(Texture2D)) as Texture2D;
 				alumIcon = Resources.Load ("UITextures/alumIcon", typeof(Texture2D)) as Texture2D;
@@ -327,11 +344,15 @@ public class UI : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
-		Player2 = GameObject.Find ("Player2");
-		PC = Player2.GetComponent<PlayerCenter> ();
-		resources = Player2.GetComponent<PlayerCenter> ().getResourceList ();
-		health = Player2.GetComponent<PlayerCenter> ().GetPlayerHealth ();		
-
+				if (Application.loadedLevelName.Equals ("HomeBase")) {
+					isLevelHomeBase = true;
+				}
+				playerController = (PlayerCenter)FindObjectOfType (typeof(PlayerCenter));
+				if (playerController != null) {
+						resources = playerController.getResourceList ();
+						health = playerController.GetPlayerHealth ();
+				}
+				
 				//Reese 9/26/2014 This will trigger the menu for the player
 				if (Input.GetKeyDown (KeyCode.Escape)) {
 						isInGameUIEnabled = !isInGameUIEnabled;
