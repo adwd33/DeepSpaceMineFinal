@@ -20,18 +20,10 @@ public class PlayerControler : MonoBehaviour
 	public float movementLevel;
 	// End stuff having to do with upgrades
 
-	//resources record
-	public int[] resources = new int[11];
-
-
 	void Start ()
 	{
 		cameraRod = GameObject.Find ("Player2/cameraRod");
 		ship = GameObject.Find ("Player2/Ship");
-
-		resources = new int[11] {0, 0, 0, 0,
-			0, 0, 0, 0,
-			0, 0, 0};
 	}
 	
 	void Update ()
@@ -92,17 +84,5 @@ public class PlayerControler : MonoBehaviour
 		if (Input.GetButton("Down"))
 			ship.rigidbody.AddRelativeForce(Vector3.down * moveSpeed);
 
-	}
-
-	public void resourceCollector(int type, int amount)
-	{
-		//Debug.Log ("Be Called");
-		Debug.Log (type + " " + amount);
-		resources [type] += amount;
-	}
-	
-	public int[] getResourceList()
-	{
-		return resources;
 	}
 }

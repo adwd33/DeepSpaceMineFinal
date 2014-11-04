@@ -4,7 +4,7 @@ using System.Collections;
 // Reese 9/26/2014 Created this class to do all the "UIey" stuff
 public class UI : MonoBehaviour
 {
-		PlayerControler playerController;
+		PlayerCenter playerController;
 		/**This variable will control the Ui displaying so that it does not dissapear after the user releases the "escape" key*/
 		bool isInGameUIEnabled = false;
 		/**This variable will control when a menu box is being drawn*/
@@ -267,7 +267,7 @@ public class UI : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-		playerController = (PlayerControler)FindObjectOfType(typeof(PlayerControler));
+		playerController = (PlayerCenter)FindObjectOfType(typeof(PlayerCenter));
 		if(playerController != null){
 			//Debug.Log ("Player controller is NOT null!");
 			int[] resources = playerController.getResourceList();

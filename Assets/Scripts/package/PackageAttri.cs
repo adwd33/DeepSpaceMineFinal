@@ -66,15 +66,9 @@ public class PackageAttri : MonoBehaviour {
 
 			Debug.Log (type+" " + resourceNum);
 			GameObject Player = GameObject.Find("Player2");
-			//use to switch between PlayerControllerTest and PlayerControl
-			if(Player.GetComponent<PlayerControllerTest>().enabled == false)
-			{
-				Player.GetComponent<PlayerControler>().resourceCollector(type,resourceNum);
-			}
-			else
-			{
-				Player.GetComponent<PlayerControllerTest>().resourceCollector(type,resourceNum);
-			}
+			Player.GetComponent<PlayerCenter>().resourceCollector(type,resourceNum);
+
+	
 			Destroy(gameObject);
 		}
 	}
