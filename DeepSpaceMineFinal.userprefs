@@ -1,20 +1,26 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\zty\Documents\GitHub\DeepSpaceMineFinal\Assets\Scripts\UI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\T1BarrelShot.js">
     <Files>
-      <File FileName="Assets\Scripts\Player\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerCenter.cs" Line="28" Column="15" />
-      <File FileName="Assets\Scripts\WorldBuilder\World01.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapon\Weapon_0_Ctrl.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\zty\Documents\GitHub\DeepSpaceMineFinal\Assets\Scripts\Player\GameController.cs" Line="132" Column="7" />
-      <File FileName="Assets\Scripts\Player\PlayerControler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerControllerTest.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\zty\Documents\GitHub\DeepSpaceMineFinal\Assets\Scripts\UI.cs" Line="342" Column="1" />
-      <File FileName="Assets\Scripts\rocks\rockAttri.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\turrets\Turret1Control.js" Line="12" Column="2" />
+      <File FileName="Assets\T1BarrelShot.js" Line="12" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="Player" expanded="True" />
+              <Node name="turrets" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-UnityScript" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="turrets" expanded="True" />
+            </Node>
+            <Node name="T1BarrelShot.js" selected="True" />
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
