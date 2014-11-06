@@ -1,17 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Turret5Control.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\turrets\Turret1Control.js">
     <Files>
-      <File FileName="Assets\Turret4Control.js" Line="9" Column="65" />
-      <File FileName="Assets\Turret5Control.js" Line="9" Column="65" />
+      <File FileName="Assets\Scripts\turrets\Turret1Control.js" Line="29" Column="47" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-UnityScript" expanded="True">
-            <Node name="Turret5Control.js" selected="True" />
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
