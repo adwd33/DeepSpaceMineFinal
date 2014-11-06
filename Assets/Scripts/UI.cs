@@ -1,9 +1,14 @@
 	using UnityEngine;
-using System.Collections;
+	using System.Collections;
+	using AssemblyCSharp;
 	
 // Reese 9/26/2014 Created this class to do all the "UIey" stuff
 public class UI : MonoBehaviour
 {
+		PlayerSaveObject playerSave;
+		/**This list holds a list of upgrade obnjects*/
+		public ArrayList listOfBaseUpgradeObjects;
+		public int listSize;
 		/**This enables*/
 		PlayerCenter playerController;
 		/**This variable will control the Ui displaying so that it does not dissapear after the user releases the "escape" key*/
@@ -74,10 +79,14 @@ public class UI : MonoBehaviour
 		public bool isPlayerHealthDifferent;
 		
 		public float previousHealth = 0;
+		static int costScale = 1;
+		
 			
 		// Use this for initialization
 		void Start ()
 		{
+				
+				listOfBaseUpgradeObjects = new ArrayList();
 				//Load the icons for the resource layout
 				ironIcon = Resources.Load ("UITextures/ironIcon", typeof(Texture2D)) as Texture2D;
 				copperIcon = Resources.Load ("UITextures/copperIcon", typeof(Texture2D)) as Texture2D;
@@ -116,6 +125,30 @@ public class UI : MonoBehaviour
 				buttonCenterPosX = (screenWidth / 2) - (defaultButtonWidth / 2);
 				rightBoxPosX = screenWidth - (defaultButtonWidth * 3);
 				isHealthScaleRemovalValueSet = false;
+				//Add the upgrades
+				//Tier 1
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(1, "Auto Turret",(costScale * 8),0,0,0,0,(costScale * 2),0,0,0,0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(1, "Shell",(costScale * 8),0,0,0,0,(costScale * 2),0,0,0,0));
+				//Tier 2
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(2, "Auto Turret",(costScale * 4),0,0,0,0,(costScale * 2),(costScale * 2),(costScale * 2),0,0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(2, "Shell",0,0,0,0,0,(costScale * 4),0,(costScale * 3),(costScale * 2),0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(2, "Shield",0,(costScale * 5),(costScale * 1),0,0,0,0,0,(costScale * 4),0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(2, "Missile Battery",(costScale * 2),0,(costScale * 3),0,0,(costScale * 3),0,(costScale * 1),(costScale * 1),0));
+				//Tier 3
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(3, "Auto Turret",(costScale * 1),0,0,(costScale * 3),0,(costScale * 2),(costScale * 3),(costScale * 1),0,0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(3, "Shell",0,0,0,(costScale * 6),0,0,0,(costScale * 2),(costScale * 2),0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(3, "Shield",0,(costScale * 1),(costScale * 1),(costScale * 4),(costScale * 1),0,0,(costScale * 2),(costScale * 1),0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(3, "Missile Battery",(costScale * 1),(costScale * 1),0,(costScale * 2),(costScale * 1),(costScale * 2),(costScale * 2),(costScale * 1),0,0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(3, "Nuclear Weapons",0,0,0,(costScale * 4),(costScale * 3),(costScale * 1),0,(costScale * 1),0,0));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(3, "Mine Field",0,(costScale * 1),(costScale * 2),(costScale * 3),(costScale * 1),0,(costScale * 2),(costScale * 1),0,0));
+				//Tier 4
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(4, "Auto Turret",0,0,0,(costScale * 2),0,(costScale * 1),(costScale * 2),(costScale * 1),0,(costScale * 4)));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(4, "Shell",0,0,0,(costScale * 1),0,0,0,(costScale * 1),(costScale * 1),(costScale * 7)));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(4, "Shield",0,0,0,(costScale * 3),(costScale * 1),0,0,(costScale * 2),0,(costScale * 4)));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(4, "Missile Battery",0,0,0,(costScale * 2),(costScale * 1),(costScale * 2),0,(costScale * 1),0,(costScale * 3)));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(4, "Nuclear Weapons",0,0,0,(costScale * 3),(costScale * 3),(costScale * 1),0,(costScale * 1),0,(costScale * 2)));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(4, "Mine Field",0,0,0,(costScale * 3),(costScale * 1),0,0,(costScale * 1),0,(costScale * 5)));
+				listOfBaseUpgradeObjects.Add(new BaseUpgradeObject(4, "Orbiting Platform",0,(costScale * 2),(costScale * 1),0,0,0,0,(costScale * 1),0,(costScale * 5)));
 				
 		}
 	
@@ -124,26 +157,28 @@ public class UI : MonoBehaviour
 		{
 				if (Application.loadedLevelName.Equals ("HomeBase")) {
 						isLevelHomeBase = true;
+				} else {
+						isLevelHomeBase = false;
 				}
 				playerController = (PlayerCenter)FindObjectOfType (typeof(PlayerCenter));
 				if (playerController != null) {
 						
-						if(previousHealth != health && previousHealth != 0){
-							isPlayerHealthDifferent = true;
-							previousHealth = health;
-						}else {
-							isPlayerHealthDifferent = false;
-							previousHealth = health;
+						if (previousHealth != health && previousHealth != 0) {
+								isPlayerHealthDifferent = true;
+								previousHealth = health;
+						} else {
+								isPlayerHealthDifferent = false;
+								previousHealth = health;
 						}
 						
 						resources = playerController.getResourceList ();
 						health = playerController.GetPlayerHealth ();
 						
 						defaultHealth = playerController.GetDefaultPlayerHealth ();
-			if(!isHealthScaleRemovalValueSet){
-				healthScaleRemovalValue = playerHealthbarWidth / defaultHealth;
-				isHealthScaleRemovalValueSet = true;
-			}
+						if (!isHealthScaleRemovalValueSet) {
+								healthScaleRemovalValue = playerHealthbarWidth / defaultHealth;
+								isHealthScaleRemovalValueSet = true;
+						}
 						
 				}
 		
@@ -155,11 +190,8 @@ public class UI : MonoBehaviour
 			
 		// This will draw the in game menu
 		void drawInGameUI ()
-		{
-				if (isLevelHomeBase) {
-						drawHomeBaseUpgradeMenu ();
-				}
-
+		{	
+				//draw the resource readout
 				drawResourcesReadout ();
 					
 				// Make the second button. If it is pressed, this will display available upgrades for the player
@@ -167,38 +199,49 @@ public class UI : MonoBehaviour
 						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Upgrades";
 				}
+				
+				// Make the second button. If it is pressed, this will display available upgrades for the player
+				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight), "Home Base Upgrades")) {
+						isDrawingGUIBox = !isDrawingGUIBox;
+						boxTitle = "Home Base Upgrades";
+				}
+				
 				// Make the thrid button. If it is pressed, this will display levels to warp to
-				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight), "Warp")) {
+				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 3), defaultButtonWidth, defaultButtonHeight), "Warp")) {
 						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Warp";
 				}
 				// Make the fourth button.If it is pressed, this will save the players game
-				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 3), defaultButtonWidth, defaultButtonHeight), "Save")) {
+				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 4), defaultButtonWidth, defaultButtonHeight), "Save")) {
 						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Save";
-				}
+	
+						playerSave = new PlayerSaveObject(Time.time.ToString (), (int)health, playerController.GetPurchasedShipUpgradeList (), resources, playerController.GetPurchasedHomeBaseUpgradeList ());
+						bool isSucessful = playerSave.writeSaveObjectToFile(playerSave);
+						if(isSucessful){
+							//TODO: tell the user the game was saved
+						}
+		}
 				// Make the fifth button. If it is pressed, this will display available save files to load for the player
-				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 4), defaultButtonWidth, defaultButtonHeight), "Load")) {
+				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 5), defaultButtonWidth, defaultButtonHeight), "Load")) {
 						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Load";
 				}
 				// Make the six button.If it is pressed, this will exit the game
-				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 5), defaultButtonWidth, defaultButtonHeight), "Exit")) {
+				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 6), defaultButtonWidth, defaultButtonHeight), "Exit")) {
 						Application.LoadLevel ("startMenuUI");
 				}
 	
 	
 				if (isDrawingGUIBox) {
 						if (boxTitle.Equals ("Warp")) {
-								// This will warp the player to the home base scene
-								if (GUI.Button (new Rect (buttonCenterPosX + defaultButtonWidth, (screenHeight / 4) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight), "Home Base")) {
-										Application.LoadLevel ("HomeBase");
-									
-								}
+								drawWarpMenu(new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 3), defaultButtonWidth, defaultButtonHeight));
 						} else if (boxTitle.Equals ("Upgrades")) {
 								drawUpgradeMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight));
 						} else if (boxTitle.Equals ("Home Base Upgrades")) {
-								drawUpgradeMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight));
+								drawHomeBaseUpgradeMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight));
+						}else if(boxTitle.Equals ("Load")){
+								drawLoadMenu(new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 5), defaultButtonWidth, defaultButtonHeight));
 						}
 				}
 		}
@@ -207,23 +250,7 @@ public class UI : MonoBehaviour
 		void OnGUI ()
 		{
 		
-				if(isPlayerHealthDifferent){
-						playerHealthbarWidth = playerHealthbarWidth - healthScaleRemovalValue;
-						Rect healthBarRect = new Rect(screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
-						Rect healthBarLabelRect = new Rect(screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
-						
-			
-						GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
-						healthBarRect.Set(healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
-						GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
-						isPlayerHealthDifferent = false;
-				}else {
-						Rect healthBarRect = new Rect(screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
-						Rect healthBarLabelRect = new Rect(screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
-						GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
-						healthBarRect.Set(healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
-						GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
-				}
+					drawPlayerHealthReadout ();
 		
 				
 				if (isInGameUIEnabled) {
@@ -247,14 +274,79 @@ public class UI : MonoBehaviour
 						}					
 				}
 		}
-
+		
+	//This will draw the load menu of current save files
+	void drawLoadMenu(Rect originPosition){
+		//TODO: load in the current saves
+		originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+		// This will warp the player to the home base scene
+		//how many saves determine how many buttons there are
+		if (GUI.Button (originPosition, "Save 1")) {
+			//Application.LoadLevel ("HomeBase");
+			
+		}
+	}
+		
+		//This will draw the warp menus
+		void drawWarpMenu(Rect originPosition){
+			originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+			// This will warp the player to the home base scene
+			if (GUI.Button (originPosition, "Home Base")) {
+				Application.LoadLevel ("HomeBase");
+				
+			}
+		}
 		/**
 		 * This method drawHomeBaseUpgradeMenu will draw the upgrade menu if the scene is "HomeBase"
 		 * 
 		 * */
-		void drawHomeBaseUpgradeMenu ()
+	void drawHomeBaseUpgradeMenu (Rect originPosition)
 		{
-				//TODO: implement me
+		Rect previousOriginPosition = new Rect (originPosition.position.x, originPosition.position.y, originPosition.width, originPosition.height);
+		
+		originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+		
+		//GUI.Label (new Rect (tierOneRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
+		if (GUI.Button (originPosition, "Blaster Power")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		if (GUI.Button (originPosition, "More Blasters")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		if (GUI.Button (originPosition, "Homing Missiles")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		
+		originPosition = new Rect (previousOriginPosition.position.x + (defaultButtonWidth * 2), previousOriginPosition.position.y, previousOriginPosition.width, previousOriginPosition.height);
+		//GUI.Label (new Rect (tierTwoRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
+		if (GUI.Button (originPosition, "Hull Strength")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		if (GUI.Button (originPosition, "Shields")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		if (GUI.Button (originPosition, "Regen")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		
+		originPosition = new Rect (previousOriginPosition.position.x + (defaultButtonWidth * 2), previousOriginPosition.position.y, previousOriginPosition.width, previousOriginPosition.height);	
+		originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+		//GUI.Label (new Rect (tierThreeRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
+		if (GUI.Button (originPosition, "Speed Turning")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		if (GUI.Button (originPosition, "Radar")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
+		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		if (GUI.Button (originPosition, "Resource Magnet")) {
+			//TODO: allow the player to buy this upgrade if they have correct amount of resources
+		}
 		}
 		/**
 		 * This method drawPlayerHealthReadout will draw a life bar on the screen for the user to see.
@@ -262,7 +354,23 @@ public class UI : MonoBehaviour
 		 * */
 		void drawPlayerHealthReadout ()
 		{
-				//TODO: implement me!
+				if (isPlayerHealthDifferent) {
+					playerHealthbarWidth = playerHealthbarWidth - healthScaleRemovalValue;
+					Rect healthBarRect = new Rect (screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
+					Rect healthBarLabelRect = new Rect (screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
+					
+					
+					GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
+					healthBarRect.Set (healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
+					GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
+					isPlayerHealthDifferent = false;
+				} else {
+					Rect healthBarRect = new Rect (screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
+					Rect healthBarLabelRect = new Rect (screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
+					GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
+					healthBarRect.Set (healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
+					GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
+				}
 		}
 		/**
 		 * This method drawResourcesReadout draws the ui screen for the read out of resources the player has gathered.

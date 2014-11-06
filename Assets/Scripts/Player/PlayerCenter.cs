@@ -11,7 +11,11 @@ public class PlayerCenter : MonoBehaviour {
 
 	//resources record
 	public int[] resources = new int[11];
-
+	
+	//purchased ship upgrades purchased, format should be "1 Regen" where 1 is the tier level and Regen is the name of the upgrade
+	public ArrayList listShipUpgradesPurchased;
+	//purchased home base upgrades, format should be "1 Missile Battery" where 1 is the tier level and Missile Battery is the name of the upgrade
+	public ArrayList listHomeBaseUpgrades;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +38,8 @@ public class PlayerCenter : MonoBehaviour {
 		
 		//A value representing the static unchanging amount of health, needed to ui purposes
 		defaultPlayerHealth = 10f;
+		listShipUpgradesPurchased = new ArrayList();
+		listHomeBaseUpgrades = new ArrayList();
 	}
 	
 	// Update is called once per frame
@@ -77,5 +83,28 @@ public class PlayerCenter : MonoBehaviour {
 	public float GetDefaultPlayerHealth()
 	{
 		return defaultPlayerHealth;
+	}
+	/// <summary>
+	/// Adds a purchased ship upgrade in the format "1 kjdkfj"	
+	/// </summary>
+	/// <param name="value">Value.</param>
+	public void AddPurchasedShipUpgrade(string value){
+		this.listShipUpgradesPurchased.Add(value);
+	}
+	
+	/// <summary>
+	/// Adds the purchased homebase upgrade in the format "1 kdjshfjkds"
+	/// </summary>
+	/// <param name="value">Value.</param>
+	public void AddPurchasedHomebaseUpgrade(string value){
+		this.listHomeBaseUpgrades.Add(value);
+	}
+	
+	public ArrayList GetPurchasedShipUpgradeList(){
+			return this.listShipUpgradesPurchased;
+	}
+	
+	public ArrayList GetPurchasedHomeBaseUpgradeList(){
+			return this.listHomeBaseUpgrades;
 	}
 }

@@ -137,12 +137,13 @@ public class GameController : MonoBehaviour
 		}
 
 		foreach(GameObject spawn in spawns) {
-			//if(spawn != null){
+			//Reese 11/6/2014 if i exit the game via the menu and reload this is always null gameobjects, maybe reintialized them?
+			if(spawn != null){
 				if(Vector3.Distance(spawn.transform.position, transform.position) > outersphere && (!deleteSpawns.Contains(spawn)))
 				{
 					deleteSpawns.Add(spawn);
 				}
-			//}
+			}
 		}
 
 		deletNum = deleteSpawns.Count;
