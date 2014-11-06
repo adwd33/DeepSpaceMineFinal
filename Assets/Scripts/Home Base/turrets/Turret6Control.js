@@ -7,13 +7,10 @@ function Start () {
 }
 
 function Update () {
-	if(GameObject.Find("vehicle_playerShip").transform.position.y >= 0)
+	if(GameObject.Find("vehicle_playerShip").transform.position.z >= 0)
 	{
 		transform.LookAt(LookAtTarget);
 	
-	
-		transform.LookAt(LookAtTarget);
-		
 		var seconds : int = Time.time;
 		var oddeven = (seconds % 2);
 		
@@ -29,7 +26,7 @@ function shoot(seconds){
 	{
 		var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 		
-		bullet.rigidbody.AddForce(transform.forward*50);
+		bullet.rigidbody.AddForce(transform.forward*2000);
 		
 		savedtime = seconds;
 	}
