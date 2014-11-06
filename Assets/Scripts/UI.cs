@@ -34,6 +34,7 @@ public class UI : MonoBehaviour
 		GameObject playerTest;
 		/**This is a helpful buffer size*/
 		static int bufferSize = 30;
+		/**These are the textures for the resource menu*/
 		Texture2D asteroidIcon;
 		Texture2D ironIcon;
 		Texture2D copperIcon;
@@ -45,28 +46,39 @@ public class UI : MonoBehaviour
 		Texture2D leadIcon;
 		Texture2D goldIcon;
 		Texture2D unobtainIcon;
-			
+		/**This is the texture for the player health bar*/
+		Texture2D playerHealthbar;
 		float tierOneColumnXPos;
 		float tierTwoColumnXPos;
 		float tierThreeColumnXPos;
-		float tierFourColumnXPos;
-			
+		float tierFourColumnXPos;	
 		float tierOneRightColumnXPos;
 		float tierTwoRightColumnXPos;
 		float tierThreeRightColumnXPos;
 		float tierFourRightColumnXPos;
-			
 		float buttonCenterPosX;
 		float rightBoxPosX;
-
 		/**This contains the array of resources that the player collects.*/
 		int[] resources;
 		/**This is the players health.*/
-		float health;
+		public float health;
+		/**default health of player*/
+		public float defaultHealth;
+		/**this is the player health bar width*/
+		public float playerHealthbarWidth = 128f;
+		static float defaultPlayerHealthbarWidth = 128f;
+		/**this is the player health bar height*/
+		static int playerHealthbarHeight = 32;
+		public float healthScaleRemovalValue;
+		bool isHealthScaleRemovalValueSet;
+		public bool isPlayerHealthDifferent;
+		
+		public float previousHealth = 0;
 			
 		// Use this for initialization
 		void Start ()
 		{
+				//Load the icons for the resource layout
 				ironIcon = Resources.Load ("UITextures/ironIcon", typeof(Texture2D)) as Texture2D;
 				copperIcon = Resources.Load ("UITextures/copperIcon", typeof(Texture2D)) as Texture2D;
 				alumIcon = Resources.Load ("UITextures/alumIcon", typeof(Texture2D)) as Texture2D;
@@ -78,22 +90,16 @@ public class UI : MonoBehaviour
 				goldIcon = Resources.Load ("UITextures/goldIcon", typeof(Texture2D)) as Texture2D;
 				unobtainIcon = Resources.Load ("UITextures/unobtainIcon", typeof(Texture2D)) as Texture2D;
 				asteroidIcon = Resources.Load ("UITextures/asteroidIcon", typeof(Texture2D)) as Texture2D;
+				
+				//Load the player health bar texture
+				playerHealthbar = Resources.Load ("UITextures/playerHealthBar", typeof(Texture2D)) as Texture2D;
+				
 				player = GameObject.Find ("Player");
 				playerTest = GameObject.Find ("PlayerTest");
 				//The style for the main title
 				boxGUIStyle = new GUIStyle ();
 				boxGUIStyle.fontSize = 14;
 				boxGUIStyle.normal.textColor = Color.white;
-				//boxGUIStyle.alignment = TextAnchor.UpperRight;
-				/*
-					GUI.Box (new Rect (0,0,100,50), "Top-left");
-			        GUI.Box (new Rect (Screen.width - 100,0,100,50), "Top-right");
-			        GUI.Box (new Rect (0,Screen.height - 50,100,50), "Bottom-left");
-			        GUI.Box (new Rect (Screen.width - 100,Screen.height - 50,100,50), "Bottom-right");
-					
-					
-					*/
-		
 		
 				tierOneColumnXPos = (40 * 1);
 				tierTwoColumnXPos = (40 * 4);
@@ -109,6 +115,8 @@ public class UI : MonoBehaviour
 		
 				buttonCenterPosX = (screenWidth / 2) - (defaultButtonWidth / 2);
 				rightBoxPosX = screenWidth - (defaultButtonWidth * 3);
+				isHealthScaleRemovalValueSet = false;
+				
 		}
 	
 		// Update is called once per frame
@@ -119,8 +127,24 @@ public class UI : MonoBehaviour
 				}
 				playerController = (PlayerCenter)FindObjectOfType (typeof(PlayerCenter));
 				if (playerController != null) {
+						
+						if(previousHealth != health && previousHealth != 0){
+							isPlayerHealthDifferent = true;
+							previousHealth = health;
+						}else {
+							isPlayerHealthDifferent = false;
+							previousHealth = health;
+						}
+						
 						resources = playerController.getResourceList ();
 						health = playerController.GetPlayerHealth ();
+						
+						defaultHealth = playerController.GetDefaultPlayerHealth ();
+			if(!isHealthScaleRemovalValueSet){
+				healthScaleRemovalValue = playerHealthbarWidth / defaultHealth;
+				isHealthScaleRemovalValueSet = true;
+			}
+						
 				}
 		
 				//Reese 9/26/2014 This will trigger the menu for the player
@@ -182,6 +206,26 @@ public class UI : MonoBehaviour
 		// This updates the UI, similar to Update
 		void OnGUI ()
 		{
+		
+				if(isPlayerHealthDifferent){
+						playerHealthbarWidth = playerHealthbarWidth - healthScaleRemovalValue;
+						Rect healthBarRect = new Rect(screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
+						Rect healthBarLabelRect = new Rect(screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
+						
+			
+						GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
+						healthBarRect.Set(healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
+						GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
+						isPlayerHealthDifferent = false;
+				}else {
+						Rect healthBarRect = new Rect(screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
+						Rect healthBarLabelRect = new Rect(screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
+						GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
+						healthBarRect.Set(healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
+						GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
+				}
+		
+				
 				if (isInGameUIEnabled) {
 						drawInGameUI ();
 						//this disables the player object

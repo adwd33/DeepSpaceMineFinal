@@ -7,6 +7,7 @@ public class PlayerCenter : MonoBehaviour {
 	public GameObject cameraRod;
 	public GameObject MainCamera;
 	public float PlayerHealth;
+	public float defaultPlayerHealth;
 
 	//resources record
 	public int[] resources = new int[11];
@@ -30,6 +31,9 @@ public class PlayerCenter : MonoBehaviour {
 
 		//Initialize the player health
 		PlayerHealth = 10f;
+		
+		//A value representing the static unchanging amount of health, needed to ui purposes
+		defaultPlayerHealth = 10f;
 	}
 	
 	// Update is called once per frame
@@ -68,5 +72,10 @@ public class PlayerCenter : MonoBehaviour {
 	public float GetPlayerHealth()
 	{
 		return PlayerHealth;
+	}
+	
+	public float GetDefaultPlayerHealth()
+	{
+		return defaultPlayerHealth;
 	}
 }
