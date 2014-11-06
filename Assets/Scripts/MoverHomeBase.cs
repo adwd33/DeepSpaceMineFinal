@@ -7,6 +7,7 @@ public class MoverHomeBase : MonoBehaviour {
 	
 	void Start ()
 	{
-		rigidbody.velocity = transform.localScale * speed;
+		//rigidbody.velocity = transform.localScale * speed;
+		rigidbody.velocity = transform.forward * speed;
 	}
 }

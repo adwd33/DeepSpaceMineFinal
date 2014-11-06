@@ -1,5 +1,4 @@
 ﻿var LookAtTarget:Transform;
-var bulletPreFab:Transform;
 var savedtime;
 
 function Start () {

@@ -18,9 +18,9 @@ function shoot(seconds){
 
 	if(seconds != savedtime)
 	{
-		var bullet = Instantiate(bulletPreFab, transform.Find("turret1shot").transform.position, Quaternion.identity);
+		var bullet = Instantiate(bulletPreFab, GameObject.Find("spawnpoint").transform.position, Quaternion.identity);
 		
-		bullet.rigidbody.AddForce(transform.forward*10);
+		bullet.rigidbody.AddForce(transform.forward*20);
 		
 		savedtime = seconds;
 	}
