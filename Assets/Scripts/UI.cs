@@ -277,8 +277,9 @@ public class UI : MonoBehaviour
 		
 	//This will draw the load menu of current save files
 	void drawLoadMenu(Rect originPosition){
+		//originPosition.
 		//TODO: load in the current saves
-		originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 		// This will warp the player to the home base scene
 		//how many saves determine how many buttons there are
 		if (GUI.Button (originPosition, "Save 1")) {
@@ -289,7 +290,7 @@ public class UI : MonoBehaviour
 		
 		//This will draw the warp menus
 		void drawWarpMenu(Rect originPosition){
-			originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+			originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 			// This will warp the player to the home base scene
 			if (GUI.Button (originPosition, "Home Base")) {
 				Application.LoadLevel ("HomeBase");
@@ -302,48 +303,48 @@ public class UI : MonoBehaviour
 		 * */
 	void drawHomeBaseUpgradeMenu (Rect originPosition)
 		{
-		Rect previousOriginPosition = new Rect (originPosition.position.x, originPosition.position.y, originPosition.width, originPosition.height);
+		Rect previousOriginPosition = new Rect (originPosition.x, originPosition.y, originPosition.width, originPosition.height);
 		
-		originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 		
 		//GUI.Label (new Rect (tierOneRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
 		if (GUI.Button (originPosition, "Blaster Power")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
-		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 		if (GUI.Button (originPosition, "More Blasters")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
-		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 		if (GUI.Button (originPosition, "Homing Missiles")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
 		
-		originPosition = new Rect (previousOriginPosition.position.x + (defaultButtonWidth * 2), previousOriginPosition.position.y, previousOriginPosition.width, previousOriginPosition.height);
+		originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);
 		//GUI.Label (new Rect (tierTwoRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
 		if (GUI.Button (originPosition, "Hull Strength")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
-		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 		if (GUI.Button (originPosition, "Shields")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
-		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 		if (GUI.Button (originPosition, "Regen")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
 		
-		originPosition = new Rect (previousOriginPosition.position.x + (defaultButtonWidth * 2), previousOriginPosition.position.y, previousOriginPosition.width, previousOriginPosition.height);	
-		originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+		originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);	
+		originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 		//GUI.Label (new Rect (tierThreeRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
 		if (GUI.Button (originPosition, "Speed Turning")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
-		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 		if (GUI.Button (originPosition, "Radar")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
-		originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+		originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 		if (GUI.Button (originPosition, "Resource Magnet")) {
 			//TODO: allow the player to buy this upgrade if they have correct amount of resources
 		}
@@ -361,14 +362,14 @@ public class UI : MonoBehaviour
 					
 					
 					GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
-					healthBarRect.Set (healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
+					healthBarRect.Set (healthBarRect.x, healthBarRect.y, healthBarRect.width, healthBarRect.height);
 					GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
 					isPlayerHealthDifferent = false;
 				} else {
 					Rect healthBarRect = new Rect (screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
 					Rect healthBarLabelRect = new Rect (screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
 					GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
-					healthBarRect.Set (healthBarRect.position.x, healthBarRect.position.y, healthBarRect.width, healthBarRect.height);
+					healthBarRect.Set (healthBarRect.x, healthBarRect.y, healthBarRect.width, healthBarRect.height);
 					GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
 				}
 		}
@@ -449,48 +450,48 @@ public class UI : MonoBehaviour
 		 * */
 		void drawUpgradeMenu (Rect originPosition)
 		{
-				Rect previousOriginPosition = new Rect (originPosition.position.x, originPosition.position.y, originPosition.width, originPosition.height);
+				Rect previousOriginPosition = new Rect (originPosition.x, originPosition.y, originPosition.width, originPosition.height);
 			
-				originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 		
 				//GUI.Label (new Rect (tierOneRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
 				if (GUI.Button (originPosition, "Blaster Power")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
-				originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "More Blasters")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
-				originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Homing Missiles")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
 					
-				originPosition = new Rect (previousOriginPosition.position.x + (defaultButtonWidth * 2), previousOriginPosition.position.y, previousOriginPosition.width, previousOriginPosition.height);
+				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);
 				//GUI.Label (new Rect (tierTwoRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
 				if (GUI.Button (originPosition, "Hull Strength")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
-				originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Shields")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
-				originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Regen")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
 				
-				originPosition = new Rect (previousOriginPosition.position.x + (defaultButtonWidth * 2), previousOriginPosition.position.y, previousOriginPosition.width, previousOriginPosition.height);	
-				originPosition.Set (originPosition.position.x + defaultButtonWidth, originPosition.position.y, defaultButtonWidth, defaultButtonHeight);
+				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);	
+				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 				//GUI.Label (new Rect (tierThreeRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
 				if (GUI.Button (originPosition, "Speed Turning")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
-				originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Radar")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
-				originPosition.Set (originPosition.position.x, originPosition.position.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Resource Magnet")) {
 						//TODO: allow the player to buy this upgrade if they have correct amount of resources
 				}
