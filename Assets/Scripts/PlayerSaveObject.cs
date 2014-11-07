@@ -45,16 +45,16 @@ namespace AssemblyCSharp
 						string purchasedHomeBaseupgrades = "";
 						string resourcesCollected = "";
 						foreach (string item in playerSaveObject.listOfPurchasedShipUpgrades) {
-								purchasedShipUpgrades += String.Format ("{0}", item);
+								purchasedShipUpgrades += String.Format ("{0},", item);
 						}
 						foreach (string item in playerSaveObject.listOfPurchasedHomeBaseUpgrades) {
-								purchasedHomeBaseupgrades += String.Format ("{0}", item);
+								purchasedHomeBaseupgrades += String.Format ("{0},", item);
 						}
 						foreach (int item in playerSaveObject.listOfResourcesCollected) {
-								resourcesCollected += String.Format ("{0}", item);
+								resourcesCollected += String.Format ("{0},", item);
 						}
 	
-						string playerSaveFormat = String.Format ("Health:{0},purchasedShipUpgrades:{1},purchasedHomeBaseupgrades{2},resourcesCollected:{3}",
+						string playerSaveFormat = String.Format ("Health:{0}|purchasedShipUpgrades:{1}|purchasedHomeBaseupgrades{2}|resourcesCollected:{3}",
                               playerSaveObject.playerHealth, purchasedShipUpgrades, purchasedHomeBaseupgrades, resourcesCollected);
                               
 						string fileName = "Saves/" + playerSaveObject.saveTimeStamp + ".txt";
@@ -67,9 +67,42 @@ namespace AssemblyCSharp
 								sr.WriteLine (playerSaveFormat);
 								Debug.Log ("The save file has been written!");
 								sr.Close ();
+								readSaveFile(fileName);
 								return true;
 						}
 			
+				}
+				
+				/// <summary>
+				/// Reads the save files.
+				/// </summary>
+				/// <returns>The save files.</returns>
+				public ArrayList readSaveFiles(){
+					ArrayList listOfSaveFiles = new ArrayList();
+					
+					return listOfSaveFiles;
+				
+				}
+				
+				
+				public void readSaveFile(String saveFileName){
+					//parse the save file
+					PlayerSaveObject playerSave;
+					if(File.Exists(saveFileName)){
+						var sr = File.OpenText(saveFileName);
+						var line = sr.ReadLine();
+						while(line != null){
+					//Health:10,purchasedShipUpgrades:,purchasedHomeBaseupgrades,resourcesCollected:00000000000
+					string [] split = line.Split(new Char [] {'|'});
+							Debug.Log(line); // prints each line of the file
+							line = sr.ReadLine();
+						}  
+					} else {
+						Debug.Log("Could not Open the file: " + saveFileName + " for reading.");
+						return;
+					}
+					//return playerSave;
+				
 				}
 		}
 }
