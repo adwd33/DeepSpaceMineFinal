@@ -1,26 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\turrets\Turret3Control.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ShieldLogic.cs">
     <Files>
-      <File FileName="Assets\Scripts\turrets\Turret1Control.js" Line="14" Column="1" />
-      <File FileName="Assets\Scripts\turrets\Turret3Control.js" Line="3" Column="28" />
-      <File FileName="Assets\Scripts\turrets\Turret4Control.js" Line="33" Column="2" />
-      <File FileName="Assets\Scripts\turrets\Turret5Control.js" Line="33" Column="2" />
-      <File FileName="Assets\Scripts\turrets\Turret6Control.js" Line="33" Column="2" />
+      <File FileName="Assets\Scripts\Home Base\DestroyByHits.cs" Line="14" Column="14" />
+      <File FileName="Assets\ShieldLogic.cs" Line="18" Column="23" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-UnityScript" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="turrets" expanded="True">
-                <Node name="Turret3Control.js" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
