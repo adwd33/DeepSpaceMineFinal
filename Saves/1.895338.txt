@@ -1,1 +1,0 @@
-Health:10,purchasedShipUpgrades:,purchasedHomeBaseupgrades,resourcesCollected:00000000000

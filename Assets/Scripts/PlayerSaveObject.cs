@@ -14,19 +14,33 @@ using System.Xml.Serialization;
 using System.IO; 
 using System.Text;
 using UnityEngine;
+using UnityEditor;
 namespace AssemblyCSharp
 {
 		public class PlayerSaveObject
 		{
-				string saveTimeStamp;
-				int playerHealth;
-				ArrayList listOfPurchasedShipUpgrades;
-				int[] listOfResourcesCollected;
-				ArrayList listOfPurchasedHomeBaseUpgrades;
-			
-				public PlayerSaveObject (string saveTimeStamp, int playerHealth, ArrayList listOfPurchasedShipUpgrades, int[] listOfResourcesCollected, ArrayList listOfPurchasedHomeBaseUpgrades)
+				public int playerHealth;
+				public ArrayList listOfPurchasedShipUpgrades;
+				public int[] listOfResourcesCollected;
+				public ArrayList listOfPurchasedHomeBaseUpgrades;
+				
+				/// <summary>
+				/// Initializes a new instance of the <see cref="AssemblyCSharp.PlayerSaveObject"/> class.
+				/// </summary>
+				public PlayerSaveObject(){
+				
+				}
+				
+				/// <summary>
+				/// Initializes a new instance of the <see cref="AssemblyCSharp.PlayerSaveObject"/> class.
+				/// </summary>
+				/// <param name="saveTimeStamp">Save time stamp.</param>
+				/// <param name="playerHealth">Player health.</param>
+				/// <param name="listOfPurchasedShipUpgrades">List of purchased ship upgrades.</param>
+				/// <param name="listOfResourcesCollected">List of resources collected.</param>
+				/// <param name="listOfPurchasedHomeBaseUpgrades">List of purchased home base upgrades.</param>
+				public PlayerSaveObject (int playerHealth, ArrayList listOfPurchasedShipUpgrades, int[] listOfResourcesCollected, ArrayList listOfPurchasedHomeBaseUpgrades)
 				{
-						this.saveTimeStamp = saveTimeStamp;
 						this.playerHealth = playerHealth;
 						this.listOfPurchasedShipUpgrades = listOfPurchasedShipUpgrades;
 						this.listOfResourcesCollected = listOfResourcesCollected;
@@ -38,71 +52,86 @@ namespace AssemblyCSharp
 				/// Writes the save object to a file.
 				/// </summary>
 				/// <param name="playerSaveObject">Player save object.</param>
-				public bool writeSaveObjectToFile (PlayerSaveObject playerSaveObject)
+				public bool saveTheGame (PlayerSaveObject playerSaveObject)
 				{
-						
+
 						string purchasedShipUpgrades = "";
 						string purchasedHomeBaseupgrades = "";
 						string resourcesCollected = "";
+						int counter = 0;
 						foreach (string item in playerSaveObject.listOfPurchasedShipUpgrades) {
-								purchasedShipUpgrades += String.Format ("{0},", item);
+								if (counter == playerSaveObject.listOfResourcesCollected.Length - 1) {
+										purchasedShipUpgrades += String.Format ("{0}", item);
+										counter = 0;
+								} else {
+										purchasedShipUpgrades += String.Format ("{0},", item);
+								}
 						}
 						foreach (string item in playerSaveObject.listOfPurchasedHomeBaseUpgrades) {
-								purchasedHomeBaseupgrades += String.Format ("{0},", item);
+								if (counter == playerSaveObject.listOfResourcesCollected.Length - 1) {
+										purchasedHomeBaseupgrades += String.Format ("{0}", item);
+										counter = 0;
+								} else {
+										purchasedHomeBaseupgrades += String.Format ("{0},", item);
+								}
 						}
 						foreach (int item in playerSaveObject.listOfResourcesCollected) {
-								resourcesCollected += String.Format ("{0},", item);
-						}
-	
-						string playerSaveFormat = String.Format ("Health:{0}|purchasedShipUpgrades:{1}|purchasedHomeBaseupgrades{2}|resourcesCollected:{3}",
-                              playerSaveObject.playerHealth, purchasedShipUpgrades, purchasedHomeBaseupgrades, resourcesCollected);
-                              
-						string fileName = "Saves/" + playerSaveObject.saveTimeStamp + ".txt";
-						if (File.Exists (fileName)) {
-								Debug.Log (fileName + " already exists.");
-								return false;
-						} else {
+								if (counter == playerSaveObject.listOfResourcesCollected.Length - 1) {
+										resourcesCollected += String.Format ("{0}", item);
+										counter = 0;
+								} else {
+										resourcesCollected += String.Format ("{0},", item);
+								}
 								
-								var sr = File.CreateText (fileName);
-								sr.WriteLine (playerSaveFormat);
-								Debug.Log ("The save file has been written!");
-								sr.Close ();
-								readSaveFile(fileName);
-								return true;
+								counter++;
 						}
-			
+                              
+						PlayerPrefs.SetInt ("health", playerSaveObject.playerHealth);
+						PlayerPrefs.SetString ("shipUpgrades", purchasedShipUpgrades);
+						PlayerPrefs.SetString ("homeBaseUpgrades", purchasedHomeBaseupgrades);
+						PlayerPrefs.SetString ("resourcesCollected", resourcesCollected);
+						PlayerPrefs.Save ();
+						
+						if(PlayerPrefs.GetInt("health") > 0 && 
+						!PlayerPrefs.GetString("shipUpgrades").Equals("") &&
+			   			!PlayerPrefs.GetString("homeBaseUpgrades").Equals("") &&
+			   			!PlayerPrefs.GetString("resourcesCollected").Equals("")){
+			   				return true;
+			   			}else{
+			   				return false;
+			   			}
 				}
+				
 				
 				/// <summary>
-				/// Reads the save files.
+				/// Reads the save file.
 				/// </summary>
-				/// <returns>The save files.</returns>
-				public ArrayList readSaveFiles(){
-					ArrayList listOfSaveFiles = new ArrayList();
+				/// <param name="saveFileName">Save file name.</param>
+				public PlayerSaveObject loadTheGame ()
+				{
+						int health = PlayerPrefs.GetInt ("health");
+						string shipUpgrades = PlayerPrefs.GetString ("shipUpgrades");
+						string homeBaseUpgrades = PlayerPrefs.GetString ("homeBaseUpgrades");
+						string resourcesCollected = PlayerPrefs.GetString ("resourcesCollected");
 					
-					return listOfSaveFiles;
+						string[] listOfShipUpgrades = shipUpgrades.Split (',');
+						string[] listOfHomeBaseUpgrades = homeBaseUpgrades.Split (',');
+						string[] listOfResourcesCollected = resourcesCollected.Split (',');
+						
+						int[] resources = new int[11];
+						for(int i = 0; i < listOfResourcesCollected.Length; i++){
+							resources[i] = int.Parse(listOfResourcesCollected[i]);
+						}
+						
+
+						ArrayList arrayListOfshipUpgrades = new ArrayList(listOfShipUpgrades);
+						ArrayList arrayListOfHomeBaseUpgrades = new ArrayList(listOfHomeBaseUpgrades);
 				
-				}
 				
-				
-				public void readSaveFile(String saveFileName){
-					//parse the save file
-					PlayerSaveObject playerSave;
-					if(File.Exists(saveFileName)){
-						var sr = File.OpenText(saveFileName);
-						var line = sr.ReadLine();
-						while(line != null){
-					//Health:10,purchasedShipUpgrades:,purchasedHomeBaseupgrades,resourcesCollected:00000000000
-					string [] split = line.Split(new Char [] {'|'});
-							Debug.Log(line); // prints each line of the file
-							line = sr.ReadLine();
-						}  
-					} else {
-						Debug.Log("Could not Open the file: " + saveFileName + " for reading.");
-						return;
-					}
-					//return playerSave;
-				
+						//parse the save file
+			PlayerSaveObject playerSave = new PlayerSaveObject (health, arrayListOfshipUpgrades, resources, arrayListOfHomeBaseUpgrades);
+					
+						return playerSave;
 				}
 		}
 }

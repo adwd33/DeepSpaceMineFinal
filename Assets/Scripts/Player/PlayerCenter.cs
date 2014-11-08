@@ -63,6 +63,9 @@ public class PlayerCenter : MonoBehaviour {
 	{
 		return resources;
 	}
+	public void setResourceList(int[] resources){
+		this.resources = resources;
+	}
 
 	public void ApplyDamage(float DamageAmount)
 	{
@@ -79,13 +82,16 @@ public class PlayerCenter : MonoBehaviour {
 	{
 		return PlayerHealth;
 	}
+	public void SetPlayerHealth(float newHealth){
+		this.PlayerHealth = newHealth;
+	}
 	
 	public float GetDefaultPlayerHealth()
 	{
 		return defaultPlayerHealth;
 	}
 	/// <summary>
-	/// Adds a purchased ship upgrade in the format "1 kjdkfj"	
+	/// Adds the purchased ship upgrade.
 	/// </summary>
 	/// <param name="value">Value.</param>
 	public void AddPurchasedShipUpgrade(string value){
@@ -93,7 +99,7 @@ public class PlayerCenter : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Adds the purchased homebase upgrade in the format "1 kdjshfjkds"
+	/// Adds the purchased homebase upgrade.
 	/// </summary>
 	/// <param name="value">Value.</param>
 	public void AddPurchasedHomebaseUpgrade(string value){

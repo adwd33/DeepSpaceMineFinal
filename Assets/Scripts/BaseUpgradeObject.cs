@@ -12,35 +12,36 @@ namespace AssemblyCSharp
 {
 		public class BaseUpgradeObject
 		{
-				int tierLevel;
-				string upgradeName;
-				int ironCost;
-				int copperCost;
-				int alumCost;
-				int diamondCost;
-				int uranCost;
-				int hydrogenCost;
-				int platCost;
-				int leadCost;
-				int goldCost;
-				int unobtainCost;
-				
+				public int tierLevel;
+				public string upgradeName;
+				public int ironCost;
+				public int copperCost;
+				public int alumCost;
+				public int diamondCost;
+				public int uranCost;
+				public int hydrogenCost;
+				public int platCost;
+				public int leadCost;
+				public int goldCost;
+				public int unobtainCost;
+				public bool hasPlayerPurchased;
 				
 				public BaseUpgradeObject (int tierLevel, string upgradeName, int ironCost, int copperCost, int alumCost, int diamondCost, 
-					int uranCost, int hydrogenCost, int platCost, int leadCost, int goldCost, int unobtainCost)
+					int uranCost, int hydrogenCost, int platCost, int leadCost, int goldCost, int unobtainCost, bool hasPlayerPurchased)
 				{
-					this.tierLevel = tierLevel;
-					this.upgradeName = upgradeName;
-					this.ironCost = ironCost;
-					this.copperCost = copperCost;
-					this.alumCost = alumCost;
-					this.diamondCost = diamondCost;
-					this.uranCost = uranCost;
-					this.hydrogenCost = hydrogenCost;
-					this.platCost = platCost;
-					this.leadCost = leadCost;
-					this.goldCost = goldCost;
-					this.unobtainCost = unobtainCost;
+						this.tierLevel = tierLevel;
+						this.upgradeName = upgradeName;
+						this.ironCost = ironCost;
+						this.copperCost = copperCost;
+						this.alumCost = alumCost;
+						this.diamondCost = diamondCost;
+						this.uranCost = uranCost;
+						this.hydrogenCost = hydrogenCost;
+						this.platCost = platCost;
+						this.leadCost = leadCost;
+						this.goldCost = goldCost;
+						this.unobtainCost = unobtainCost;
+						this.hasPlayerPurchased = hasPlayerPurchased;
 				}
 		}
 }
