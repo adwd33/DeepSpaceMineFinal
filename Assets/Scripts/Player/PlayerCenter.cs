@@ -29,6 +29,18 @@ public class PlayerCenter : MonoBehaviour {
 		MainCamera.SetActive (true);
 
 		//Initialize the resource record
+		//Index – ResouceName
+		//1 – Aluminum
+		//2 – Copper
+		//3 – Diamond
+		//4 – Gold
+//		5 – Hydrogen
+//		6 – Iron
+//		7 – Lead
+//		8 – Platinum
+//		9 – Unobtanium
+//		10- Uranium
+//		0 – Asteroid
 		resources = new int[11] {0, 0, 0, 0,
 			0, 0, 0, 0,
 			0, 0, 0};

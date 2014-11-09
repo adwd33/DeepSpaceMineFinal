@@ -10,6 +10,8 @@ public class UI : MonoBehaviour
 		bool isDrawingTier2;
 		bool isDrawingTier3;
 		bool isDrawingTier4;
+		
+		bool isDisplayingInventory;
 		/**This list holds a list of upgrade obnjects*/
 		public ArrayList listOfBaseUpgradeObjects;
 		public int listSize;
@@ -174,18 +176,19 @@ public class UI : MonoBehaviour
 				
 				playerController = (PlayerCenter)FindObjectOfType (typeof(PlayerCenter));
 				if (playerController != null) {
-					if(!isGameLoaded){
-						//Application.LoadLevel("main");
-						PlayerSaveObject loadMe = new PlayerSaveObject();
-						PlayerSaveObject playerInfo = loadMe.loadTheGame();
+						if (!isGameLoaded) {
+								//Application.LoadLevel("main");
+								PlayerSaveObject loadMe = new PlayerSaveObject ();
+								PlayerSaveObject playerInfo = loadMe.loadTheGame ();
 						
-						if(playerInfo != null){
-							playerController.setResourceList(playerInfo.listOfResourcesCollected);
-							playerController.SetPlayerHealth((float)playerInfo.playerHealth);
-							isGameLoaded = true;
+								if (playerInfo != null) {
+										playerController.setResourceList (playerInfo.listOfResourcesCollected);
+										playerController.SetPlayerHealth ((float)playerInfo.playerHealth);
+										health = (float)playerInfo.playerHealth;
+										isGameLoaded = true;
 							
+								}
 						}
-					}
 						
 						if (previousHealth != health && previousHealth != 0) {
 								isPlayerHealthDifferent = true;
@@ -200,7 +203,7 @@ public class UI : MonoBehaviour
 						
 						defaultHealth = playerController.GetDefaultPlayerHealth ();
 						if (!isHealthScaleRemovalValueSet) {
-								healthScaleRemovalValue = playerHealthbarWidth / defaultHealth;
+								healthScaleRemovalValue = playerHealthbarWidth / health;
 								isHealthScaleRemovalValueSet = true;
 						}
 						
@@ -209,52 +212,46 @@ public class UI : MonoBehaviour
 				//Reese 9/26/2014 This will trigger the menu for the player
 				if (Input.GetKeyDown (KeyCode.Escape)) {
 						isInGameUIEnabled = !isInGameUIEnabled;
+				} else if (Input.GetKeyDown (KeyCode.I)) {
+						//display the inventory
+						isDisplayingInventory = !isDisplayingInventory;
 				}
 		}
-			
 		/// <summary>
 		/// Draws the in game UI.
 		/// </summary>
 		void drawInGameUI ()
 		{	
-				//draw the resource readout
-				drawResourcesReadout ();
-					
 				// Make the second button. If it is pressed, this will display available upgrades for the player
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight), "Upgrades")) {
-						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Upgrades";
 				}
 				
 				// Make the second button. If it is pressed, this will display available upgrades for the player
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight), "Home Base Upgrades")) {
-						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Home Base Upgrades";
 				}
 				
 				// Make the thrid button. If it is pressed, this will display levels to warp to
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 3), defaultButtonWidth, defaultButtonHeight), "Warp")) {
-						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Warp";
 				}
 				// Make the fourth button.If it is pressed, this will save the players game
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 4), defaultButtonWidth, defaultButtonHeight), "Save")) {
-						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Save";
 	
 						playerSave = new PlayerSaveObject ((int)health, playerController.GetPurchasedShipUpgradeList (), resources, playerController.GetPurchasedHomeBaseUpgradeList ());
-						bool isSucessful = playerSave.saveTheGame(playerSave);
+						bool isSucessful = playerSave.saveTheGame (playerSave);
 						isDrawingTier1 = false;
 						isDrawingTier2 = false;
 						isDrawingTier3 = false;
 						isDrawingTier4 = false;
 						if (isSucessful) {
-								Debug.Log("The game has been successfully saved.");
+								Debug.Log ("The game has been successfully saved.");
 						}
 				}
 				// Make the fifth button. If it is pressed, this will display available save files to load for the player
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 5), defaultButtonWidth, defaultButtonHeight), "Load")) {
-						isDrawingGUIBox = !isDrawingGUIBox;
 						boxTitle = "Load";
 				}
 				// Make the six button.If it is pressed, this will exit the game
@@ -263,35 +260,33 @@ public class UI : MonoBehaviour
 				}
 	
 	
-				if (isDrawingGUIBox) {
-						if (boxTitle.Equals ("Warp")) {
-								drawWarpMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 3), defaultButtonWidth, defaultButtonHeight));
-								isDrawingTier1 = false;
-								isDrawingTier2 = false;
-								isDrawingTier3 = false;
-								isDrawingTier4 = false;
-						} else if (boxTitle.Equals ("Upgrades")) {
-								drawUpgradeMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight));
-								isDrawingTier1 = false;
-								isDrawingTier2 = false;
-								isDrawingTier3 = false;
-								isDrawingTier4 = false;
-						} else if (boxTitle.Equals ("Home Base Upgrades")) {
-								drawHomeBaseUpgradeMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight));
-						} else if (boxTitle.Equals ("Load")) {
-								isDrawingTier1 = false;
-								isDrawingTier2 = false;
-								isDrawingTier3 = false;
-								isDrawingTier4 = false;
-								//Application.LoadLevel("main");
-								PlayerSaveObject loadMe = new PlayerSaveObject();
-								PlayerSaveObject playerInfo = loadMe.loadTheGame();
+				if (boxTitle.Equals ("Warp")) {
+						drawWarpMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 3), defaultButtonWidth, defaultButtonHeight));
+						isDrawingTier1 = false;
+						isDrawingTier2 = false;
+						isDrawingTier3 = false;
+						isDrawingTier4 = false;
+				} else if (boxTitle.Equals ("Upgrades")) {
+						drawUpgradeMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight));
+						isDrawingTier1 = false;
+						isDrawingTier2 = false;
+						isDrawingTier3 = false;
+						isDrawingTier4 = false;
+				} else if (boxTitle.Equals ("Home Base Upgrades")) {
+						drawHomeBaseUpgradeMenu (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight));
+				} else if (boxTitle.Equals ("Load")) {
+						isDrawingTier1 = false;
+						isDrawingTier2 = false;
+						isDrawingTier3 = false;
+						isDrawingTier4 = false;
+						//Application.LoadLevel("main");
+						PlayerSaveObject loadMe = new PlayerSaveObject ();
+						PlayerSaveObject playerInfo = loadMe.loadTheGame ();
 								
-								if(playerInfo != null){
-									playerController.setResourceList(playerInfo.listOfResourcesCollected);
-									playerController.PlayerHealth = (float)playerInfo.playerHealth;
-								
-								}
+						if (playerInfo != null) {
+								playerController.setResourceList (playerInfo.listOfResourcesCollected);
+								playerController.PlayerHealth = (float)playerInfo.playerHealth;
+								health = (float)playerInfo.playerHealth;
 								
 						}
 				}
@@ -304,7 +299,10 @@ public class UI : MonoBehaviour
 		{
 		
 				drawPlayerHealthReadout ();
-		
+				if (isDisplayingInventory) {
+						//draw the resource readout
+						drawResourcesReadout ();
+				}
 				
 				if (isInGameUIEnabled) {
 						drawInGameUI ();
@@ -368,7 +366,7 @@ public class UI : MonoBehaviour
 				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 				foreach (BaseUpgradeObject item in listOfBaseUpgradeObjects) {	
 						if (item.tierLevel == tierLevel) {
-								if (GUI.Button (originPosition, "Tier"+ tierLevel +" " + item.upgradeName)) {
+								if (GUI.Button (originPosition, "Tier" + tierLevel + " " + item.upgradeName)) {
 										if (tierLevel == 1 && item.upgradeName.Equals ("Auto Turret")) {
 												//TODO: create methoid that will attemp to buy a item, give it item tier and item name
 												Debug.Log ("you are trying to buy a tier 1 auto turret");
@@ -464,67 +462,90 @@ public class UI : MonoBehaviour
 						GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
 				}
 		}
+		
+		/// <summary>
+		/// Draws A resource.
+		/// </summary>
+		/// <param name="originRect">Origin rect.</param>
+		/// <param name="tierLevel">Tier level.</param>
+		/// <param name="resourceName">Resource name.</param>
+		void drawAResource (Rect originRect, int tierLevel, string resourceName, Texture2D icon, int index)
+		{
+				float iconWidthAdjustment;
+				float amountLabelPosAdjust;
+				float labelPosAdjust;
+
+				if (resourceName.Equals ("Hydrogen") 
+						|| resourceName.Equals ("Diamond")) {
+						iconWidthAdjustment = (icon.width);
+						amountLabelPosAdjust = icon.width / 2;
+						labelPosAdjust = icon.width * 2;
+				} else {
+						iconWidthAdjustment = (icon.width / 2);
+						amountLabelPosAdjust = 0;
+						labelPosAdjust = icon.width;
+				}
+				Rect texturePositon = new Rect (originRect.x - amountLabelPosAdjust, originRect.y, (icon.height / 2), (icon.height / 2));
+				Rect labelPosition = new Rect (originRect.x + (labelPosAdjust), originRect.y, defaultButtonWidth, defaultButtonHeight);
+				Rect amountLabelPosition = new Rect (labelPosition.x - iconWidthAdjustment, labelPosition.y, labelPosition.width, labelPosition.height);
+		
+				GUI.Label (labelPosition, resourceName, boxGUIStyle);
+				GUI.DrawTexture (texturePositon, icon, ScaleMode.ScaleToFit, true, 0.0f);
+				GUI.Label (amountLabelPosition, resources [index].ToString ());
+		}
+		
 		/// <summary>
 		/// Draws the resources readout.
 		/// </summary>
 		void drawResourcesReadout ()
 		{
 				// Make a background box for the container "Resources", this displays stats, resources, thats about it
-				//This will display the read out of current resources collected by the player
-				drawAGUIBox (new Rect (tierOneColumnXPos, 10, (defaultButtonWidth * 3), screenHeight), "Resources");
+				//This will display the read out of current resources collected by the player//Index – ResouceName
+				//1 – Aluminum
+				//2 – Copper
+				//3 – Diamond
+				//4 – Gold
+				//		5 – Hydrogen
+				//		6 – Iron
+				//		7 – Lead
+				//		8 – Platinum
+				//		9 – Unobtanium
+				//		10- Uranium
+				//		0 – Asteroid
+				
+				drawAGUIBox (new Rect ((screenWidth / 2) - ((defaultButtonWidth * 3) / 2), 10, (defaultButtonWidth * 3), screenHeight), "Inventory");
 				//asteroid, Iron, copper, Aluminum, Hydrogen tier 1
-				GUI.Label (new Rect (tierOneColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 1", boxGUIStyle);
-					
-				GUI.Label (new Rect (tierOneColumnXPos, (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Asteroid", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierOneColumnXPos, (bufferSize * 3) + (asteroidIcon.height / 2), (asteroidIcon.width / 2), (asteroidIcon.height / 2)), asteroidIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierOneColumnXPos + (asteroidIcon.width / 2), (bufferSize * 3) + (asteroidIcon.height / 2), (asteroidIcon.width / 2), (asteroidIcon.height / 2)), resources [0].ToString ());
-			
-				GUI.Label (new Rect (tierOneColumnXPos, (bufferSize * 4) + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight), "Iron", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierOneColumnXPos, (bufferSize * 4) + (ironIcon.height / 2) + (asteroidIcon.height / 2), (ironIcon.width / 2), (ironIcon.height / 2)), ironIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierOneColumnXPos + (ironIcon.width / 2), (bufferSize * 4) + (ironIcon.height / 2) + (asteroidIcon.height / 2), (ironIcon.width / 2), (ironIcon.height / 2)), resources [1].ToString ());
-			
-				GUI.Label (new Rect (tierOneColumnXPos, (bufferSize * 5) + (ironIcon.height / 2) + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight), "Copper", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierOneColumnXPos, (bufferSize * 5) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2), (copperIcon.width / 2), (copperIcon.height / 2)), copperIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierOneColumnXPos + (copperIcon.width / 2), (bufferSize * 5) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2), (copperIcon.width / 2), (copperIcon.height / 2)), resources [2].ToString ());
-			
-				GUI.Label (new Rect (tierOneColumnXPos, (bufferSize * 6) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight), "Aluminum", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierOneColumnXPos, (bufferSize * 6) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2) + (alumIcon.height / 2), (alumIcon.width / 2), (alumIcon.height / 2)), alumIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierOneColumnXPos + (alumIcon.width / 2), (bufferSize * 6) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2) + (alumIcon.height / 2), (alumIcon.width / 2), (alumIcon.height / 2)), resources [3].ToString ());
+				Rect originRect = new Rect ((screenWidth / 2) - ((defaultButtonWidth * 3) / 2), 10, defaultButtonWidth, defaultButtonHeight);
+				Rect originalOriginRect = new Rect (originRect.x, originRect.y, defaultButtonWidth, defaultButtonHeight);
+				//Tier 1
+				originRect.Set (originRect.x + 10, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 1, "Asteroid", asteroidIcon, 0);
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 1, "Iron", ironIcon, 6);
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 1, "Copper", copperIcon, 2);
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 1, "Aluminum", alumIcon, 1);
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 1, "Hydrogen", hydrogenIcon, 5);
 				
-				GUI.Label (new Rect (tierOneColumnXPos, (bufferSize * 7) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2) + (alumIcon.height / 2), defaultButtonWidth, defaultButtonHeight), "Hydrogen", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierOneColumnXPos, (bufferSize * 7) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2) + (alumIcon.height / 2) + (hydrogenIcon.height / 3), (hydrogenIcon.width / 2), (hydrogenIcon.height / 2)), hydrogenIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierOneColumnXPos + (hydrogenIcon.width / 2), (bufferSize * 7) + (ironIcon.height / 2) + (copperIcon.height / 2) + (asteroidIcon.height / 2) + (alumIcon.height / 2) + (hydrogenIcon.height / 3), (hydrogenIcon.width / 2), (hydrogenIcon.height / 2)), resources [4].ToString ());
-	
-				//Platinum, gold, lead tier 2
-				GUI.Label (new Rect (tierTwoColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 2", boxGUIStyle);
-				GUI.Label (new Rect (tierTwoColumnXPos, (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Platinum", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierTwoColumnXPos, (bufferSize * 3) + (platIcon.height / 2), (platIcon.width / 2), (platIcon.height / 2)), platIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierTwoColumnXPos + (platIcon.width / 2), (bufferSize * 3) + (platIcon.height / 2), (platIcon.width / 2), (platIcon.height / 2)), resources [5].ToString ());
-			
-				GUI.Label (new Rect (tierTwoColumnXPos, (bufferSize * 4) + (platIcon.height / 2), defaultButtonWidth, defaultButtonHeight), "Gold", boxGUIStyle);		
-				GUI.DrawTexture (new Rect (tierTwoColumnXPos, (bufferSize * 4) + (goldIcon.height / 2) + (platIcon.height / 2), (goldIcon.width / 2), (goldIcon.height / 2)), goldIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierTwoColumnXPos + (goldIcon.width / 2), (bufferSize * 4) + (goldIcon.height / 2) + (platIcon.height / 2), (goldIcon.width / 2), (goldIcon.height / 2)), resources [6].ToString ());
 				
-				GUI.Label (new Rect (tierTwoColumnXPos, (bufferSize * 5) + (goldIcon.height / 2) + (platIcon.height / 2), defaultButtonWidth, defaultButtonHeight), "Lead", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierTwoColumnXPos, (bufferSize * 5) + (leadIcon.height / 2) + (goldIcon.height / 2) + (platIcon.height / 2), (leadIcon.width / 2), (leadIcon.height / 2)), leadIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierTwoColumnXPos + (leadIcon.width / 2), (bufferSize * 5) + (leadIcon.height / 2) + (goldIcon.height / 2) + (platIcon.height / 2), (leadIcon.width / 2), (leadIcon.height / 2)), resources [7].ToString ());
-			
-				//Uranium, carbon(diamond), tier 3
-				GUI.Label (new Rect (tierThreeColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 3", boxGUIStyle);
-					
-				GUI.Label (new Rect (tierThreeColumnXPos, (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Uranium", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierThreeColumnXPos, (bufferSize * 3) + (uranIcon.height / 2), (uranIcon.width / 2), (uranIcon.height / 2)), uranIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierThreeColumnXPos + (uranIcon.width / 2), (bufferSize * 3) + (uranIcon.height / 2), (uranIcon.width / 2), (uranIcon.height / 2)), resources [8].ToString ());
-		
-				GUI.Label (new Rect (tierThreeColumnXPos, (bufferSize * 4) + (uranIcon.height / 2), defaultButtonWidth, defaultButtonHeight), "Carbon", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierThreeColumnXPos, (bufferSize * 4) + (diamondIcon.height / 2) + (uranIcon.height / 2), (diamondIcon.width / 2), (diamondIcon.height / 2)), diamondIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierThreeColumnXPos + (diamondIcon.width / 2), (bufferSize * 4) + (diamondIcon.height / 2) + (uranIcon.height / 2), (diamondIcon.width / 2), (diamondIcon.height / 2)), resources [9].ToString ());
+				//Tier 2
+				originRect.Set (originalOriginRect.x + defaultButtonWidth, originalOriginRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 2, "Platinum", platIcon, 8);
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 2, "Gold", goldIcon, 4);
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 2, "Lead", leadIcon, 7);
 				
-				//Unobtanium tier 4
-				GUI.Label (new Rect (tierFourColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Tier 4", boxGUIStyle);
-				GUI.Label (new Rect (tierFourColumnXPos, (bufferSize * 3), defaultButtonWidth, defaultButtonHeight), "Unobtanium", boxGUIStyle);
-				GUI.DrawTexture (new Rect (tierFourColumnXPos, (bufferSize * 3) + (unobtainIcon.height / 3), (unobtainIcon.width / 2), (unobtainIcon.height / 2)), unobtainIcon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (new Rect (tierFourColumnXPos + (unobtainIcon.width / 2), (bufferSize * 3) + (unobtainIcon.height / 3), (unobtainIcon.width / 2), (unobtainIcon.height / 2)), resources [10].ToString ());
+				//Tier 3
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 3, "Uranium", uranIcon, 10);
+				originRect.Set (originRect.x, originRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 3, "Diamond", diamondIcon, 3);
+				//Tier 4
+				originRect.Set (originalOriginRect.x + (defaultButtonWidth * 2), originalOriginRect.y + (asteroidIcon.height / 2), defaultButtonWidth, defaultButtonHeight);
+				drawAResource (originRect, 4, "Unobtainium", unobtainIcon, 9);
 		}	
 		
 		/// <summary>
