@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class DestroyByContact : MonoBehaviour
 {
-	private int health = 10;
+	public int baseHealth = 10;
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.tag == "boundary")
 		{
 			return;
 		}
-		if (health > 0) {
-			health--;
+		if (baseHealth > 0) {
+			baseHealth--;
 			Destroy(other.gameObject);
 			return;
 		}

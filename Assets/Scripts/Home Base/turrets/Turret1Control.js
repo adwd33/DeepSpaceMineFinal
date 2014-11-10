@@ -1,9 +1,14 @@
 ﻿var LookAtTarget:Transform;
 var savedtime;
 var bulletPreFab:Transform;
+var bomb;
+var missle;
 
 function Start () {
 
+	bomb = 0;
+	missle = 0;
+	turret = 1;
 }
 
 function Update () {
@@ -18,6 +23,26 @@ function Update () {
 			shoot(seconds);
 		
 	}
+	if (Input.GetButtonDown("Fire1"))
+	{
+		bomb = 1;
+		turret = 0;
+		missle = 0;
+	}
+	if (Input.GetButtonDown("Fire2"))
+	{
+		bomb = 0;
+		turret = 0;
+		missle = 1;
+	}
+		if (Input.GetButtonDown("Fire3"))
+	{
+		bomb = 0;
+		turret = 1;
+		missle = 0;
+	}
+	
+	 
 }
 
 function shoot(seconds){
