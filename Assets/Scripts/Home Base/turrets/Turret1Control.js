@@ -26,19 +26,19 @@ function Update () {
 			shoot(seconds);
 		
 	}
-	if (Input.GetButtonDown("Fire2"))
+	if (Input.GetButtonDown("Fire1"))
 	{
 		bomb = 1;
 		turret = 0;
 		missle = 0;
 	}
-	if (Input.GetButtonDown("Fire3"))
+	if (Input.GetButtonDown("Fire2"))
 	{
 		bomb = 0;
 		turret = 0;
 		missle = 1;
 	}
-		if (Input.GetButtonDown("Fire4"))
+		if (Input.GetButtonDown("Fire3"))
 	{
 		bomb = 0;
 		turret = 1;
@@ -50,7 +50,7 @@ function Update () {
 
 function shoot(seconds){
 
-	if(turret == 1)
+	if(!missle && !bomb)
 	{
 		if(seconds != savedtime)
 		{
@@ -61,11 +61,11 @@ function shoot(seconds){
 			savedtime = seconds;
 		}
 	}
-	else if(missle == 1)
+	else if(!bomb && !turret)
 	{
 		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 			
-		missle.rigidbody.AddForce(transform.forward*200);
+		missle.rigidbody.AddForce(transform.forward*2000);
 	}
 	else
 	{
