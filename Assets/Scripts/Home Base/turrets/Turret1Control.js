@@ -1,8 +1,11 @@
 ﻿var LookAtTarget:Transform;
 var savedtime;
 var bulletPreFab:Transform;
-var bomb;
-var missle;
+var misslePreFab:Transform;
+var bombPreFab:Transform;
+var bomb:int;
+var missle:int;
+var turret:int;
 
 function Start () {
 
@@ -47,12 +50,25 @@ function Update () {
 
 function shoot(seconds){
 
-	if(seconds != savedtime)
+	if(!missle && !bomb)
 	{
-		var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
-		
-		bullet.rigidbody.AddForce(transform.forward*2000);
-		
-		savedtime = seconds;
+		if(seconds != savedtime)
+		{
+			var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+			
+			bullet.rigidbody.AddForce(transform.forward*2000);
+			
+			savedtime = seconds;
+		}
+	}
+	else if(!bomb && !turret)
+	{
+		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+			
+		missle.rigidbody.AddForce(transform.forward*2000);
+	}
+	else
+	{
+	
 	}
 }
