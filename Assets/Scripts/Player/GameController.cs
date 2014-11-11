@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 	private GameObject Platinum;
 	private GameObject Unobtanium;
 	private GameObject Uranium;
+	private GameObject EnemyShip;
 
 	private static ArrayList spawns = new ArrayList (); //store all the spawn information
 
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour
 	public float innersphere;
 	public float outersphere;
 	public int deletNum;
+	public int numEnemies = 0;
+	public int maxEnemies = 1;
 
 //	public Hashtable EachSpawnNum = new Hashtable();
 
@@ -33,9 +36,9 @@ public class GameController : MonoBehaviour
 
 	void Start ()
 	{
-		EachSpawnNum = new int[11] {0, 0, 0, 0,
+		EachSpawnNum = new int[12] {0, 0, 0, 0,
 									0, 0, 0, 0,
-									0, 0, 0};
+									0, 0, 0, 0};
 
 		//StartCoroutine (SpawnWaves ());
 
@@ -50,6 +53,7 @@ public class GameController : MonoBehaviour
 		Platinum = (GameObject)Resources.Load ("Prefabs/Spawns/Platinum", typeof(GameObject));
 		Unobtanium = (GameObject)Resources.Load ("Prefabs/Spawns/Unobtanium", typeof(GameObject));
 		Uranium = (GameObject)Resources.Load ("Prefabs/Spawns/Uranium", typeof(GameObject));
+		EnemyShip = (GameObject)Resources.Load ("Prefabs/Spawns/EnemyShip", typeof(GameObject));
 	}
 
 
@@ -63,7 +67,7 @@ public class GameController : MonoBehaviour
 
 	//when initialize always return 4 kinds dont know why
 	private GameObject randomRock(){
-		int rock = Random.Range (0, 11);
+		int rock = Random.Range (0, 12);
 		GameObject prepare;
 		
 		switch (rock) {
@@ -99,6 +103,16 @@ public class GameController : MonoBehaviour
 			break;
 		case 10:
 			prepare = Uranium;
+			break;
+		case 11:
+			if(numEnemies < maxEnemies)
+			{
+				prepare = EnemyShip;
+				numEnemies++;
+			} else
+			{
+				prepare = Asteroid;
+			}
 			break;
 		default:
 			prepare = Asteroid;
@@ -157,50 +171,31 @@ public class GameController : MonoBehaviour
 
 	public void eachSpawnCount(GameObject spawn)
 	{
-		if(spawn.name.Contains("Aluminum"))
-		{
-			EachSpawnNum[0]++;
-		}
-		else if(spawn.name.Contains("Copper"))
-		{
-			EachSpawnNum[1]++;
-		}
-		else if(spawn.name.Contains("Diamond"))
-		{
-			EachSpawnNum[2]++;
-		}
-		else if(spawn.name.Contains("Gold"))
-		{
-			EachSpawnNum[3]++;
-		}
-		else if(spawn.name.Contains("Hydrogen"))
-		{
-			EachSpawnNum[4]++;
-		}
-		else if(spawn.name.Contains("Iron"))
-		{
-			EachSpawnNum[5]++;
-		}
-		else if(spawn.name.Contains("Lead"))
-		{
-			EachSpawnNum[6]++;
-		}
-		else if(spawn.name.Contains("Platinum"))
-		{
-			EachSpawnNum[7]++;
-		}
-		else if(spawn.name.Contains("Unobtanium"))
-		{
-			EachSpawnNum[8]++;
-		}
-		else if(spawn.name.Contains("Uranium"))
-		{
-			EachSpawnNum[9]++;
-		}
-		else
-		{
-			EachSpawnNum[10]++;
-		}
+		if (spawn.name.Contains ("Aluminum")) {
+						EachSpawnNum [0]++;
+				} else if (spawn.name.Contains ("Copper")) {
+						EachSpawnNum [1]++;
+				} else if (spawn.name.Contains ("Diamond")) {
+						EachSpawnNum [2]++;
+				} else if (spawn.name.Contains ("Gold")) {
+						EachSpawnNum [3]++;
+				} else if (spawn.name.Contains ("Hydrogen")) {
+						EachSpawnNum [4]++;
+				} else if (spawn.name.Contains ("Iron")) {
+						EachSpawnNum [5]++;
+				} else if (spawn.name.Contains ("Lead")) {
+						EachSpawnNum [6]++;
+				} else if (spawn.name.Contains ("Platinum")) {
+						EachSpawnNum [7]++;
+				} else if (spawn.name.Contains ("Unobtanium")) {
+						EachSpawnNum [8]++;
+				} else if (spawn.name.Contains ("Uranium")) {
+						EachSpawnNum [9]++;
+				} else if (spawn.name.Contains ("EnemyShip")) {
+						EachSpawnNum [10]++;
+				} else {
+						EachSpawnNum[11]++;
+				}
 	}
 
 	//This funtion should be called to tell this script that such spawn has been destroyed
@@ -249,6 +244,11 @@ public class GameController : MonoBehaviour
 		else if(type.Contains("Uranium"))
 		{
 			package = (GameObject)Resources.Load ("Prefabs/packages/UraniumPackage", typeof(GameObject));
+		}
+		else if(type.Contains("EnemyShip"))
+		{
+			package = (GameObject)Resources.Load ("Prefags/packages/UnobtaniumPackage", typeof(GameObject));
+			numEnemies--;
 		}
 		else
 		{
