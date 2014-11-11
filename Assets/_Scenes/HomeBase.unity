@@ -127,7 +127,7 @@ Prefab:
       objectReference: {fileID: 400002, guid: 6ec91643538400241880d205a66b99ce, type: 2}
     - target: {fileID: 100004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &183741318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
+  misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
+  bombPreFab: {fileID: 0}
+  bomb: 0
+  missle: 0
+  turret: 0
 --- !u!95 &183741319
 Animator:
   serializedVersion: 3
@@ -562,6 +567,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
+      propertyPath: misslePreFab
+      value: 
+      objectReference: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
   m_RootGameObject: {fileID: 856877028}
@@ -895,7 +904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &615680903
 Transform:
   m_ObjectHideFlags: 0
@@ -924,6 +933,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
+  misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
+  bombPreFab: {fileID: 0}
+  bomb: 0
+  missle: 0
+  turret: 0
 --- !u!95 &615680905
 Animator:
   serializedVersion: 3
@@ -1173,6 +1187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
+  misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
+  bombPreFab: {fileID: 0}
+  bomb: 0
+  missle: 0
+  turret: 0
 --- !u!1 &874702889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,7 +1335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &924649102
 Transform:
   m_ObjectHideFlags: 0
@@ -1345,6 +1364,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
+  misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
+  bombPreFab: {fileID: 0}
+  bomb: 0
+  missle: 0
+  turret: 0
 --- !u!95 &924649104
 Animator:
   serializedVersion: 3
@@ -1762,7 +1786,7 @@ Prefab:
       objectReference: {fileID: 400002, guid: 6ec91643538400241880d205a66b99ce, type: 2}
     - target: {fileID: 100004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
@@ -1952,7 +1976,7 @@ Prefab:
       objectReference: {fileID: 400002, guid: 6ec91643538400241880d205a66b99ce, type: 2}
     - target: {fileID: 100004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
@@ -2034,7 +2058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1666903295
 Transform:
   m_ObjectHideFlags: 0
@@ -2063,6 +2087,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
+  misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
+  bombPreFab: {fileID: 0}
+  bomb: 0
+  missle: 0
+  turret: 0
 --- !u!95 &1666903297
 Animator:
   serializedVersion: 3
@@ -2613,7 +2642,7 @@ Prefab:
       objectReference: {fileID: 400002, guid: 6ec91643538400241880d205a66b99ce, type: 2}
     - target: {fileID: 100004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
@@ -2676,7 +2705,7 @@ Prefab:
       objectReference: {fileID: 400002, guid: 6ec91643538400241880d205a66b99ce, type: 2}
     - target: {fileID: 100004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
@@ -2702,7 +2731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2086971461
 Transform:
   m_ObjectHideFlags: 0
@@ -2731,6 +2760,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
+  misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
+  bombPreFab: {fileID: 0}
+  bomb: 0
+  missle: 0
+  turret: 0
 --- !u!95 &2086971463
 Animator:
   serializedVersion: 3
