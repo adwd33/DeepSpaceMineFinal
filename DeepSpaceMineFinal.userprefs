@@ -1,16 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerControler.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\EnemyTest.js">
     <Files>
       <File FileName="Assets\Scripts\Player\PlayerControler.cs" Line="23" Column="15" />
-      <File FileName="Assets\Scripts\Home Base\DestroyByHits.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Home Base\DestroyByHits.cs" Line="26" Column="2" />
       <File FileName="Assets\ShieldLogic.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerControllerTest.cs" Line="19" Column="47" />
+      <File FileName="Assets\Scripts\Player\GameController.cs" Line="270" Column="2" />
+      <File FileName="Assets\Scripts\Player\PlayerControllerTest.cs" Line="10" Column="22" />
       <File FileName="Assets\Scripts\WorldBuilder\World01.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\EnemyTest.js" Line="26" Column="28" />
-      <File FileName="Assets\Scripts\Enemy\EnemySpawn.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\rocks\rockAttri.cs" Line="21" Column="26" />
+      <File FileName="Assets\Scripts\Enemy\EnemyTest.js" Line="51" Column="3" />
+      <File FileName="Assets\Scripts\Enemy\EnemySpawn.cs" Line="16" Column="1" />
+      <File FileName="Assets\Scripts\rocks\rockAttri.cs" Line="7" Column="2" />
+      <File FileName="Assets\Scripts\Weapon\Weapon_0_Ctrl.cs" Line="63" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

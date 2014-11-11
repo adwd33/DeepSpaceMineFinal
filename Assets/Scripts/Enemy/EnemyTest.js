@@ -1,9 +1,9 @@
 ﻿#pragma strict
 
- var target : Transform; //cant't be bothered to do any commments
+ var target : Transform; 
  var moveSpeed = 10;; 
- var rotationSpeed = 3; 
- var stop : float=5;
+ var rotationSpeed = 1; 
+ var stop : float=10;
  var myTransform : Transform; 
  var fireRate : float=3;
  var nextFire : float=0;
@@ -18,7 +18,7 @@
  function Start()
  {
       target = GameObject.FindWithTag("Player").transform; 
-      shotSpawn = transform.Find("Shot Spawn");
+      shotSpawn = transform.Find("ShotSpawn");
   
  }
   
