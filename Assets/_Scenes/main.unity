@@ -2115,6 +2115,8 @@ MonoBehaviour:
   innersphere: 60
   outersphere: 150
   deletNum: 0
+  numEnemies: 0
+  maxEnemies: 1
   EachSpawnNum: 
 --- !u!4 &1298867091
 Transform:
