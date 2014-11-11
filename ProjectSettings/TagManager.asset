@@ -7,9 +7,11 @@ TagManager:
   - package
   - rock
   - boundary
-  - 
+  - HomeBase
   - Spawner
   - TurretShot
+  - HomeBaseShield
+  - enemy
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

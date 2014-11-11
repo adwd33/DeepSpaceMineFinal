@@ -530,7 +530,7 @@ Prefab:
     - target: {fileID: 11400000, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: LookAtTarget
       value: 
-      objectReference: {fileID: 433520837}
+      objectReference: {fileID: 1818085110}
     - target: {fileID: 11400002, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: menu
       value: 
@@ -571,6 +571,14 @@ Prefab:
       propertyPath: misslePreFab
       value: 
       objectReference: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
+    - target: {fileID: 11400000, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
+      propertyPath: bombPreFab
+      value: 
+      objectReference: {fileID: 400000, guid: 9fb545d15edab3f418dddd7c79677524, type: 2}
+    - target: {fileID: 11400000, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 400000, guid: 9473bf090aaa04164967cdceab413088, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
   m_RootGameObject: {fileID: 856877028}
@@ -1185,10 +1193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df84e374ebc13941b73c698f6f75201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 433520837}
+  LookAtTarget: {fileID: 1818085110}
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
   misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
-  bombPreFab: {fileID: 0}
+  bombPreFab: {fileID: 400000, guid: 9fb545d15edab3f418dddd7c79677524, type: 2}
   bomb: 0
   missle: 0
   turret: 0
@@ -1526,7 +1534,7 @@ GameObject:
   - 114: {fileID: 1126858372}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: HomeBaseShield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2108,6 +2116,75 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1818085106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1818085110}
+  - 33: {fileID: 1818085109}
+  - 135: {fileID: 1818085108}
+  - 23: {fileID: 1818085107}
+  m_Layer: 0
+  m_Name: enemy
+  m_TagString: enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1818085107
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818085106}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!135 &1818085108
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818085106}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1818085109
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818085106}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1818085110
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818085106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.51486683, y: 3.71602154, z: 17.7159348}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &1907409854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,7 +2485,7 @@ GameObject:
   - 114: {fileID: 2028896409}
   m_Layer: 0
   m_Name: HomeBase
-  m_TagString: Untagged
+  m_TagString: HomeBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

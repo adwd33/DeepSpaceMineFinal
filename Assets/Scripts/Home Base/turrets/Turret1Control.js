@@ -7,6 +7,8 @@ var bomb:int;
 var missle:int;
 var turret:int;
 
+var bombtime = 0;
+
 function Start () {
 
 	bomb = 0;
@@ -15,12 +17,17 @@ function Start () {
 }
 
 function Update () {
-	if(GameObject.Find("vehicle_playerShip").transform.position.x >= 0)
+	if(GameObject.Find("enemy").transform.position.x >= 0)
 	{
 		transform.LookAt(LookAtTarget);
 		
 		var seconds : int = Time.time;
-		var oddeven = (seconds % 2);
+		var oddeven;
+		
+		if(bomb)
+			oddeven = (seconds % 10);
+		else 
+			oddeven = (seconds % 2);
 		
 		if(oddeven)
 			shoot(seconds);
@@ -45,7 +52,7 @@ function Update () {
 		missle = 0;
 	}
 	
-	 
+	 bombtime++;
 }
 
 function shoot(seconds){
@@ -69,6 +76,18 @@ function shoot(seconds){
 	}
 	else
 	{
-	
+		if(bombtime > 240)
+		{
+			if(seconds != savedtime)
+			{
+				
+				var bomb = Instantiate(bombPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+				
+				bomb.rigidbody.AddForce(transform.forward*1000);
+				
+				savedtime = seconds;
+			}
+			bombtime = 0;
+		}
 	}
 }
