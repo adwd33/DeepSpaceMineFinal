@@ -6,7 +6,7 @@ public class DestroyByHits : MonoBehaviour
 	private int health = 10;
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other.tag == "boundary" || other.tag == "nuclearshot")
+		if (other.tag == "boundary")
 		{
 			return;
 		}

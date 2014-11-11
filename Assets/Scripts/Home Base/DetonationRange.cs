@@ -12,14 +12,18 @@ public class DetonationRange : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		//ExplosionRange (transform.position, 3);
 	}
-	void OnTriggerEnter(Collider other) 
-	{
-		if (other.tag == "HomeBaseShield" || other.tag == "HomeBase")
-			return;
-		Destroy (other.gameObject);
-		GameObject explosion = (GameObject)Instantiate (explosionPrefab, transform.position, transform.rotation);
-		Destroy (gameObject);
+
+	void ExplosionRange(Vector3 center, float radius) {
+		Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+		int i = 0;
+		while (i < hitColliders.Length) {
+			if(hitColliders[i].tag == "enemy"){
+				GameObject explosion = (GameObject) Instantiate(explosionPrefab, transform.position, transform.rotation);
+				Destroy(gameObject);
+			}
+			i++;
+		}
 	}
 }
