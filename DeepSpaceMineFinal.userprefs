@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Home Base\turrets\Turret1Control.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OribitTurretLogic.js">
     <Files>
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret1Control.js" Line="9" Column="25" />
+      <File FileName="Assets\Scripts\Home Base\turrets\Turret1Control.js" Line="16" Column="13" />
+      <File FileName="Assets\OribitTurretLogic.js" Line="26" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
