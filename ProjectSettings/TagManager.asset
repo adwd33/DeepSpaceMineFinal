@@ -12,6 +12,8 @@ TagManager:
   - TurretShot
   - HomeBaseShield
   - enemy
+  - missile
+  - nuclearshot
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
