@@ -20,7 +20,12 @@ function Update () {
 		transform.LookAt(LookAtTarget);
 	
 		var seconds : int = Time.time;
-		var oddeven = (seconds % 2);
+		var oddeven;
+		
+		if(bomb)
+			oddeven = (seconds % 10);
+		else 
+			oddeven = (seconds % 2);
 		
 		if(oddeven)
 			shoot(seconds);
@@ -47,7 +52,7 @@ function Update () {
 }
 
 function shoot(seconds){
-if(turret == 1)
+	if(turret == 1)
 	{
 		if(seconds != savedtime)
 		{
@@ -66,6 +71,13 @@ if(turret == 1)
 	}
 	else
 	{
-	
+		if(seconds != savedtime)
+		{
+			var bomb = Instantiate(bombPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+			
+			bomb.rigidbody.AddForce(transform.forward*1000);
+			
+			savedtime = seconds;
+		}
 	}
 }
