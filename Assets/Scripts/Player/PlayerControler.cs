@@ -71,8 +71,11 @@ public class PlayerControler : MonoBehaviour
 			moveSpeed /= 2;
 
 		// Move the player in the direction of any buttons being pressed
-		if (Input.GetButton("Forward"))
-			ship.rigidbody.AddRelativeForce(Vector3.forward * moveSpeed);
+		if (Input.GetButton ("Forward")) {
+			Debug.Log("Forward");
+
+						ship.rigidbody.AddRelativeForce (Vector3.forward * moveSpeed);
+				}
 		if (Input.GetButton("Back"))
 			ship.rigidbody.AddRelativeForce(Vector3.back * moveSpeed);
 		if (Input.GetButton("Left"))
