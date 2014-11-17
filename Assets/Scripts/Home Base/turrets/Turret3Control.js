@@ -3,54 +3,40 @@ var savedtime;
 var bulletPreFab:Transform;
 var misslePreFab:Transform;
 var bombPreFab:Transform;
-var bomb:int;
-var missle:int;
-var turret:int;
+
+static var type3:int;
+static var level3:int;
+
+var bombtime = 0;
 
 function Start () {
-	bomb = 0;
-	missle = 0;
-	turret = 1;
-
+	type3 = 1;
 }
+
 
 function Update () {
 	if(GameObject.Find("vehicle_playerShip").transform.position.y <= 0)
 	{
 		transform.LookAt(LookAtTarget);
 	
-		transform.LookAt(LookAtTarget);
-		
 		var seconds : int = Time.time;
-		var oddeven = (seconds % 2);
+		var oddeven;
+		
+		if(type3 == 3)
+			oddeven = (seconds % 10);
+		else 
+			oddeven = (seconds % 2);
 		
 		if(oddeven)
 			shoot(seconds);
 		
 	}
-	if (Input.GetButtonDown("Fire2"))
-	{
-		bomb = 1;
-		turret = 0;
-		missle = 0;
-	}
-	if (Input.GetButtonDown("Fire3"))
-	{
-		bomb = 0;
-		turret = 0;
-		missle = 1;
-	}
-		if (Input.GetButtonDown("Fire4"))
-	{
-		bomb = 0;
-		turret = 1;
-		missle = 0;
-	}
+	bombtime++;
 }
 
 function shoot(seconds){
 
-	if(turret == 1)
+	if(type3 == 1)
 	{
 		if(seconds != savedtime)
 		{
@@ -61,7 +47,7 @@ function shoot(seconds){
 			savedtime = seconds;
 		}
 	}
-	else if(missle == 1)
+	else if(type3 == 2)
 	{
 		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 			
@@ -69,6 +55,18 @@ function shoot(seconds){
 	}
 	else
 	{
-	
+		if(bombtime > 240)
+		{
+			if(seconds != savedtime)
+			{
+				
+				var bomb = Instantiate(bombPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+				
+				bomb.rigidbody.AddForce(transform.forward*1000);
+				
+				savedtime = seconds;
+			}
+			bombtime = 0;
+		}
 	}
 }

@@ -3,17 +3,14 @@ var savedtime;
 var bulletPreFab:Transform;
 var misslePreFab:Transform;
 var bombPreFab:Transform;
-var bomb:int;
-var missle:int;
-var turret:int;
+
+static var type1:int;
+static var level1:int;
 
 var bombtime = 0;
 
 function Start () {
-
-	bomb = 0;
-	missle = 0;
-	turret = 1;
+	type1 = 1;
 }
 
 function Update () {
@@ -24,7 +21,7 @@ function Update () {
 		var seconds : int = Time.time;
 		var oddeven;
 		
-		if(bomb)
+		if(type1 == 3)
 			oddeven = (seconds % 10);
 		else 
 			oddeven = (seconds % 2);
@@ -33,31 +30,12 @@ function Update () {
 			shoot(seconds);
 		
 	}
-	if (Input.GetButtonDown("Fire2"))
-	{
-		bomb = 1;
-		turret = 0;
-		missle = 0;
-	}
-	if (Input.GetButtonDown("Fire3"))
-	{
-		bomb = 0;
-		turret = 0;
-		missle = 1;
-	}
-		if (Input.GetButtonDown("Fire4"))
-	{
-		bomb = 0;
-		turret = 1;
-		missle = 0;
-	}
-	
 	 bombtime++;
 }
 
 function shoot(seconds){
 
-	if(turret == 1)
+	if(type1 == 1)
 	{
 		if(seconds != savedtime)
 		{
@@ -68,7 +46,7 @@ function shoot(seconds){
 			savedtime = seconds;
 		}
 	}
-	else if(missle == 1)
+	else if(type1 == 2)
 	{
 		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 			
