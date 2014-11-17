@@ -565,50 +565,96 @@ public class UI : MonoBehaviour
 		/// <param name="originPosition">Origin position.</param>
 		void drawUpgradeMenu (Rect originPosition)
 		{
+		GameObject player = GameObject.Find ("Player2");
+		player.GetComponent<PlayerCenter> ().incBlasterPower ();
+
 				Rect previousOriginPosition = new Rect (originPosition.x, originPosition.y, originPosition.width, originPosition.height);
 			
 				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 		
 				//GUI.Label (new Rect (tierOneRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
 				if (GUI.Button (originPosition, "Blaster Power")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incBlasterPower ()){
+						Debug.Log("Upgrade purchased!");
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "More Blasters")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incNumBlasters()){
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Homing Missiles")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incMissilePower ()){
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 					
 				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);
 				//GUI.Label (new Rect (tierTwoRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
 				if (GUI.Button (originPosition, "Hull Strength")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incHullStrength ()){
+						Debug.Log("Upgrade purchased!");
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Shields")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incShieldPower ()){
+						Debug.Log("Upgrade purchased!");
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Regen")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incHullRegen ()){
+						Debug.Log("Upgrade purchased!");
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 				
 				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);	
 				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 				//GUI.Label (new Rect (tierThreeRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
 				if (GUI.Button (originPosition, "Speed Turning")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incMovementLevel ()){
+						Debug.Log("Upgrade purchased!");
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Radar")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incRadarLevel ()){
+						Debug.Log("Upgrade purchased!");
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Resource Magnet")) {
-						//TODO: allow the player to buy this upgrade if they have correct amount of resources
+					if(player.GetComponent<PlayerCenter> ().incResourceMagnet ()){
+						Debug.Log("Upgrade purchased!");
+						// Purchase was successful
+					} else {
+						// Purchase was not successful (max upgrade level reached, not enough resources)
+					}
 				}
 		}
 	

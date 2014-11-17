@@ -11,7 +11,18 @@ public class PlayerCenter : MonoBehaviour {
 
 	//resources record
 	public int[] resources = new int[11];
-	
+
+	// Upgrade list
+	public int numBlasters;
+	public int blasterPower;
+	public int missilePower;
+	public int hullStrength;
+	public int hullRegen;
+	public int shieldPower;
+	public int movementLevel;
+	public int radarLevel; // Not sure how much this is going to get implemented
+	public int resourceMagnet; // Or this
+
 	//purchased ship upgrades purchased, format should be "1 Regen" where 1 is the tier level and Regen is the name of the upgrade
 	public ArrayList listShipUpgradesPurchased;
 	//purchased home base upgrades, format should be "1 Missile Battery" where 1 is the tier level and Missile Battery is the name of the upgrade
@@ -52,6 +63,17 @@ public class PlayerCenter : MonoBehaviour {
 		defaultPlayerHealth = 10f;
 		listShipUpgradesPurchased = new ArrayList();
 		listHomeBaseUpgrades = new ArrayList();
+
+		// Initialize upgrades
+		numBlasters = 0;
+		blasterPower = 0;
+		missilePower = 0;
+		hullStrength = 0;
+		hullRegen = 0;
+		shieldPower = 0;
+		movementLevel = 0;
+		radarLevel = 0;
+		resourceMagnet = 0;
 	}
 	
 	// Update is called once per frame
@@ -62,6 +84,70 @@ public class PlayerCenter : MonoBehaviour {
 			cameraRod.SetActive (!cameraRod.activeSelf);
 			MainCamera.SetActive (!MainCamera.activeSelf);
 		}
+	}
+
+	public bool incNumBlasters() {
+		if (numBlasters < 3/* and if they have enough resources */) {
+			// Take away resources
+			numBlasters++;
+			return true;
+		} else {return false;}
+	}
+	public bool incBlasterPower() {
+		if (blasterPower < 3/* and if they have enough resources */) {
+			// Take away resources
+			blasterPower++;
+			return true;
+		} else {return false;}
+	}
+	public bool incMissilePower() {
+		if (missilePower < 3/* and if they have enough resources */) {
+			// Take away resources
+			missilePower++;
+			return true;
+		} else {return false;}
+	}
+	public bool incHullStrength() {
+		if (hullStrength < 3/* and if they have enough resources */) {
+			// Take away resources
+			hullStrength++;
+			return true;
+		} else {return false;}
+	}
+	public bool incHullRegen() {
+		if (hullRegen < 3/* and if they have enough resources */) {
+			// Take away resources
+			hullRegen++;
+			return true;
+		} else {return false;}
+	}
+	public bool incShieldPower() {
+		if (shieldPower < 3/* and if they have enough resources */) {
+			// Take away resources
+			shieldPower++;
+			return true;
+		} else {return false;}
+	}
+	public bool incMovementLevel() {
+		if (movementLevel < 3/* and if they have enough resources */) {
+			// Take away resources
+			movementLevel++;
+			return true;
+		} else {return false;}
+	}
+	public bool incRadarLevel() {
+		if (radarLevel < 3/* and if they have enough resources */) {
+			// Take away resources
+			radarLevel++;
+			return true;
+		} else {return false;}
+	}
+	public bool incResourceMagnet() {
+		if (resourceMagnet < 3/* and if they have enough resources */) {
+			// Take away resources
+			resourceMagnet++;
+			return true;
+		} else {return false;}
 	}
 
 	public void resourceCollector(int type, int amount)
