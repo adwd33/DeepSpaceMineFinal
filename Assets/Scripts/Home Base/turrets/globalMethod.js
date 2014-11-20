@@ -16,19 +16,19 @@ function ChangeTurret(turret, level, type)
 			change1(level, type);
 		break;
 		case 2:
-		
+			change2(level, type);
 		break;
 		case 3:
-		
+			change3(level, type);
 		break;
 		case 4:
-		
+			change4(level, type);
 		break; 
 		case 5:
-		
+			change5(level, type);
 		break; 
 		default:
-		
+			change6(level, type);
 		break;
 	}
 }
