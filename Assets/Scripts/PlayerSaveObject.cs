@@ -14,6 +14,7 @@ using System.Xml.Serialization;
 using System.IO; 
 using System.Text;
 using UnityEngine;
+using UnityEditor;
 namespace AssemblyCSharp
 {
 		public class PlayerSaveObject
