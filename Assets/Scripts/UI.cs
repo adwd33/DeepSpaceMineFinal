@@ -176,7 +176,7 @@ public class UI : MonoBehaviour
 				
 				playerController = (PlayerCenter)FindObjectOfType (typeof(PlayerCenter));
 				if (playerController != null) {
-						if (!isGameLoaded) {
+						/*if (!isGameLoaded) {
 								//Application.LoadLevel("main");
 								PlayerSaveObject loadMe = new PlayerSaveObject ();
 								PlayerSaveObject playerInfo = loadMe.loadTheGame ();
@@ -188,7 +188,7 @@ public class UI : MonoBehaviour
 										isGameLoaded = true;
 							
 								}
-						}
+						}*/
 						
 						if (previousHealth != health && previousHealth != 0) {
 								isPlayerHealthDifferent = true;
