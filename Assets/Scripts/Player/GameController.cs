@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
 	private GameObject Uranium;
 	private GameObject EnemyShip;
 
-	private static ArrayList spawns = new ArrayList (); //store all the spawn information
+	private static ArrayList spawns;
 
 	public Vector3 spawnValues;
 	public int SpawnMax;
@@ -27,8 +27,8 @@ public class GameController : MonoBehaviour
 	public float innersphere;
 	public float outersphere;
 	public int deletNum;
-	public int numEnemies = 0;
-	public int maxEnemies = 1;
+	public int numEnemies;
+	public int maxEnemies;
 
 //	public Hashtable EachSpawnNum = new Hashtable();
 
@@ -36,6 +36,10 @@ public class GameController : MonoBehaviour
 
 	void Start ()
 	{
+		//Reese 11/22/2014 ANY INILIZATION CODE GOES HERE NOT UP TOP!
+		numEnemies = 0;
+		maxEnemies = 1;
+		spawns = new ArrayList (); //store all the spawn information
 		EachSpawnNum = new int[12] {0, 0, 0, 0,
 									0, 0, 0, 0,
 									0, 0, 0, 0};
