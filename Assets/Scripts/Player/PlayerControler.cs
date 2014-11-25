@@ -8,8 +8,16 @@ public class PlayerControler : MonoBehaviour
 	private GameObject ship;
 	public float speed;
 	
-	public GameObject shot;
-	public Transform shotSpawn;
+	//fire stuff
+	public GameObject shot0;
+	public GameObject shot1;
+	public GameObject shot2;
+	public GameObject shot3;
+	public Transform shotSpawn1;
+	public Transform shotSpawn2;
+	public Transform shotSpawn3;
+	public Transform shotSpawn4;
+	public Transform shotSpawn5;
 	public float fireRate;
 	
 	private float nextFire;
@@ -49,9 +57,28 @@ public class PlayerControler : MonoBehaviour
 		// Shoot and control the rate of fire
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
+			switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
+			{
+			case 0:
+				Instantiate(shot0, shotSpawn1.position, ship.rigidbody.rotation);
+				break;
+			case 1:
+				Instantiate(shot0, shotSpawn2.position, ship.rigidbody.rotation);
+				Instantiate(shot0, shotSpawn3.position, ship.rigidbody.rotation);
+				break;
+			case 2:
+				Instantiate(shot0, shotSpawn1.position, ship.rigidbody.rotation);
+				Instantiate(shot0, shotSpawn4.position, ship.rigidbody.rotation);
+				Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
+				break;
+			case 3:
+				Instantiate(shot0, shotSpawn2.position, ship.rigidbody.rotation);
+				Instantiate(shot0, shotSpawn3.position, ship.rigidbody.rotation);
+				Instantiate(shot0, shotSpawn4.position, ship.rigidbody.rotation);
+				Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
+				break;
+			}
 			nextFire = Time.time + fireRate;
-			//GameObject clone = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
-			Instantiate(shot, shotSpawn.position, ship.rigidbody.rotation);
 		}
 
 		// Set the movement speed based on the ship's movement level
