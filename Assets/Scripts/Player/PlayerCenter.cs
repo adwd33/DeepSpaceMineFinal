@@ -150,6 +150,16 @@ public class PlayerCenter : MonoBehaviour {
 		} else {return false;}
 	}
 
+	public int getNumBlasters() {return numBlasters;}
+	public int getBlasterPower() {return blasterPower;}
+	public int getMissilePower() {return missilePower;}
+	public int getHullStrength() {return hullStrength;}
+	public int getHullRegen() {return hullRegen;}
+	public int getShieldPower() {return shieldPower;}
+	public int getMovementLevel() {return movementLevel;}
+	public int getRadarLevel() {return radarLevel;}
+	public int getResourceMagnet() {return resourceMagnet;}
+
 	public void resourceCollector(int type, int amount)
 	{
 		//Debug.Log ("Be Called");

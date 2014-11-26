@@ -5,7 +5,7 @@ using AssemblyCSharp;
 // Reese 9/26/2014 Created this class to do all the "UIey" stuff
 public class UI : MonoBehaviour
 {
-		PlayerSaveObject playerSave;
+		PlayerSaveLoadMethods playerSave;
 		bool isDrawingTier1;
 		bool isDrawingTier2;
 		bool isDrawingTier3;
@@ -239,9 +239,8 @@ public class UI : MonoBehaviour
 				// Make the fourth button.If it is pressed, this will save the players game
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 4), defaultButtonWidth, defaultButtonHeight), "Save")) {
 						boxTitle = "Save";
-	
-						playerSave = new PlayerSaveObject ((int)health, playerController.GetPurchasedShipUpgradeList (), resources, playerController.GetPurchasedHomeBaseUpgradeList ());
-						bool isSucessful = playerSave.saveTheGame (playerSave);
+						playerSave = new PlayerSaveLoadMethods ();
+						bool isSucessful = playerSave.saveTheGame ((int)health, playerController.GetPurchasedShipUpgradeList (), resources, playerController.GetPurchasedHomeBaseUpgradeList ());
 						isDrawingTier1 = false;
 						isDrawingTier2 = false;
 						isDrawingTier3 = false;
@@ -256,6 +255,12 @@ public class UI : MonoBehaviour
 				}
 				// Make the six button.If it is pressed, this will exit the game
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 6), defaultButtonWidth, defaultButtonHeight), "Exit")) {
+						//Lets save the players progress before exiting
+						playerSave = new PlayerSaveLoadMethods ();
+						bool isSucessful = playerSave.saveTheGame ((int)health, playerController.GetPurchasedShipUpgradeList (), resources, playerController.GetPurchasedHomeBaseUpgradeList ());
+						if (isSucessful) {
+							Debug.Log ("The game has been successfully saved.");
+						}
 						Application.LoadLevel ("startMenuUI");
 				}
 	
@@ -280,13 +285,11 @@ public class UI : MonoBehaviour
 						isDrawingTier3 = false;
 						isDrawingTier4 = false;
 						//Application.LoadLevel("main");
-						PlayerSaveObject loadMe = new PlayerSaveObject ();
-						PlayerSaveObject playerInfo = loadMe.loadTheGame ();
+						PlayerSaveLoadMethods loadMe = new PlayerSaveLoadMethods ();	
+						if (loadMe != null) {
+								playerController.setResourceList(loadMe.loadThePlayerResources());
+								playerController.PlayerHealth = (float)loadMe.loadThePlayerHealth();
 								
-						if (playerInfo != null) {
-								playerController.setResourceList (playerInfo.listOfResourcesCollected);
-								playerController.PlayerHealth = (float)playerInfo.playerHealth;
-								health = (float)playerInfo.playerHealth;
 								
 						}
 				}
@@ -444,6 +447,7 @@ public class UI : MonoBehaviour
 		/// </summary>
 		void drawPlayerHealthReadout ()
 		{
+				//TODO: this needs help, do this a better way and add the little ship icon
 				if (isPlayerHealthDifferent) {
 						playerHealthbarWidth = playerHealthbarWidth - healthScaleRemovalValue;
 						Rect healthBarRect = new Rect (screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
@@ -638,6 +642,8 @@ public class UI : MonoBehaviour
 						// Purchase was not successful (max upgrade level reached, not enough resources)
 					}
 				}
+				//Commented out, radar not possible before presentation
+				/*
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Radar")) {
 					if(player.GetComponent<PlayerCenter> ().incRadarLevel ()){
@@ -647,6 +653,7 @@ public class UI : MonoBehaviour
 						// Purchase was not successful (max upgrade level reached, not enough resources)
 					}
 				}
+				//Commented out, resource magnet not possible
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Resource Magnet")) {
 					if(player.GetComponent<PlayerCenter> ().incResourceMagnet ()){
@@ -655,7 +662,7 @@ public class UI : MonoBehaviour
 					} else {
 						// Purchase was not successful (max upgrade level reached, not enough resources)
 					}
-				}
+				}*/
 		}
 	
 }
