@@ -1,14 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Home Base\turrets\globalMethod.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerControler.cs">
     <Files>
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret1Control.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Home Base\turrets\globalMethod.js" Line="19" Column="11" />
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret4Control.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret2Control.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret3Control.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret5Control.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret6Control.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerControllerTest.cs" Line="165" Column="32" />
+      <File FileName="Assets\Scripts\Player\PlayerCenter.cs" Line="225" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerControler.cs" Line="117" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
