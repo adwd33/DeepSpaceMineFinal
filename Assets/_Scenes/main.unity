@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 116833049}
   - 114: {fileID: 116833050}
+  - 20: {fileID: 116833051}
   m_Layer: 0
   m_Name: UIGameObject
   m_TagString: Untagged
@@ -97,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 116833048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 116833048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8144fba59cad6744dbebef439997d90b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9468a66e0e4eb6d4f9218e3980df2684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   listSize: 0
@@ -120,6 +121,38 @@ MonoBehaviour:
   healthScaleRemovalValue: 0
   isPlayerHealthDifferent: 0
   previousHealth: 0
+--- !u!20 &116833051
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 116833048}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .00999999978
+  far clip plane: 10000
+  field of view: 52.5
+  orthographic: 0
+  orthographic size: 10
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
 --- !u!1 &238532264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,7 +2603,6 @@ MonoBehaviour:
   cameraRod: {fileID: 0}
   MainCamera: {fileID: 0}
   PlayerHealth: 0
-  defaultPlayerHealth: 0
   resources: 
   numBlasters: 0
   blasterPower: 0

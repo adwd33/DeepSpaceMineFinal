@@ -20,9 +20,9 @@ public class UI : MonoBehaviour
 		/**This variable will control the Ui displaying so that it does not dissapear after the user releases the "escape" key*/
 		bool isInGameUIEnabled = false;
 		/**This variable will control when a menu box is being drawn*/
-		bool isDrawingGUIBox = false;
+		//bool isDrawingGUIBox = false;
 		/**this variable will be true if the player in at the home base*/
-		bool isLevelHomeBase = false;
+		//bool isLevelHomeBase = false;
 		/**this is the title for the currrent box being drawn*/
 		string boxTitle = "";
 		/**This is the screen width*/
@@ -44,7 +44,7 @@ public class UI : MonoBehaviour
 		/**This is the playertest gameobject*/
 		GameObject playerTest;
 		/**This is a helpful buffer size*/
-		static int bufferSize = 30;
+		//static int bufferSize = 30;
 		/**These are the textures for the resource menu*/
 		Texture2D asteroidIcon;
 		Texture2D ironIcon;
@@ -59,10 +59,10 @@ public class UI : MonoBehaviour
 		Texture2D unobtainIcon;
 		/**This is the texture for the player health bar*/
 		Texture2D playerHealthbar;
-		float tierOneColumnXPos;
-		float tierTwoColumnXPos;
-		float tierThreeColumnXPos;
-		float tierFourColumnXPos;	
+		//float tierOneColumnXPos;
+		//float tierTwoColumnXPos;
+		//float tierThreeColumnXPos;
+		//float tierFourColumnXPos;	
 		float tierOneRightColumnXPos;
 		float tierTwoRightColumnXPos;
 		float tierThreeRightColumnXPos;
@@ -96,7 +96,7 @@ public class UI : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-				playerSaveLoadMethods = new PlayerSaveLoadMethods();
+				playerSaveLoadMethods = new PlayerSaveLoadMethods ();
 				listOfBaseUpgradeObjects = new ArrayList ();
 				//Load the icons for the resource layout
 				ironIcon = Resources.Load ("UITextures/ironIcon", typeof(Texture2D)) as Texture2D;
@@ -114,17 +114,16 @@ public class UI : MonoBehaviour
 				//Load the player health bar texture
 				playerHealthbar = Resources.Load ("UITextures/playerHealthBar", typeof(Texture2D)) as Texture2D;
 				
-				player = GameObject.Find ("Player");
-				playerTest = GameObject.Find ("PlayerTest");
+				
 				//The style for the main title
 				boxGUIStyle = new GUIStyle ();
 				boxGUIStyle.fontSize = 14;
 				boxGUIStyle.normal.textColor = Color.white;
 		
-				tierOneColumnXPos = (40 * 1);
-				tierTwoColumnXPos = (40 * 4);
-				tierThreeColumnXPos = (40 * 7);
-				tierFourColumnXPos = (40 * 10);
+				//tierOneColumnXPos = (40 * 1);
+				//tierTwoColumnXPos = (40 * 4);
+				//tierThreeColumnXPos = (40 * 7);
+				//tierFourColumnXPos = (40 * 10);
 		
 		
 				tierOneRightColumnXPos = screenWidth - (defaultButtonWidth * 1);
@@ -169,12 +168,13 @@ public class UI : MonoBehaviour
 		void Update ()
 		{
 				if (Application.loadedLevelName.Equals ("HomeBase")) {
-						isLevelHomeBase = true;
+						//isLevelHomeBase = true;
 				} else {
-						isLevelHomeBase = false;
+						//isLevelHomeBase = false;
 				}
 				
 				playerController = (PlayerCenter)FindObjectOfType (typeof(PlayerCenter));
+		
 				if (playerController != null) {
 						/*if (!isGameLoaded) {
 								//Application.LoadLevel("main");
@@ -189,7 +189,7 @@ public class UI : MonoBehaviour
 							
 								}
 						}*/
-						
+						/*
 						if (previousHealth != health && previousHealth != 0) {
 								isPlayerHealthDifferent = true;
 								previousHealth = health;
@@ -197,11 +197,12 @@ public class UI : MonoBehaviour
 								isPlayerHealthDifferent = false;
 								previousHealth = health;
 						}
+						*/
 						
 						resources = playerController.getResourceList ();
 						health = playerController.GetPlayerHealth ();
 						
-						defaultHealth = playerController.GetDefaultPlayerHealth ();
+						//defaultHealth = playerController.GetDefaultPlayerHealth ();
 						if (!isHealthScaleRemovalValueSet) {
 								healthScaleRemovalValue = playerHealthbarWidth / health;
 								isHealthScaleRemovalValueSet = true;
@@ -239,7 +240,7 @@ public class UI : MonoBehaviour
 				// Make the fourth button.If it is pressed, this will save the players game
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 4), defaultButtonWidth, defaultButtonHeight), "Save")) {
 						boxTitle = "Save";
-						bool isSucessful = playerSaveLoadMethods.saveTheGame((int)health, playerController.GetPurchasedShipUpgradeList(), playerController.resources, playerController.GetPurchasedHomeBaseUpgradeList());
+						bool isSucessful = playerSaveLoadMethods.saveTheGame ((int)health, playerController.GetPurchasedShipUpgradeList (), playerController.resources, playerController.GetPurchasedHomeBaseUpgradeList ());
 						isDrawingTier1 = false;
 						isDrawingTier2 = false;
 						isDrawingTier3 = false;
@@ -279,10 +280,10 @@ public class UI : MonoBehaviour
 						isDrawingTier4 = false;
 						
 						if (playerSaveLoadMethods != null) {
-								PlayerPrefs.SetInt ("health", playerSaveLoadMethods.loadThePlayerHealth());
-								PlayerPrefs.SetString ("shipUpgrades", playerSaveLoadMethods.loadThePlayerShipUpgrades());
-								PlayerPrefs.SetString ("homeBaseUpgrades", playerSaveLoadMethods.loadThePlayerHomebaseUpgrades());
-								PlayerPrefs.SetString ("resourcesCollected", playerSaveLoadMethods.loadThePlayerResources());
+								PlayerPrefs.SetInt ("health", playerSaveLoadMethods.loadThePlayerHealth ());
+								PlayerPrefs.SetString ("shipUpgrades", playerSaveLoadMethods.loadThePlayerShipUpgrades ());
+								PlayerPrefs.SetString ("homeBaseUpgrades", playerSaveLoadMethods.loadThePlayerHomebaseUpgrades ());
+								PlayerPrefs.SetString ("resourcesCollected", playerSaveLoadMethods.loadThePlayerResources ());
 								
 						}
 				}
@@ -301,23 +302,30 @@ public class UI : MonoBehaviour
 				}
 				
 				if (isInGameUIEnabled) {
+			
+						player = GameObject.Find ("Player2");
+			
+						//playerTest = GameObject.Find("Player Controller Test");
+			
+						//gameObject.GetComponent<PlayerControler>().enabled = false;
+						//gameObject.GetComponent<PlayerControllerTest>().enabled = false;
+			
+			
+						//player.SetActive (false);
+						//playerTest.SetActive (true);
+						//playerTest.GetComponent<PlayerControllerTest>().enabled = false;
 						drawInGameUI ();
 						//this disables the player object
 						if (player != null) {
-								player.SetActive (false);
+								//player.SetActive(false);
+								//player.GetComponent<PlayerControler> ().enabled = false;
+								//player.GetComponent<PlayerControllerTest> ().enabled = false;
 						}
-						if (playerTest != null) {
-								playerTest.SetActive (false);
-						}
-			
-			
 				} else {
-						//this enables the player object
 						if (player != null) {
-								player.SetActive (true);
-						}
-						if (playerTest != null) {
-								playerTest.SetActive (true);
+							//player.SetActive(true);
+								//player.GetComponent<PlayerControler> ().enabled = true;
+								//player.GetComponent<PlayerControllerTest> ().enabled = true;
 						}					
 				}
 		}
@@ -487,7 +495,14 @@ public class UI : MonoBehaviour
 		
 				GUI.Label (labelPosition, resourceName, boxGUIStyle);
 				GUI.DrawTexture (texturePositon, icon, ScaleMode.ScaleToFit, true, 0.0f);
-				GUI.Label (amountLabelPosition, resources [index].ToString ());
+				if (resources != null) {
+						GUI.Label (amountLabelPosition, resources [index].ToString ());
+				} else {
+						string resourcesText = playerSaveLoadMethods.loadThePlayerResources ();
+						string[] tempListResources = resourcesText.Split (',');
+						GUI.Label (amountLabelPosition, tempListResources [index].ToString ());
+				}
+				
 		}
 		
 		/// <summary>
@@ -561,8 +576,8 @@ public class UI : MonoBehaviour
 		/// <param name="originPosition">Origin position.</param>
 		void drawUpgradeMenu (Rect originPosition)
 		{
-		GameObject player = GameObject.Find ("Player2");
-		player.GetComponent<PlayerCenter> ().incBlasterPower ();
+				GameObject player = GameObject.Find ("Player2");
+				player.GetComponent<PlayerCenter> ().incBlasterPower ();
 
 				Rect previousOriginPosition = new Rect (originPosition.x, originPosition.y, originPosition.width, originPosition.height);
 			
@@ -570,87 +585,87 @@ public class UI : MonoBehaviour
 		
 				//GUI.Label (new Rect (tierOneRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Offense", boxGUIStyle);
 				if (GUI.Button (originPosition, "Blaster Power")) {
-					if(player.GetComponent<PlayerCenter> ().incBlasterPower ()){
-						Debug.Log("Upgrade purchased!");
-						// Purchase was successful
-					} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
+						if (player.GetComponent<PlayerCenter> ().incBlasterPower ()) {
+								Debug.Log ("Upgrade purchased!");
+								// Purchase was successful
+						} else {
+								// Purchase was not successful (max upgrade level reached, not enough resources)
+						}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "More Blasters")) {
-					if(player.GetComponent<PlayerCenter> ().incNumBlasters()){
-						// Purchase was successful
-					} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
+						if (player.GetComponent<PlayerCenter> ().incNumBlasters ()) {
+								// Purchase was successful
+						} else {
+								// Purchase was not successful (max upgrade level reached, not enough resources)
+						}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Homing Missiles")) {
-					if(player.GetComponent<PlayerCenter> ().incMissilePower ()){
-						// Purchase was successful
-					} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
+						if (player.GetComponent<PlayerCenter> ().incMissilePower ()) {
+								// Purchase was successful
+						} else {
+								// Purchase was not successful (max upgrade level reached, not enough resources)
+						}
 				}
 					
 				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);
 				//GUI.Label (new Rect (tierTwoRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
 				if (GUI.Button (originPosition, "Hull Strength")) {
-					if(player.GetComponent<PlayerCenter> ().incHullStrength ()){
-						Debug.Log("Upgrade purchased!");
-						// Purchase was successful
-					} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
+						if (player.GetComponent<PlayerCenter> ().incHullStrength ()) {
+								Debug.Log ("Upgrade purchased!");
+								// Purchase was successful
+						} else {
+								// Purchase was not successful (max upgrade level reached, not enough resources)
+						}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Shields")) {
-					if(player.GetComponent<PlayerCenter> ().incShieldPower ()){
-						Debug.Log("Upgrade purchased!");
-						// Purchase was successful
-					} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
+						if (player.GetComponent<PlayerCenter> ().incShieldPower ()) {
+								Debug.Log ("Upgrade purchased!");
+								// Purchase was successful
+						} else {
+								// Purchase was not successful (max upgrade level reached, not enough resources)
+						}
 				}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Regen")) {
-					if(player.GetComponent<PlayerCenter> ().incHullRegen ()){
-						Debug.Log("Upgrade purchased!");
-						// Purchase was successful
-					} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
+						if (player.GetComponent<PlayerCenter> ().incHullRegen ()) {
+								Debug.Log ("Upgrade purchased!");
+								// Purchase was successful
+						} else {
+								// Purchase was not successful (max upgrade level reached, not enough resources)
+						}
 				}
 				
 				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);	
 				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 				//GUI.Label (new Rect (tierThreeRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
 				if (GUI.Button (originPosition, "Speed Turning")) {
-					if(player.GetComponent<PlayerCenter> ().incMovementLevel ()){
-						Debug.Log("Upgrade purchased!");
-						// Purchase was successful
-					} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
+						if (player.GetComponent<PlayerCenter> ().incMovementLevel ()) {
+								Debug.Log ("Upgrade purchased!");
+								// Purchase was successful
+						} else {
+								// Purchase was not successful (max upgrade level reached, not enough resources)
+						}
 				}
 				//Commented out, not wanted
 				//originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				//if (GUI.Button (originPosition, "Radar")) {
 				//	if(player.GetComponent<PlayerCenter> ().incRadarLevel ()){
 				//		Debug.Log("Upgrade purchased!");
-						// Purchase was successful
+				// Purchase was successful
 				//	} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
+				// Purchase was not successful (max upgrade level reached, not enough resources)
 				//	}
 				//}
 				//originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				//if (GUI.Button (originPosition, "Resource Magnet")) {
 				//	if(player.GetComponent<PlayerCenter> ().incResourceMagnet ()){
 				//		Debug.Log("Upgrade purchased!");
-						// Purchase was successful
+				// Purchase was successful
 				//	} else {
-						// Purchase was not successful (max upgrade level reached, not enough resources)
+				// Purchase was not successful (max upgrade level reached, not enough resources)
 				//	}
 				//}
 		}
