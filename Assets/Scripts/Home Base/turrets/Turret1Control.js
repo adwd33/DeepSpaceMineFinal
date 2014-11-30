@@ -1,5 +1,4 @@
-﻿var LookAtTarget:Transform;
-var savedtime;
+﻿var savedtime;
 var bulletPreFab:Transform;
 var misslePreFab:Transform;
 var bombPreFab:Transform;
@@ -14,7 +13,7 @@ var test:int;
 var bombtime = 0;
 
 function Start () {
-	type1 = 1;
+	type1 = 3;
 	attEnemy = 0;
 	//gets all the enemys
 	gos = GameObject.FindGameObjectsWithTag("enemy"); 

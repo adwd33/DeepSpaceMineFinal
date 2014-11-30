@@ -1,20 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class DestroyByContact : MonoBehaviour
+public class DestroyByHits : MonoBehaviour
 {
-	public int baseHealth = 10;
+	public int health = 10;
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other.tag == "boundary")
+		if (other.tag == "boundary" || other.tag == "nuclearshot" || other.tag == "TurretShot" || other.tag == "missile")
 		{
 			return;
 		}
-		if (other.tag == "explosion") {
-			return;
-		}
-		if (baseHealth > 0) {
-			baseHealth--;
+		if (health > 0) {
+			health--;
 			Destroy(other.gameObject);
 			return;
 		}
