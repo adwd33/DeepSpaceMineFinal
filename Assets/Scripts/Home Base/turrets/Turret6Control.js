@@ -3,6 +3,10 @@ var savedtime;
 var bulletPreFab:Transform;
 var misslePreFab:Transform;
 var bombPreFab:Transform;
+var gos : GameObject[];
+var numEnemys;
+var attEnemy;
+
 static var type6:int;
 static var level6:int;
 
@@ -10,25 +14,47 @@ var bombtime = 0;
 
 function Start () {
 	type6 = 1;
-}
-function Update () {
-	if(GameObject.Find("vehicle_playerShip").transform.position.z >= 0)
-	{
-		transform.LookAt(LookAtTarget);
+	attEnemy = 0;
 	
-		var seconds : int = Time.time;
-		var oddeven;
+	//gets all the enemys
+	gos = GameObject.FindGameObjectsWithTag("enemy"); 
+	
+	numEnemys = gos.Length;
+}
+
+function Update () {
+
+	//will only work if enemys are left
+	if(globalMethod.enemys > 0) {
 		
-		if(type6 == 3)
-			oddeven = (seconds % 10);
-		else 
-			oddeven = (seconds % 2);
-		
-		if(oddeven)
-			shoot(seconds);
-		
-	}
-	bombtime++;
+		attEnemy = -1;
+		//finds the first enemy within range to attack
+		for(i = 0; i < numEnemys; i++){
+			if(gos[0].transform.position.z >= 0){
+				attEnemy = i;
+				break;
+			}
+		}
+	
+		//will only look at enemy in line of sight
+		if(attEnemy != -1){
+			transform.LookAt(gos[attEnemy].transform);
+				
+			var seconds : int = Time.time;
+			var oddeven;
+				
+			if(type6 == 3)
+				oddeven = (seconds % 10);
+			else 
+				oddeven = (seconds % 2);
+				
+			if(oddeven)
+				shoot(seconds);
+				
+			
+			 bombtime++;
+		 }
+	 }
 }
 
 function shoot(seconds){

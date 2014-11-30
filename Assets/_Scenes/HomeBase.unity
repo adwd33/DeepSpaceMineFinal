@@ -1353,6 +1353,7 @@ MonoBehaviour:
   bulletPreFab: {fileID: 400000, guid: 59cb741841b8eeb4b82520b5cf810af0, type: 2}
   misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
   bombPreFab: {fileID: 400000, guid: 9fb545d15edab3f418dddd7c79677524, type: 2}
+  gos: []
   bombtime: 0
 --- !u!1 &874702889
 GameObject:
@@ -3188,6 +3189,7 @@ MonoBehaviour:
   bulletPreFab: {fileID: 400000, guid: 8ccd24f26a834cb4b8f1e677cd225b1b, type: 2}
   misslePreFab: {fileID: 400000, guid: ec121e1accdc3e24498a9a4950a6a668, type: 2}
   bombPreFab: {fileID: 400000, guid: 51b21c46167879f4490bd6d36effa30e, type: 2}
+  gos: []
   bombtime: 0
 --- !u!95 &2086971463
 Animator:

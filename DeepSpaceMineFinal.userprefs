@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Home Base\turrets\Turret1Control.js">
     <Files>
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret1Control.js" Line="28" Column="31" />
-      <File FileName="Assets\Scripts\Home Base\turrets\globalMethod.js" Line="7" Column="60" />
-      <File FileName="Assets\slug.js" Line="13" Column="29" />
+      <File FileName="Assets\Scripts\Home Base\turrets\Turret1Control.js" Line="59" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
