@@ -13,6 +13,5 @@ function OnTriggerEnter (other : Collider) {
 		if(other.tag == "enemy"){
 			Destroy(other.gameObject);
 			Destroy (gameObject);
-			globalMethod.enemys -= 1;
 		}
 }
