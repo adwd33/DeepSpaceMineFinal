@@ -5,7 +5,7 @@ using AssemblyCSharp;
 // Reese 9/26/2014 Created this class to do all the "UIey" stuff
 public class UI : MonoBehaviour
 {
-		PlayerSaveObject playerSave;
+		PlayerSaveLoadMethods playerSaveLoadMethods;
 		bool isDrawingTier1;
 		bool isDrawingTier2;
 		bool isDrawingTier3;
@@ -96,7 +96,7 @@ public class UI : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-				
+				playerSaveLoadMethods = new PlayerSaveLoadMethods();
 				listOfBaseUpgradeObjects = new ArrayList ();
 				//Load the icons for the resource layout
 				ironIcon = Resources.Load ("UITextures/ironIcon", typeof(Texture2D)) as Texture2D;
@@ -239,9 +239,7 @@ public class UI : MonoBehaviour
 				// Make the fourth button.If it is pressed, this will save the players game
 				if (GUI.Button (new Rect (buttonCenterPosX, (screenHeight / 4) + (defaultButtonHeight * 4), defaultButtonWidth, defaultButtonHeight), "Save")) {
 						boxTitle = "Save";
-	
-						playerSave = new PlayerSaveObject ((int)health, playerController.GetPurchasedShipUpgradeList (), resources, playerController.GetPurchasedHomeBaseUpgradeList ());
-						bool isSucessful = playerSave.saveTheGame (playerSave);
+						bool isSucessful = playerSaveLoadMethods.saveTheGame((int)health, playerController.GetPurchasedShipUpgradeList(), playerController.resources, playerController.GetPurchasedHomeBaseUpgradeList());
 						isDrawingTier1 = false;
 						isDrawingTier2 = false;
 						isDrawingTier3 = false;
@@ -279,14 +277,12 @@ public class UI : MonoBehaviour
 						isDrawingTier2 = false;
 						isDrawingTier3 = false;
 						isDrawingTier4 = false;
-						//Application.LoadLevel("main");
-						PlayerSaveObject loadMe = new PlayerSaveObject ();
-						PlayerSaveObject playerInfo = loadMe.loadTheGame ();
-								
-						if (playerInfo != null) {
-								playerController.setResourceList (playerInfo.listOfResourcesCollected);
-								playerController.PlayerHealth = (float)playerInfo.playerHealth;
-								health = (float)playerInfo.playerHealth;
+						
+						if (playerSaveLoadMethods != null) {
+								PlayerPrefs.SetInt ("health", playerSaveLoadMethods.loadThePlayerHealth());
+								PlayerPrefs.SetString ("shipUpgrades", playerSaveLoadMethods.loadThePlayerShipUpgrades());
+								PlayerPrefs.SetString ("homeBaseUpgrades", playerSaveLoadMethods.loadThePlayerHomebaseUpgrades());
+								PlayerPrefs.SetString ("resourcesCollected", playerSaveLoadMethods.loadThePlayerResources());
 								
 						}
 				}
@@ -638,24 +634,25 @@ public class UI : MonoBehaviour
 						// Purchase was not successful (max upgrade level reached, not enough resources)
 					}
 				}
-				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
-				if (GUI.Button (originPosition, "Radar")) {
-					if(player.GetComponent<PlayerCenter> ().incRadarLevel ()){
-						Debug.Log("Upgrade purchased!");
+				//Commented out, not wanted
+				//originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				//if (GUI.Button (originPosition, "Radar")) {
+				//	if(player.GetComponent<PlayerCenter> ().incRadarLevel ()){
+				//		Debug.Log("Upgrade purchased!");
 						// Purchase was successful
-					} else {
+				//	} else {
 						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
-				}
-				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
-				if (GUI.Button (originPosition, "Resource Magnet")) {
-					if(player.GetComponent<PlayerCenter> ().incResourceMagnet ()){
-						Debug.Log("Upgrade purchased!");
+				//	}
+				//}
+				//originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				//if (GUI.Button (originPosition, "Resource Magnet")) {
+				//	if(player.GetComponent<PlayerCenter> ().incResourceMagnet ()){
+				//		Debug.Log("Upgrade purchased!");
 						// Purchase was successful
-					} else {
+				//	} else {
 						// Purchase was not successful (max upgrade level reached, not enough resources)
-					}
-				}
+				//	}
+				//}
 		}
 	
 }

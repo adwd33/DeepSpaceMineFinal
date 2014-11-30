@@ -11,9 +11,9 @@ public class T5SVisible : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if (menu.GetComponent<HomeBaseMenu> ().turret5 == true) {
-			renderer.enabled = true;
-		}
+		//Commented out by Reese, this script no longer exists, replaced with UI script
+		//if (menu.GetComponent<HomeBaseMenu> ().turret5 == true) {
+		//	renderer.enabled = true;
+		//}
 	}
 }

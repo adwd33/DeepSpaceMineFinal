@@ -11,9 +11,9 @@ public class T1Barrel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if (menu.GetComponent<HomeBaseMenu> ().turret1 == true) {
-			renderer.enabled = true;
-		}
+		//Commented out by Reese, this script no longer exists, replaced with UI script
+		//if (menu.GetComponent<HomeBaseMenu> ().turret1 == true) {
+		//	renderer.enabled = true;
+		//}
 	}
 }

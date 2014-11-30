@@ -32,12 +32,15 @@ public class MainMenuUI : MonoBehaviour
 		}
 		if (GUI.Button (new Rect ((screenWidth / 2) - (defaultButtonWidth / 2), (screenHeight / 2) + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight), "New Game")) {
 						//This loads the main scene, or in our case the core of the game.
+						PlayerPrefs.SetInt ("health", 10);
+						PlayerPrefs.SetString ("shipUpgrades", "");
+						PlayerPrefs.SetString ("homeBaseUpgrades", "");
+						PlayerPrefs.SetString ("resourcesCollected", "");
 						Application.LoadLevel ("main");
 				}
 				// Make the fourth button. If it is pressed, this will display available save files to load for the player
-		if (GUI.Button (new Rect ((screenWidth / 2) - (defaultButtonWidth / 2), (screenHeight / 2) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight), "Load")) {
-						// Make a background box
-						GUI.Box (new Rect ((defaultUIItemBuffer * 2), (defaultUIItemBuffer * 2), defaultSideWindowWidth, defaultSideWindowHeight), "Load");
+		if (GUI.Button (new Rect ((screenWidth / 2) - (defaultButtonWidth / 2), (screenHeight / 2) + (defaultButtonHeight * 2), defaultButtonWidth, defaultButtonHeight), "Load Last Save")) {
+						Application.LoadLevel("main");
 				}
 				// Make the sixth button.If it is pressed, this will exit the game
 		if (GUI.Button (new Rect ((screenWidth / 2) - (defaultButtonWidth / 2), (screenHeight / 2) + (defaultButtonHeight * 3), defaultButtonWidth, defaultButtonHeight), "Exit")) {

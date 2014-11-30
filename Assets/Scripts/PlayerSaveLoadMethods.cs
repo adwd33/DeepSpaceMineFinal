@@ -100,52 +100,47 @@ namespace AssemblyCSharp
 				/// Loads the player ship upgrades.
 				/// </summary>
 				/// <returns><c>true</c>, if the player ship upgrades was loaded, <c>false</c> otherwise.</returns>
-				public ArrayList loadThePlayerShipUpgrades ()
+				public string loadThePlayerShipUpgrades ()
 				{
-						ArrayList arrayListOfshipUpgrades = new ArrayList();
+						string shipUpgrades = "";
 						try {
-								string shipUpgrades = PlayerPrefs.GetString ("shipUpgrades");
-								string[] listOfShipUpgrades = shipUpgrades.Split (',');
-								arrayListOfshipUpgrades = new ArrayList (listOfShipUpgrades);
+								shipUpgrades = PlayerPrefs.GetString ("shipUpgrades");
 						} catch (Exception e) {
 								Debug.Log ("A error occurred when trying to load the player ship upgrades, error is: " + e.Message);
 						}
-						return arrayListOfshipUpgrades;
+						return shipUpgrades;
 				}
 				/// <summary>
 				/// Loads the player homebase upgrades.
 				/// </summary>
 				/// <returns><c>true</c>, if the player homebase upgrades was loaded, <c>false</c> otherwise.</returns>
-				public ArrayList loadThePlayerHomebaseUpgrades ()
+				public string loadThePlayerHomebaseUpgrades ()
 				{
-						ArrayList arrayListOfHomeBaseUpgrades = new ArrayList();
+						string homeBaseUpgrades = "";
 						try {
-								string homeBaseUpgrades = PlayerPrefs.GetString ("homeBaseUpgrades");
-								string[] listOfHomeBaseUpgrades = homeBaseUpgrades.Split (',');
-								arrayListOfHomeBaseUpgrades = new ArrayList (listOfHomeBaseUpgrades);
+								homeBaseUpgrades = PlayerPrefs.GetString ("homeBaseUpgrades");
 						} catch (Exception e) {
 								Debug.Log ("A error occurred when trying to load the home base upgrades, error is: " + e.Message);
 						}
-						return arrayListOfHomeBaseUpgrades;
+						return homeBaseUpgrades;
 				}
 				/// <summary>
 				/// Loads the player resources.
 				/// </summary>
 				/// <returns><c>true</c>, if the player resources was loaded, <c>false</c> otherwise.</returns>
-				public int[] loadThePlayerResources ()
+				public string loadThePlayerResources ()
 				{
-						int[] resources = new int[11];
+						string resourcesCollected = "";
 						try {
-								string resourcesCollected = PlayerPrefs.GetString ("resourcesCollected");
-								string[] listOfResourcesCollected = resourcesCollected.Split (',');
+								resourcesCollected = PlayerPrefs.GetString ("resourcesCollected");
 								
-								for (int i = 0; i < listOfResourcesCollected.Length; i++) {
-									resources [i] = int.Parse (listOfResourcesCollected [i]);
-								}
+								//for (int i = 0; i < listOfResourcesCollected.Length; i++) {
+								//	resources [i] = int.Parse (listOfResourcesCollected [i]);
+								//}
 						} catch (Exception e) {
 								Debug.Log ("A error occurred when trying to load the player resources, error is: " + e.Message);
 						}
-						return resources;
+						return resourcesCollected;
 				}
 		}
 }
