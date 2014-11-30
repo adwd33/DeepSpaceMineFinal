@@ -5,6 +5,9 @@ public class DestroyByBoundary : MonoBehaviour
 {
 	void OnTriggerExit(Collider other)
 	{
+		if (other.tag == "explosion") {
+			return;
+		}
 		Destroy(other.gameObject);
 	}
 }

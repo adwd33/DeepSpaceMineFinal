@@ -10,6 +10,9 @@ public class DestroyByContact : MonoBehaviour
 		{
 			return;
 		}
+		if (other.tag == "explosion") {
+			return;
+		}
 		if (baseHealth > 0) {
 			baseHealth--;
 			Destroy(other.gameObject);

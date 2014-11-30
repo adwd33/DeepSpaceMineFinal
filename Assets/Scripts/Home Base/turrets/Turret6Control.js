@@ -25,14 +25,18 @@ function Start () {
 function Update () {
 
 	//will only work if enemys are left
-	if(globalMethod.enemys > 0) {
+	if(GameObject.FindGameObjectsWithTag("enemy").Length > 0) {
 		
 		attEnemy = -1;
 		//finds the first enemy within range to attack
 		for(i = 0; i < numEnemys; i++){
-			if(gos[0].transform.position.z >= 0){
-				attEnemy = i;
-				break;
+			try{
+				if(gos[i].transform.position.z >= 0){
+					attEnemy = i;
+					break;
+				}
+			} catch(err) {
+			
 			}
 		}
 	
