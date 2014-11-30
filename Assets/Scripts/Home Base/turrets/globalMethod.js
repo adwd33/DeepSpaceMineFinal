@@ -1,7 +1,8 @@
 ﻿#pragma strict
 
+var turret1level1 : Texture;
 function Start () {
-
+	
 }
 
 function Update () {
@@ -43,6 +44,7 @@ function change1(level, type)
 	if(type == "TURRET")
 	{
 		Turret1Control.type1 = 1;
+		GameObject.Find("turret1").renderer.material.mainTexture = turret1level1;
 	}
 	else if(type == "BOMB")
 	{

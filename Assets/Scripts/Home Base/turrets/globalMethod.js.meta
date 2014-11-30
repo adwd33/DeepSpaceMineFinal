@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: ec426c1c4a1722f42b1a5fcc7d35111a
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - turret1level1: {fileID: 2800000, guid: 877ff23761c1c864798675fafff0349f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
