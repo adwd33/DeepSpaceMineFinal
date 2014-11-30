@@ -1,7 +1,10 @@
 ﻿#pragma strict
 
+static var enemys:int;
+
 function Start () {
 
+	enemys = GameObject.FindGameObjectsWithTag("enemy").Length; 
 }
 
 function Update () {
