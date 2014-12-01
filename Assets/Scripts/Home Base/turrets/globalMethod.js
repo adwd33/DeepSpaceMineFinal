@@ -19,6 +19,55 @@ function Update () {
 
 }
 
+//changes shields strength
+function changeShield(level)
+{
+	switch(level)
+	{
+		case 1:
+		ShieldLogicUpdate.shieldStrength = 20;
+		ShieldLogicUpdate.shieldRate = 10;
+		break;
+		case 2:
+		ShieldLogicUpdate.shieldStrength = 40;
+		ShieldLogicUpdate.shieldRate = 8.5;
+		break;
+		case 3:	
+		ShieldLogicUpdate.shieldStrength = 60;
+		ShieldLogicUpdate.shieldRate = 7;
+		break;
+		default:
+		ShieldLogicUpdate.shieldStrength = 80;
+		ShieldLogicUpdate.shieldRate = 5.5;
+		break;
+	}
+}
+
+//changes bases health
+function changeHealth(level)
+{
+	switch(level)
+	{
+		case 1:
+		DestroyByHitsUpdate.health = 20;
+		DestroyByHitsUpdate.healthRate = 10;
+		break;
+		case 2:
+		DestroyByHitsUpdate.health = 40;
+		DestroyByHitsUpdate.healthRate = 8.5;
+		break;
+		case 3:	
+		DestroyByHitsUpdate.health = 60;
+		DestroyByHitsUpdate.healthRate = 7;
+		break;
+		default:
+		DestroyByHitsUpdate.health = 80;
+		DestroyByHitsUpdate.healthRate = 5.5;
+		break;
+	}
+}
+
+//changes specified turret to specified type and level
 function ChangeTurret(turret, level, type) 
 {	
 	switch(turret)

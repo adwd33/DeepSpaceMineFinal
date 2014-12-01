@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\HomeBaseEnemy.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DestroyByHitsUpdate.js">
     <Files>
-      <File FileName="Assets\Scripts\Home Base\turrets\Turret1Control.js" Line="1" Column="1" />
-      <File FileName="Assets\HomeBaseEnemy.js" Line="4" Column="73" />
+      <File FileName="Assets\Scripts\Home Base\turrets\globalMethod.js" Line="21" Column="1" />
+      <File FileName="Assets\DestroyByHitsUpdate.js" Line="29" Column="39" />
+      <File FileName="Assets\Scripts\Home Base\ShieldLogicUpdate.js" Line="13" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

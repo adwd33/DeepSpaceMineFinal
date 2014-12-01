@@ -399,7 +399,6 @@ MonoBehaviour:
   misslePreFab: {fileID: 400000, guid: be55b55df0b6b4746836f67c2c0b4c80, type: 2}
   bombPreFab: {fileID: 400000, guid: 8e95ea8b8303382409957c70435bc2cf, type: 2}
   gos: []
-  bombtime: 0
 --- !u!95 &183741319
 Animator:
   serializedVersion: 3
@@ -484,7 +483,7 @@ Transform:
   - {fileID: 32229181}
   - {fileID: 892716558}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &188045782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1039,7 @@ Transform:
   - {fileID: 1950599762}
   - {fileID: 651485836}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
 --- !u!23 &433520838
 Renderer:
   m_ObjectHideFlags: 0
@@ -1405,7 +1404,7 @@ Transform:
   - {fileID: 1325442401}
   - {fileID: 1659694443}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &615680904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,7 +1420,6 @@ MonoBehaviour:
   misslePreFab: {fileID: 400000, guid: e2c2668d5c7bae1489a047552570dc6b, type: 2}
   bombPreFab: {fileID: 400000, guid: f4347c6169eb675499edd2beb0d12718, type: 2}
   gos: []
-  bombtime: 0
 --- !u!95 &615680905
 Animator:
   serializedVersion: 3
@@ -1813,7 +1811,6 @@ MonoBehaviour:
   misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
   bombPreFab: {fileID: 400000, guid: 9fb545d15edab3f418dddd7c79677524, type: 2}
   gos: []
-  bombtime: 0
 --- !u!1 &874702889
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,7 +2012,6 @@ MonoBehaviour:
   misslePreFab: {fileID: 400000, guid: 993db48248c720d4c98a7b34cde3f67c, type: 2}
   bombPreFab: {fileID: 400000, guid: c7dbb9cbfed76d440a01c8750a0e6fca, type: 2}
   gos: []
-  bombtime: 0
 --- !u!95 &924649104
 Animator:
   serializedVersion: 3
@@ -2489,10 +2485,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1126858371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 220b8e623d1fc8e4fa469dc6777389cf, type: 3}
+  m_Script: {fileID: 11500000, guid: f0032a4d00ddb3940aaaf50742b90d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldStrength: 10
 --- !u!23 &1126858373
 Renderer:
   m_ObjectHideFlags: 0
@@ -3529,7 +3524,6 @@ MonoBehaviour:
   misslePreFab: {fileID: 400000, guid: a92a9b6a4279e42488c370c04cc9dab5, type: 2}
   bombPreFab: {fileID: 400000, guid: 1317c79fc6987984689540ad5ccd2145, type: 2}
   gos: []
-  bombtime: 0
 --- !u!95 &1666903297
 Animator:
   serializedVersion: 3
@@ -4280,10 +4274,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2028896404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: babfae9bb1e1d3641b580f65559b63a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 53d47b01cfa402e45a392e44e5acce9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  healthRate: 10
 --- !u!114 &2028896410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4554,7 +4548,7 @@ Transform:
   - {fileID: 1084433694}
   - {fileID: 1987000523}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &2086971462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4570,7 +4564,6 @@ MonoBehaviour:
   misslePreFab: {fileID: 400000, guid: ec121e1accdc3e24498a9a4950a6a668, type: 2}
   bombPreFab: {fileID: 400000, guid: 51b21c46167879f4490bd6d36effa30e, type: 2}
   gos: []
-  bombtime: 0
 --- !u!95 &2086971463
 Animator:
   serializedVersion: 3

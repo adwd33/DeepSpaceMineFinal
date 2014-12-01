@@ -55,11 +55,11 @@ function shoot(){
 	if(type4 == 1 && Time.time > nextFire)
 	{
 			
-			//depending on the level, it will fire quick or slow
-			nextFire = Time.time + fireRateTur;
-			var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
-			
-			bullet.rigidbody.AddForce(transform.forward*2000);
+		//depending on the level, it will fire quick or slow
+		nextFire = Time.time + fireRateTur;
+		var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+		
+		bullet.rigidbody.AddForce(transform.forward*2000);
 
 	}
 	else if(type4 == 2 && Time.time > nextFire)
