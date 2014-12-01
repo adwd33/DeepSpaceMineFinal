@@ -8,13 +8,13 @@ var attEnemy;
 
 static var type1:int;
 static var level1:int;
-var test:int;
 
 var bombtime = 0;
 
 function Start () {
 	type1 = 3;
 	attEnemy = 0;
+	
 	//gets all the enemys
 	gos = GameObject.FindGameObjectsWithTag("enemy"); 
 	
@@ -25,7 +25,7 @@ function Update () {
 
 	//will only work if enemys are left
 	if(GameObject.FindGameObjectsWithTag("enemy").Length > 0) {
-		test = 1;
+
 		attEnemy = -1;
 		//finds the first enemy within range to attack
 		for(i = 0; i < numEnemys; i++){

@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af472799bf006e54d959e4c8440c868e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 349c04fd40977354fa39f34c833da554, type: 2}
   misslePreFab: {fileID: 400000, guid: be55b55df0b6b4746836f67c2c0b4c80, type: 2}
   bombPreFab: {fileID: 400000, guid: 8e95ea8b8303382409957c70435bc2cf, type: 2}
@@ -938,7 +937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a84b757116521438b2e0166e42f358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 75bbd06f4e2b96f4c863fb35ed91818c, type: 2}
   misslePreFab: {fileID: 400000, guid: e2c2668d5c7bae1489a047552570dc6b, type: 2}
   bombPreFab: {fileID: 400000, guid: f4347c6169eb675499edd2beb0d12718, type: 2}
@@ -1195,7 +1193,6 @@ MonoBehaviour:
   misslePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
   bombPreFab: {fileID: 400000, guid: 9fb545d15edab3f418dddd7c79677524, type: 2}
   gos: []
-  test: 0
   bombtime: 0
 --- !u!1 &874702889
 GameObject:
@@ -1367,7 +1364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e899428d3bd03a4c939789c77d264f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 34269035aeb702c4fafda59a7a0f38eb, type: 2}
   misslePreFab: {fileID: 400000, guid: 993db48248c720d4c98a7b34cde3f67c, type: 2}
   bombPreFab: {fileID: 400000, guid: c7dbb9cbfed76d440a01c8750a0e6fca, type: 2}
@@ -2204,7 +2200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8d8dfb3306a354ca9e9df0ddf1cb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: ed781beaf32236c43bc83b46114ef45d, type: 2}
   misslePreFab: {fileID: 400000, guid: a92a9b6a4279e42488c370c04cc9dab5, type: 2}
   bombPreFab: {fileID: 400000, guid: 1317c79fc6987984689540ad5ccd2145, type: 2}
@@ -2985,7 +2980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2847c7967d76b4199f9b2e300caa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 433520837}
   bulletPreFab: {fileID: 400000, guid: 8ccd24f26a834cb4b8f1e677cd225b1b, type: 2}
   misslePreFab: {fileID: 400000, guid: ec121e1accdc3e24498a9a4950a6a668, type: 2}
   bombPreFab: {fileID: 400000, guid: 51b21c46167879f4490bd6d36effa30e, type: 2}

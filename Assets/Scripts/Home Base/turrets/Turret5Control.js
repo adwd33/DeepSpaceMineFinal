@@ -1,5 +1,4 @@
-﻿var LookAtTarget:Transform;
-var savedtime;
+﻿var savedtime;
 var bulletPreFab:Transform;
 var misslePreFab:Transform;
 var bombPreFab:Transform;
