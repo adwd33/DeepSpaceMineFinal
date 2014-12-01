@@ -5,6 +5,9 @@ var bombPreFab:Transform;
 var gos : GameObject[];
 var numEnemys;
 var attEnemy;
+var fireRate = 0.2;
+private var nextFire = 0.0;
+
 
 static var type4:int;
 static var level4:int;
@@ -75,8 +78,9 @@ function shoot(seconds){
 			savedtime = seconds;
 		}
 	}
-	else if(type4 == 2)
+	else if(type4 == 2 && Time.time > nextFire)
 	{
+		nextFire = Time.time + fireRate;
 		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 			
 		missle.rigidbody.AddForce(transform.forward*200);
