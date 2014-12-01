@@ -27,7 +27,7 @@ function Update () {
 
 	//will only work if enemys are left
 	if(GameObject.FindGameObjectsWithTag("enemy").Length > 0) {
-		
+		gos = GameObject.FindGameObjectsWithTag("enemy"); 
 		attEnemy = -1;
 		//finds the first enemy within range to attack
 		for(i = 0; i < numEnemys; i++){
@@ -59,7 +59,7 @@ function shoot(){
 		nextFire = Time.time + fireRateTur;
 		var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 		
-		bullet.rigidbody.AddForce(transform.forward*2000);
+		bullet.rigidbody.AddForce(transform.forward*100);
 
 	}
 	else if(type4 == 2 && Time.time > nextFire)
