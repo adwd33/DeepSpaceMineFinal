@@ -59,15 +59,19 @@ function change1(level, type)
 		switch(level){
 			case 1:
 			GameObject.Find("turret1").renderer.material.mainTexture = turretlevel1;
+			Turret1Control.fireRateTur = 1;
 			break;
 			case 2:
 			GameObject.Find("turret1").renderer.material.mainTexture = turretlevel2;
+			Turret1Control.fireRateTur = 0.75;
 			break;
 			case 3:
 			GameObject.Find("turret1").renderer.material.mainTexture = turretlevel3;
+			Turret1Control.fireRateTur = 0.5;
 			break;
 			default:
 			GameObject.Find("turret1").renderer.material.mainTexture = turretlevel4;
+			Turret1Control.fireRateTur = 0.25;
 			break;
 		}
 	}
@@ -84,15 +88,19 @@ function change1(level, type)
 		switch(level){
 			case 1:
 			GameObject.Find("turret1").renderer.material.mainTexture = missilelevel1;
+			Turret1Control.fireRate = 0.2;
 			break;
 			case 2:
 			GameObject.Find("turret1").renderer.material.mainTexture = missilelevel2;
+			Turret1Control.fireRate = 0.16;
 			break;
 			case 3:
 			GameObject.Find("turret1").renderer.material.mainTexture = missilelevel3;
+			Turret1Control.fireRate = 0.12;
 			break;
 			default:
 			GameObject.Find("turret1").renderer.material.mainTexture = missilelevel4;
+			Turret1Control.fireRate = 0.08;
 			break;
 		}
 	}
@@ -110,19 +118,22 @@ function change2(level, type)
 		Turret2Control.type2 = 1;
 		
 				//changes to the correct texture based on the level
-				//changes to the correct texture based on the level
 		switch(level){
 			case 1:
 			GameObject.Find("turret2").renderer.material.mainTexture = turretlevel1;
+			Turret2Control.fireRateTur = 1;
 			break;
 			case 2:
 			GameObject.Find("turret2").renderer.material.mainTexture = turretlevel2;
+			Turret2Control.fireRateTur = 0.75;
 			break;
 			case 3:
 			GameObject.Find("turret2").renderer.material.mainTexture = turretlevel3;
+			Turret2Control.fireRateTur = 0.5;
 			break;
 			default:
 			GameObject.Find("turret2").renderer.material.mainTexture = turretlevel4;
+			Turret2Control.fireRateTur = 0.25;
 			break;
 		}
 	}
@@ -140,15 +151,19 @@ function change2(level, type)
 		switch(level){
 			case 1:
 			GameObject.Find("turret2").renderer.material.mainTexture = missilelevel1;
+			Turret2Control.fireRate = 0.2;
 			break;
 			case 2:
 			GameObject.Find("turret2").renderer.material.mainTexture = missilelevel2;
+			Turret2Control.fireRate = 0.16;
 			break;
 			case 3:
 			GameObject.Find("turret2").renderer.material.mainTexture = missilelevel3;
+			Turret2Control.fireRate = 0.12;
 			break;
 			default:
 			GameObject.Find("turret2").renderer.material.mainTexture = missilelevel4;
+			Turret2Control.fireRate = 0.08;
 			break;
 		}
 	}
@@ -166,19 +181,22 @@ function change3(level, type)
 		Turret3Control.type3 = 1;
 		
 				//changes to the correct texture based on the level
-				//changes to the correct texture based on the level
 		switch(level){
 			case 1:
 			GameObject.Find("turret3").renderer.material.mainTexture = turretlevel1;
+			Turret3Control.fireRateTur = 1;
 			break;
 			case 2:
 			GameObject.Find("turret3").renderer.material.mainTexture = turretlevel2;
+			Turret3Control.fireRateTur = 0.75;
 			break;
 			case 3:
 			GameObject.Find("turret3").renderer.material.mainTexture = turretlevel3;
+			Turret3Control.fireRateTur = 0.5;
 			break;
 			default:
 			GameObject.Find("turret3").renderer.material.mainTexture = turretlevel4;
+			Turret3Control.fireRateTur = 0.25;
 			break;
 		}
 	}
@@ -196,15 +214,19 @@ function change3(level, type)
 		switch(level){
 			case 1:
 			GameObject.Find("turret3").renderer.material.mainTexture = missilelevel1;
+			Turret3Control.fireRate = 0.2;
 			break;
 			case 2:
 			GameObject.Find("turret3").renderer.material.mainTexture = missilelevel2;
+			Turret3Control.fireRate = 0.16;
 			break;
 			case 3:
 			GameObject.Find("turret3").renderer.material.mainTexture = missilelevel3;
+			Turret3Control.fireRate = 0.12;
 			break;
 			default:
 			GameObject.Find("turret3").renderer.material.mainTexture = missilelevel4;
+			Turret3Control.fireRate = 0.08;
 			break;
 		}
 	}
@@ -222,19 +244,22 @@ function change4(level, type)
 		Turret4Control.type4 = 1;
 		
 				//changes to the correct texture based on the level
-				//changes to the correct texture based on the level
 		switch(level){
 			case 1:
 			GameObject.Find("turret4").renderer.material.mainTexture = turretlevel1;
+			Turret4Control.fireRateTur = 1;
 			break;
 			case 2:
 			GameObject.Find("turret4").renderer.material.mainTexture = turretlevel2;
+			Turret4Control.fireRateTur = 0.75;
 			break;
 			case 3:
 			GameObject.Find("turret4").renderer.material.mainTexture = turretlevel3;
+			Turret4Control.fireRateTur = 0.5;
 			break;
 			default:
 			GameObject.Find("turret4").renderer.material.mainTexture = turretlevel4;
+			Turret4Control.fireRateTur = 0.25;
 			break;
 		}
 	}
@@ -252,15 +277,19 @@ function change4(level, type)
 		switch(level){
 			case 1:
 			GameObject.Find("turret4").renderer.material.mainTexture = missilelevel1;
+			Turret4Control.fireRate = 0.2;
 			break;
 			case 2:
 			GameObject.Find("turret4").renderer.material.mainTexture = missilelevel2;
+			Turret4Control.fireRate = 0.16;
 			break;
 			case 3:
 			GameObject.Find("turret4").renderer.material.mainTexture = missilelevel3;
+			Turret4Control.fireRate = 0.12;
 			break;
 			default:
 			GameObject.Find("turret4").renderer.material.mainTexture = missilelevel4;
+			Turret4Control.fireRate = 0.08;
 			break;
 		}
 	}
@@ -277,19 +306,23 @@ function change5(level, type)
 	{
 		Turret5Control.type5 = 1;
 		
-				//changes to the correct texture based on the level
+		//changes to the correct texture based on the level
 		switch(level){
 			case 1:
 			GameObject.Find("turret5").renderer.material.mainTexture = turretlevel1;
+			Turret5Control.fireRateTur = 1;
 			break;
 			case 2:
 			GameObject.Find("turret5").renderer.material.mainTexture = turretlevel2;
+			Turret5Control.fireRateTur = 0.75;
 			break;
 			case 3:
 			GameObject.Find("turret5").renderer.material.mainTexture = turretlevel3;
+			Turret5Control.fireRateTur = 0.5;
 			break;
 			default:
 			GameObject.Find("turret5").renderer.material.mainTexture = turretlevel4;
+			Turret5Control.fireRateTur = 0.25;
 			break;
 		}
 	}
@@ -307,15 +340,19 @@ function change5(level, type)
 		switch(level){
 			case 1:
 			GameObject.Find("turret5").renderer.material.mainTexture = missilelevel1;
+			Turret5Control.fireRate = 0.2;
 			break;
 			case 2:
 			GameObject.Find("turret5").renderer.material.mainTexture = missilelevel2;
+			Turret5Control.fireRate = 0.16;
 			break;
 			case 3:
 			GameObject.Find("turret5").renderer.material.mainTexture = missilelevel3;
+			Turret5Control.fireRate = 0.12;
 			break;
 			default:
 			GameObject.Find("turret5").renderer.material.mainTexture = missilelevel4;
+			Turret5Control.fireRate = 0.08;
 			break;
 		}
 	}
@@ -332,20 +369,23 @@ function change6(level, type)
 	{
 		Turret6Control.type6 = 1;
 		
-				//changes to the correct texture based on the level
-				//changes to the correct texture based on the level
+		//changes to the correct texture based on the level
 		switch(level){
 			case 1:
 			GameObject.Find("turret6").renderer.material.mainTexture = turretlevel1;
+			Turret6Control.fireRateTur = 1;
 			break;
 			case 2:
 			GameObject.Find("turret6").renderer.material.mainTexture = turretlevel2;
+			Turret6Control.fireRateTur = 0.75;
 			break;
 			case 3:
 			GameObject.Find("turret6").renderer.material.mainTexture = turretlevel3;
+			Turret6Control.fireRateTur = 0.5;
 			break;
 			default:
 			GameObject.Find("turret6").renderer.material.mainTexture = turretlevel4;
+			Turret6Control.fireRateTur = 0.25;
 			break;
 		}
 	}
@@ -363,15 +403,19 @@ function change6(level, type)
 		switch(level){
 			case 1:
 			GameObject.Find("turret6").renderer.material.mainTexture = missilelevel1;
+			Turret6Control.fireRate = 0.2;
 			break;
 			case 2:
 			GameObject.Find("turret6").renderer.material.mainTexture = missilelevel2;
+			Turret6Control.fireRate = 0.16;
 			break;
 			case 3:
 			GameObject.Find("turret6").renderer.material.mainTexture = missilelevel3;
+			Turret6Control.fireRate = 0.12;
 			break;
 			default:
 			GameObject.Find("turret6").renderer.material.mainTexture = missilelevel4;
+			Turret6Control.fireRate = 0.08;
 			break;
 		}
 	}

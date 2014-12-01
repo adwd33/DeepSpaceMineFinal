@@ -1,20 +1,19 @@
-﻿var savedtime;
-var bulletPreFab:Transform;
+﻿var bulletPreFab:Transform;
 var misslePreFab:Transform;
 var bombPreFab:Transform;
 var gos : GameObject[];
 var numEnemys;
 var attEnemy;
-var fireRate = 0.2;
+static var fireRate = 0.2;
+static var fireRateTur = 1;
+static var fireRateBom = 10;
 private var nextFire = 0.0;
 
 static var type1:int;
 static var level1:int;
 
-var bombtime = 0;
-
 function Start () {
-	type1 = 3;
+	type1 = 1;
 	attEnemy = 0;
 	
 	//gets all the enemys
@@ -43,58 +42,37 @@ function Update () {
 		//will only look at enemy in line of sight
 		if(attEnemy != -1){
 			transform.LookAt(gos[attEnemy].transform);
-			
-			var seconds : int = Time.time;
-			var oddeven;
-				
-			if(type1 == 3)
-				oddeven = (seconds % 10);
-			else 
-				oddeven = (seconds % 2);
-				
-			if(oddeven)
-				shoot(seconds);
-				
-			
-			 bombtime++;
+			shoot();
 		 }
 	 }
 }
 
-function shoot(seconds){
+function shoot(){
 
-	if(type1 == 1)
+	if(type1 == 1 && Time.time > nextFire)
 	{
-		if(seconds != savedtime)
-		{
-			var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
-			
-			bullet.rigidbody.AddForce(transform.forward*2000);
-			
-			savedtime = seconds;
-		}
+		//depending on the level, it will fire quick or slow
+		nextFire = Time.time + fireRateTur;
+		var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+		
+		bullet.rigidbody.AddForce(transform.forward*2000);
+		
 	}
 	else if(type1 == 2 && Time.time > nextFire)
 	{
+		//depending on the level, it will fire faster or slower then normal
 		nextFire = Time.time + fireRate;
 		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 			
 		missle.rigidbody.AddForce(transform.forward*200);
 	}
-	else
+	else if(type1 == 3 && Time.time > nextFire)
 	{
-		if(bombtime > 480)
-		{
-			if(seconds != savedtime)
-			{
-				
-				var bomb = Instantiate(bombPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
-				
-				bomb.rigidbody.AddForce(transform.forward*1000);
-				
-				savedtime = seconds;
-			}
-			bombtime = 0;
-		}
+		//depending on the level, it will fire faster or slower then normal
+		nextFire = Time.time + fireRateBom;
+		var bomb = Instantiate(bombPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
+		
+		bomb.rigidbody.AddForce(transform.forward*1000);
+
 	}
 }
