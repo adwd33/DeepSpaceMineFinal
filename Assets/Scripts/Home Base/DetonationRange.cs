@@ -16,7 +16,9 @@ public class DetonationRange : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Instantiate (explosionPrefab, gameObject.transform.position, Quaternion.identity);
-		Destroy(gameObject);
+		if (other.tag == "enemy") {
+			Instantiate (explosionPrefab, gameObject.transform.position, Quaternion.identity);
+			Destroy (gameObject);
+		}
 	}
 }
