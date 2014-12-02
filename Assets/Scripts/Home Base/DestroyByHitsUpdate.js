@@ -3,7 +3,7 @@ var explosion:Transform;
 static var health:int;
 
 static var currHealth:int;
-static var healthRate;
+static var healthRate:int;
 var healthTime = 0;
 
 function Start () {

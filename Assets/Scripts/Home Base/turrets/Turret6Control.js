@@ -10,6 +10,7 @@ static var fireRateBom = 10;
 private var nextFire = 0.0;
 
 static var type6:int;
+static var level6:int;
 
 function Start () {
 	type6 = 3;

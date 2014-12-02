@@ -3,7 +3,7 @@ var explosion:Transform;
 static var shieldStrength : int;
 
 static var currshieldStrength:int;
-static var shieldRate;
+static var shieldRate:int;
 var shieldTime = 0;
 
 function Start () {
