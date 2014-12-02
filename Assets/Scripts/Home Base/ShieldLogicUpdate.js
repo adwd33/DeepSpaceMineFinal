@@ -1,5 +1,5 @@
 ﻿#pragma strict
-
+var explosion:Transform;
 static var shieldStrength : int;
 
 static var currshieldStrength:int;
@@ -25,6 +25,7 @@ function OnTriggerEnter (other : Collider) {
 		}
 		currshieldStrength--;
 		currshieldStrength--;
+		var exp = Instantiate(explosion, other.gameObject.transform.position, Quaternion.identity);
 		Destroy(other.gameObject);
 		if (currshieldStrength > 0) {
 			return;

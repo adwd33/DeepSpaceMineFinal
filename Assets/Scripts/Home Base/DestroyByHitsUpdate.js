@@ -1,5 +1,5 @@
 ﻿#pragma strict
-
+var explosion:Transform;
 static var health:int;
 
 static var currHealth:int;
@@ -26,6 +26,7 @@ function OnTriggerEnter (other : Collider) {
 		}
 		currHealth--;
 		currHealth--;
+		var exp = Instantiate(explosion, other.gameObject.transform.position, Quaternion.identity);
 		Destroy(other.gameObject);
 		if (currHealth > 0) {
 			return;

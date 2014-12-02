@@ -3490,6 +3490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f034571ef6e920d48abc19d5bf7982a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 400000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
