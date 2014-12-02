@@ -10,10 +10,9 @@ static var fireRateBom = 10;
 private var nextFire = 0.0;
 
 static var type3:int;
-static var level3:int;
 
 function Start () {
-	type3 = 1;
+	type3 = 2;
 	attEnemy = 0;
 	
 	//gets all the enemys

@@ -24,5 +24,8 @@ function Update () {
 			
 		var newenemy = Instantiate(enemy, Vector3(x,y,z), Quaternion.identity);
 		i++;
+		x = 0;
+		y = 0;
+		z = 0;
 	}
 }
