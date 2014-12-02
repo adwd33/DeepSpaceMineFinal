@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Home Base\turrets\T1Barrel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Home Base\DetonationRange.cs">
     <Files>
-      <File FileName="Assets\Scripts\Home Base\turrets\T1Barrel.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\UI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Home Base\NuclearGrowShrink.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Home Base\DetonationRange.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
