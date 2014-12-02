@@ -58,14 +58,14 @@ function shoot(){
 		nextFire = Time.time + fireRateTur;
 		var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 		
-		bullet.rigidbody.AddForce(transform.forward*100);
+		bullet.rigidbody.AddForce(transform.forward*1000);
 	}
 	else if(type5 == 2 && Time.time > nextFire)
 	{
 		nextFire = Time.time + fireRate;
 		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 			
-		missle.rigidbody.AddForce(transform.forward*200);
+		missle.rigidbody.AddForce(transform.forward*500);
 	}
 	else if(type5 == 3 && Time.time > nextFire)
 	{

@@ -59,7 +59,7 @@ function shoot(){
 		nextFire = Time.time + fireRateTur;
 		var bullet = Instantiate(bulletPreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 		
-		bullet.rigidbody.AddForce(transform.forward*100);
+		bullet.rigidbody.AddForce(transform.forward*1000);
 
 	}
 	else if(type4 == 2 && Time.time > nextFire)
@@ -67,7 +67,7 @@ function shoot(){
 		nextFire = Time.time + fireRate;
 		var missle = Instantiate(misslePreFab, transform.Find("spawnpoint").transform.position, Quaternion.identity);
 			
-		missle.rigidbody.AddForce(transform.forward*200);
+		missle.rigidbody.AddForce(transform.forward*500);
 	}
 	else if(type4 == 3 && Time.time > nextFire)
 	{

@@ -13,14 +13,14 @@ function Update () {
 
 	if(GameObject.FindGameObjectsWithTag("enemy").Length == 0)
 		i = 0;
-	while(i < 5)
+	if(i == 0)
 	{
-		
-			x = Random.Range(-10,10);
-		
-			y = Random.Range(-10,10);
-		
-			z = Random.Range(-10,10);
+		while((x < 25) && (x > -25))
+			x = Random.Range(-50,50);
+		while((y < 25) && (y > -25))
+			y = Random.Range(-50,50);
+		while((z < 25) && (z > -25))
+			z = Random.Range(-50,50);
 			
 		var newenemy = Instantiate(enemy, Vector3(x,y,z), Quaternion.identity);
 		i++;
