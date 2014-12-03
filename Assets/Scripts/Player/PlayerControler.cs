@@ -7,8 +7,8 @@ public class PlayerControler : MonoBehaviour
 {
 	private GameObject ship;
 	public float speed;
-	
-	//fire stuff
+
+	// weapon stuff
 	public GameObject shot0;
 	public GameObject shot1;
 	public GameObject shot2;
@@ -19,7 +19,6 @@ public class PlayerControler : MonoBehaviour
 	public Transform shotSpawn4;
 	public Transform shotSpawn5;
 	public float fireRate;
-	
 	private float nextFire;
 
 	public GameObject cameraRod;
@@ -57,6 +56,7 @@ public class PlayerControler : MonoBehaviour
 		// Shoot and control the rate of fire
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
+			nextFire = Time.time + fireRate;
 			switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
 			{
 			case 0:
@@ -78,7 +78,6 @@ public class PlayerControler : MonoBehaviour
 				Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
 				break;
 			}
-			nextFire = Time.time + fireRate;
 		}
 
 		// Set the movement speed based on the ship's movement level

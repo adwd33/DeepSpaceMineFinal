@@ -36,10 +36,9 @@ public class GameController : MonoBehaviour
 
 	void Start ()
 	{
-		//Reese 11/22/2014 ANY INILIZATION CODE GOES HERE NOT UP TOP!
+		spawns = new ArrayList (); //store all the spawn information
 		numEnemies = 0;
 		maxEnemies = 1;
-		spawns = new ArrayList (); //store all the spawn information
 		EachSpawnNum = new int[12] {0, 0, 0, 0,
 									0, 0, 0, 0,
 									0, 0, 0, 0};

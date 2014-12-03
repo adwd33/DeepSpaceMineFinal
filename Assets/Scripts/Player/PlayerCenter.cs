@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using AssemblyCSharp;
 
 public class PlayerCenter : MonoBehaviour {
+	PlayerSaveLoadMethods playerSaveLoadMethods;
 
 	//for switch between two control
 	public GameObject cameraRod;
 	public GameObject MainCamera;
 	public float PlayerHealth;
-	public float defaultPlayerHealth;
 
 	//resources record
 	public int[] resources = new int[11];
@@ -30,6 +31,7 @@ public class PlayerCenter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		playerSaveLoadMethods = new PlayerSaveLoadMethods();
 		gameObject.GetComponent<PlayerControler>().enabled = false;
 		gameObject.GetComponent<PlayerControllerTest>().enabled = true;
 
@@ -55,12 +57,18 @@ public class PlayerCenter : MonoBehaviour {
 		resources = new int[11] {0, 0, 0, 0,
 			0, 0, 0, 0,
 			0, 0, 0};
+		//Load the resources in the player prefs, do not reset to zero
+		string resourcesText = playerSaveLoadMethods.loadThePlayerResources();
+		string[] tempListResources = resourcesText.Split(',');
+		for(int i = 0; i < resources.Length; i++){
+			resources[i] = int.Parse(tempListResources[i]);
+		}
 
 		//Initialize the player health
-		PlayerHealth = 10f;
+		//PlayerHealth = 10f;
+		//Reese changed this, this will load whatever is in the playerprefs
+		PlayerHealth = (float)PlayerPrefs.GetInt("health");
 		
-		//A value representing the static unchanging amount of health, needed to ui purposes
-		defaultPlayerHealth = 10f;
 		listShipUpgradesPurchased = new ArrayList();
 		listHomeBaseUpgrades = new ArrayList();
 
@@ -190,14 +198,7 @@ public class PlayerCenter : MonoBehaviour {
 	{
 		return PlayerHealth;
 	}
-	public void SetPlayerHealth(float newHealth){
-		this.PlayerHealth = newHealth;
-	}
 	
-	public float GetDefaultPlayerHealth()
-	{
-		return defaultPlayerHealth;
-	}
 	/// <summary>
 	/// Adds the purchased ship upgrade.
 	/// </summary>

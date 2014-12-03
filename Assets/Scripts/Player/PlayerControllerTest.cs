@@ -38,7 +38,6 @@ public class PlayerControllerTest : MonoBehaviour
 	private float nextFire;
 
 //	//test
-	public GameObject selfReference;
 	
 	void Start()
 	{
@@ -68,17 +67,17 @@ public class PlayerControllerTest : MonoBehaviour
 		angVel.y += turn * .5f;
 		angVel.z -= turn * .5f;
 		
-		
+		//REEse, edited the keycodes that respond to this, now ship rolls on "Q" and "E" and not "I" and "O" 
 		//shoulder buttons add to the roll and yaw.  No deltatime here for a quick response
 		//comment out the .y parts if don't want to turn when hit them
-		if (Input.GetKey(KeyCode.Joystick1Button4) || Input.GetKey(KeyCode.I))
+		if (Input.GetKey(KeyCode.Q))
 		{
 			angVel.y -= 20;
 			angVel.z += 50;
 			speed -= 5 * Time.fixedDeltaTime;
 		}
 		
-		if (Input.GetKey(KeyCode.Joystick1Button5) || Input.GetKey(KeyCode.O))
+		if (Input.GetKey(KeyCode.E))
 		{
 			angVel.y += 20;
 			angVel.z -= 50;
@@ -145,6 +144,7 @@ public class PlayerControllerTest : MonoBehaviour
 		//fire thing
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
+			nextFire = Time.time + fireRate;
 			switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
 			{
 			case 0:
@@ -166,7 +166,6 @@ public class PlayerControllerTest : MonoBehaviour
 				Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
 				break;
 			}
-			nextFire = Time.time + fireRate;
 		}
 	}
 
