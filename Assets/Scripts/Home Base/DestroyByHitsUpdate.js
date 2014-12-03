@@ -34,13 +34,6 @@ function OnTriggerEnter (other : Collider) {
 		}
 		else
 		{
-			
-			Destroy(gameObject);
-			Destroy(GameObject.Find("turret1"));
-			Destroy(GameObject.Find("turret2"));
-			Destroy(GameObject.Find("turret3"));
-			Destroy(GameObject.Find("turret4"));
-			Destroy(GameObject.Find("turret5"));
-			Destroy(GameObject.Find("turret6"));
+			Application.LoadLevel (0);
 		}
 }
