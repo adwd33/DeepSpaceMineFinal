@@ -6,7 +6,8 @@ using System.Collections;
 public class PlayerControler : MonoBehaviour
 {
 	private GameObject ship;
-	public float speed;
+	public static float speed;
+	float accel;
 
 	// weapon stuff
 	public GameObject shot0;
@@ -82,20 +83,22 @@ public class PlayerControler : MonoBehaviour
 		}
 
 		// Set the movement speed based on the ship's movement level
-		float moveSpeed;
+		float maxSpeed;
 		if (movementLevel == 0) {
-			moveSpeed = 20;
+			maxSpeed = 10;
 		} else if (movementLevel == 1) {
-			moveSpeed = 25;
+			maxSpeed = 15;
 		} else if (movementLevel == 2) {
-			moveSpeed = 30;		
+			maxSpeed = 20;		
 		} else {
-			moveSpeed = 35;
+			maxSpeed = 25;
 		}
 
 		// Reduce the movement speed for more controlled movement if the button is being held down
 		if (Input.GetButton ("Slow"))
-			moveSpeed /= 2;
+			maxSpeed /= 2;
+
+		accel = maxSpeed - speed;
 
 		float sqrOffset = ship.transform.localPosition.sqrMagnitude;
 		Vector3 offsetDir = ship.transform.localPosition.normalized;
@@ -104,18 +107,22 @@ public class PlayerControler : MonoBehaviour
 		ship.transform.Translate(-offsetDir * sqrOffset * 20 * Time.fixedDeltaTime);
 
 		// Move the player in the direction of any buttons being pressed
-		if (Input.GetButton ("Forward"))
-			transform.Translate((offsetDir * sqrOffset * 50 + ship.transform.forward * moveSpeed) * Time.fixedDeltaTime, Space.World);
-		if (Input.GetButton("Back"))
-			transform.Translate((offsetDir * sqrOffset * 50 - ship.transform.forward * moveSpeed) * Time.fixedDeltaTime, Space.World);
-		if (Input.GetButton("Left"))
-			transform.Translate((offsetDir * sqrOffset * 50 - ship.transform.right * moveSpeed) * Time.fixedDeltaTime, Space.World);
-		if (Input.GetButton("Right"))
-			transform.Translate((offsetDir * sqrOffset * 50 + ship.transform.right * moveSpeed) * Time.fixedDeltaTime, Space.World);
-		if (Input.GetButton("Up"))
-			transform.Translate((offsetDir * sqrOffset * 50 + ship.transform.up * moveSpeed) * Time.fixedDeltaTime, Space.World);
-		if (Input.GetButton("Down"))
-			transform.Translate((offsetDir * sqrOffset * 50 - ship.transform.up * moveSpeed) * Time.fixedDeltaTime, Space.World);
-
+		if (Input.GetButton ("Forward") || Input.GetButton ("Back") || Input.GetButton ("Left") || Input.GetButton ("Right") || Input.GetButton ("Up") || Input.GetButton ("Down")) {
+			speed += accel * Time.fixedDeltaTime;			
+			if (Input.GetButton ("Forward"))
+				transform.Translate ((offsetDir * sqrOffset * 50 + ship.transform.forward * speed) * Time.fixedDeltaTime, Space.World);
+			if (Input.GetButton ("Back"))
+				transform.Translate ((offsetDir * sqrOffset * 50 - ship.transform.forward * speed) * Time.fixedDeltaTime, Space.World);
+			if (Input.GetButton ("Left"))
+				transform.Translate ((offsetDir * sqrOffset * 50 - ship.transform.right * speed) * Time.fixedDeltaTime, Space.World);
+			if (Input.GetButton ("Right"))
+				transform.Translate ((offsetDir * sqrOffset * 50 + ship.transform.right * speed) * Time.fixedDeltaTime, Space.World);
+			if (Input.GetButton ("Up"))
+				transform.Translate ((offsetDir * sqrOffset * 50 + ship.transform.up * speed) * Time.fixedDeltaTime, Space.World);
+			if (Input.GetButton ("Down"))
+				transform.Translate ((offsetDir * sqrOffset * 50 - ship.transform.up * speed) * Time.fixedDeltaTime, Space.World);
+		} else {
+			speed -= Mathf.Clamp (speed * Mathf.Abs (speed), -30, 100) * Time.fixedDeltaTime;
+		}
 	}
 }

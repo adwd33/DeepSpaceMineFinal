@@ -25,7 +25,7 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 		PlayerWorld = GameObject.Find("Player2/PlayerWorld");
 		gc = PlayerWorld.GetComponent<GameController>();
 
-		rigidbody.velocity = transform.forward * (speed + PlayerControllerTest.speed);
+		rigidbody.velocity = transform.forward * (speed + PlayerControllerTest.speed + PlayerControler.speed);
 		Destroy (gameObject, lifetime);
 //		RaycastHit hit;
 //		Vector3 fwd = transform.TransformDirection(Vector3.forward);
