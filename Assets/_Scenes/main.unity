@@ -2390,7 +2390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraRod: {fileID: 0}
   MainCamera: {fileID: 0}
-  PlayerHealth: 0
+  PlayerHealth: 10
+  PlayerHealthMax: 0
   resources: 
   numBlasters: 0
   blasterPower: 0

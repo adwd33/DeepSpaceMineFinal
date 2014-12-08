@@ -8,7 +8,10 @@ public class PlayerCenter : MonoBehaviour {
 	//for switch between two control
 	public GameObject cameraRod;
 	public GameObject MainCamera;
+
 	public float PlayerHealth;
+	public float PlayerHealthMax;
+	private int counter;
 
 	//resources record
 	public int[] resources = new int[11];
@@ -68,7 +71,7 @@ public class PlayerCenter : MonoBehaviour {
 		//PlayerHealth = 10f;
 		//Reese changed this, this will load whatever is in the playerprefs
 		PlayerHealth = (float)PlayerPrefs.GetInt("health");
-		
+
 		listShipUpgradesPurchased = new ArrayList();
 		listHomeBaseUpgrades = new ArrayList();
 
@@ -82,6 +85,8 @@ public class PlayerCenter : MonoBehaviour {
 		movementLevel = 0;
 		radarLevel = 0;
 		resourceMagnet = 0;
+
+		counter = 750;
 	}
 	
 	// Update is called once per frame
@@ -92,6 +97,34 @@ public class PlayerCenter : MonoBehaviour {
 			cameraRod.SetActive (!cameraRod.activeSelf);
 			MainCamera.SetActive (!MainCamera.activeSelf);
 		}
+	}
+
+	// FixedUpdate is called every fixed amount of time
+	void FixedUpdate() {
+		// Set the player's maximum health based on hull strength level
+		if (hullStrength == 0)
+						PlayerHealthMax = 5;
+				else if (hullStrength == 1)
+						PlayerHealthMax = 10;
+				else if (hullStrength == 2)
+						PlayerHealthMax = 15;
+				else if (hullStrength == 3)
+						PlayerHealthMax = 20;
+
+		// Increase player's health based on time passed (50 calls to this function = 1 second)
+		if (hullRegen == 1) { // Level 0 hull regen never regenerates health
+						if (counter % 250 == 0) // Level 1 hull regen regenerates 1 health every 5 seconds
+								PlayerHealth++;
+				} else if (hullRegen == 2) { // Level 2 hull regen regenerates 1 health every 3 seconds
+						if (counter % 150 == 0)
+								PlayerHealth++;
+				} else if (hullRegen == 3) { // Level 3 hull regen regenerates 1 health every second
+						if (counter % 50 == 0)
+								PlayerHealth++;
+				}
+		counter--;
+		if (counter < 0)
+						counter = 750;
 	}
 
 	public bool incNumBlasters() {
