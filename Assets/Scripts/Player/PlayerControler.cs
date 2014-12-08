@@ -84,35 +84,38 @@ public class PlayerControler : MonoBehaviour
 		// Set the movement speed based on the ship's movement level
 		float moveSpeed;
 		if (movementLevel == 0) {
-			moveSpeed = 8;
+			moveSpeed = 20;
 		} else if (movementLevel == 1) {
-			moveSpeed = 10;
+			moveSpeed = 25;
 		} else if (movementLevel == 2) {
-			moveSpeed = 12;		
+			moveSpeed = 30;		
 		} else {
-			moveSpeed = 15;
+			moveSpeed = 35;
 		}
 
 		// Reduce the movement speed for more controlled movement if the button is being held down
 		if (Input.GetButton ("Slow"))
 			moveSpeed /= 2;
 
-		// Move the player in the direction of any buttons being pressed
-		if (Input.GetButton ("Forward")) {
-			Debug.Log("Forward");
+		float sqrOffset = ship.transform.localPosition.sqrMagnitude;
+		Vector3 offsetDir = ship.transform.localPosition.normalized;
+		//this takes care of realigning after collisions, where the ship gets displaced due to its rigidbody.
+		//I'm pretty sure this is the best way to do it (have the ship and the rig move toward their mutual center)
+		ship.transform.Translate(-offsetDir * sqrOffset * 20 * Time.fixedDeltaTime);
 
-						ship.rigidbody.AddRelativeForce (Vector3.forward * moveSpeed);
-				}
+		// Move the player in the direction of any buttons being pressed
+		if (Input.GetButton ("Forward"))
+			transform.Translate((offsetDir * sqrOffset * 50 + ship.transform.forward * moveSpeed) * Time.fixedDeltaTime, Space.World);
 		if (Input.GetButton("Back"))
-			ship.rigidbody.AddRelativeForce(Vector3.back * moveSpeed);
+			transform.Translate((offsetDir * sqrOffset * 50 - ship.transform.forward * moveSpeed) * Time.fixedDeltaTime, Space.World);
 		if (Input.GetButton("Left"))
-			ship.rigidbody.AddRelativeForce(Vector3.left * moveSpeed);
+			transform.Translate((offsetDir * sqrOffset * 50 - ship.transform.right * moveSpeed) * Time.fixedDeltaTime, Space.World);
 		if (Input.GetButton("Right"))
-			ship.rigidbody.AddRelativeForce(Vector3.right * moveSpeed);
+			transform.Translate((offsetDir * sqrOffset * 50 + ship.transform.right * moveSpeed) * Time.fixedDeltaTime, Space.World);
 		if (Input.GetButton("Up"))
-			ship.rigidbody.AddRelativeForce(Vector3.up * moveSpeed);
+			transform.Translate((offsetDir * sqrOffset * 50 + ship.transform.up * moveSpeed) * Time.fixedDeltaTime, Space.World);
 		if (Input.GetButton("Down"))
-			ship.rigidbody.AddRelativeForce(Vector3.down * moveSpeed);
+			transform.Translate((offsetDir * sqrOffset * 50 - ship.transform.up * moveSpeed) * Time.fixedDeltaTime, Space.World);
 
 	}
 }
