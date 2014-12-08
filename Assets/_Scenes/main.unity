@@ -140,13 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8144fba59cad6744dbebef439997d90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listSize: 0
-  health: 0
-  defaultHealth: 0
-  playerHealthbarWidth: 128
-  healthScaleRemovalValue: 0
-  isPlayerHealthDifferent: 0
-  previousHealth: 0
 --- !u!1 &433532479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,9 +2344,9 @@ MonoBehaviour:
   sensitivity: 1000
   cameraOffset: {x: 0, y: .5, z: -1.5}
   shot0: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
-  shot1: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
-  shot2: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
-  shot3: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
+  shot1: {fileID: 100008, guid: 88c5195591bc1994bb54c1ef29cc0f0b, type: 2}
+  shot2: {fileID: 100008, guid: 78605b2e5f936b44abaa53963b2f44d4, type: 2}
+  shot3: {fileID: 100008, guid: a4f6499e4154dfb4fb8e0a364e43fb1d, type: 2}
   shotSpawn1: {fileID: 1955985504}
   shotSpawn2: {fileID: 1050230150}
   shotSpawn3: {fileID: 1109020629}
@@ -2373,9 +2366,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   shot0: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
-  shot1: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
-  shot2: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
-  shot3: {fileID: 100000, guid: 9174debe7a5b16a47917e59ccf5f03b9, type: 2}
+  shot1: {fileID: 100008, guid: 88c5195591bc1994bb54c1ef29cc0f0b, type: 2}
+  shot2: {fileID: 100008, guid: 78605b2e5f936b44abaa53963b2f44d4, type: 2}
+  shot3: {fileID: 100008, guid: a4f6499e4154dfb4fb8e0a364e43fb1d, type: 2}
   shotSpawn1: {fileID: 1955985504}
   shotSpawn2: {fileID: 1050230150}
   shotSpawn3: {fileID: 1109020629}
