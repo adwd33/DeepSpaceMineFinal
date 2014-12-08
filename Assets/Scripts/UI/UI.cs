@@ -5,6 +5,7 @@ using AssemblyCSharp;
 // Reese 9/26/2014 Created this class to do all the "UIey" stuff
 public class UI : MonoBehaviour
 {
+		string levelName;
 		PlayerSaveLoadMethods playerSaveLoadMethods;
 		bool isDrawingTier1;
 		bool isDrawingTier2;
@@ -159,7 +160,13 @@ public class UI : MonoBehaviour
 				listOfBaseUpgradeObjects.Add (new BaseUpgradeObject (4, "Nuclear Weapons", 0, 0, 0, (costScale * 3), (costScale * 3), (costScale * 1), 0, (costScale * 1), 0, (costScale * 2), false));
 				listOfBaseUpgradeObjects.Add (new BaseUpgradeObject (4, "Mine Field", 0, 0, 0, (costScale * 3), (costScale * 1), 0, 0, (costScale * 1), 0, (costScale * 5), false));
 				listOfBaseUpgradeObjects.Add (new BaseUpgradeObject (4, "Orbiting Platform", 0, (costScale * 2), (costScale * 1), 0, 0, 0, 0, (costScale * 1), 0, (costScale * 5), false));
-		
+				if(Application.loadedLevelName.Equals("main"))
+				{
+					levelName = "HomeBase";
+				}else if(Application.loadedLevelName.Equals("HomeBase"))
+				{
+					levelName = "main";
+				}
 		}
 	
 		/// <summary>
@@ -355,8 +362,8 @@ public class UI : MonoBehaviour
 		{
 				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 				// This will warp the player to the home base scene
-				if (GUI.Button (originPosition, "Home Base")) {
-						Application.LoadLevel ("HomeBase");
+				if (GUI.Button (originPosition, levelName)) {
+						Application.LoadLevel (levelName);
 				
 				}
 		}

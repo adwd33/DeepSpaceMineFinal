@@ -137,9 +137,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 116833048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8144fba59cad6744dbebef439997d90b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9468a66e0e4eb6d4f9218e3980df2684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listSize: 0
+  health: 0
+  defaultHealth: 0
+  playerHealthbarWidth: 128
+  healthScaleRemovalValue: 0
+  isPlayerHealthDifferent: 0
+  previousHealth: 0
 --- !u!1 &433532479
 GameObject:
   m_ObjectHideFlags: 0
