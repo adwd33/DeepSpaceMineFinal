@@ -584,7 +584,6 @@ public class UI : MonoBehaviour
 		void drawUpgradeMenu (Rect originPosition)
 		{
 				GameObject player = GameObject.Find ("Player2");
-				player.GetComponent<PlayerCenter> ().incBlasterPower ();
 
 				Rect previousOriginPosition = new Rect (originPosition.x, originPosition.y, originPosition.width, originPosition.height);
 			

@@ -17,6 +17,7 @@ TagManager:
   - ShotSpawn
   - Enemy
   - explosion
+  - shot
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

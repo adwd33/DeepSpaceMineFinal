@@ -122,9 +122,11 @@ public class PlayerCenter : MonoBehaviour {
 						if (counter % 50 == 0)
 								PlayerHealth++;
 				}
+		if (PlayerHealth > PlayerHealthMax)
+						PlayerHealth = PlayerHealthMax;
 		counter--;
 		if (counter < 0)
-						counter = 750;
+						counter = 749;
 	}
 
 	public bool incNumBlasters() {

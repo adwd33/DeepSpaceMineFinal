@@ -42,7 +42,7 @@ public class Weapon_0_Ctrl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.gameObject.tag != "ShipBody" && other.gameObject.tag != "Player" && other.gameObject.tag != "package" && other.gameObject.tag != "Enemy")
+		if(other.gameObject.tag != "ShipBody" && other.gameObject.tag != "Player" && other.gameObject.tag != "package" && other.gameObject.tag != "Enemy" && other.gameObject.tag != "shot")
 		{
 			Debug.Log (other.name);
 			other.rigidbody.AddForce(transform.forward * 200);

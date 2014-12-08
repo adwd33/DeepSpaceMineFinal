@@ -59,30 +59,100 @@ public class PlayerControler : MonoBehaviour
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
 			nextFire = Time.time + fireRate;
-			switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
-			{
-			case 0:
-				Instantiate(shot0, shotSpawn1.position, ship.rigidbody.rotation);
-				break;
-			case 1:
-				Instantiate(shot0, shotSpawn2.position, ship.rigidbody.rotation);
-				Instantiate(shot0, shotSpawn3.position, ship.rigidbody.rotation);
-				break;
-			case 2:
-				Instantiate(shot0, shotSpawn1.position, ship.rigidbody.rotation);
-				Instantiate(shot0, shotSpawn4.position, ship.rigidbody.rotation);
-				Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
-				break;
-			case 3:
-				Instantiate(shot0, shotSpawn2.position, ship.rigidbody.rotation);
-				Instantiate(shot0, shotSpawn3.position, ship.rigidbody.rotation);
-				Instantiate(shot0, shotSpawn4.position, ship.rigidbody.rotation);
-				Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
-				break;
+			int blasterPower = this.GetComponent<PlayerCenter>().getBlasterPower();
+			if(blasterPower == 0) {
+				switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
+				{
+				case 0:
+					Instantiate(shot0, shotSpawn1.position, ship.rigidbody.rotation);
+					break;
+				case 1:
+					Instantiate(shot0, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot0, shotSpawn3.position, ship.rigidbody.rotation);
+					break;
+				case 2:
+					Instantiate(shot0, shotSpawn1.position, ship.rigidbody.rotation);
+					Instantiate(shot0, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				case 3:
+					Instantiate(shot0, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot0, shotSpawn3.position, ship.rigidbody.rotation);
+					Instantiate(shot0, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot0, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				}
+			} else if (blasterPower == 1) {
+				switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
+				{
+				case 0:
+					Instantiate(shot1, shotSpawn1.position, ship.rigidbody.rotation);
+					break;
+				case 1:
+					Instantiate(shot1, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot1, shotSpawn3.position, ship.rigidbody.rotation);
+					break;
+				case 2:
+					Instantiate(shot1, shotSpawn1.position, ship.rigidbody.rotation);
+					Instantiate(shot1, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot1, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				case 3:
+					Instantiate(shot1, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot1, shotSpawn3.position, ship.rigidbody.rotation);
+					Instantiate(shot1, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot1, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				}
+			} else if (blasterPower == 2) {
+				switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
+				{
+				case 0:
+					Instantiate(shot2, shotSpawn1.position, ship.rigidbody.rotation);
+					break;
+				case 1:
+					Instantiate(shot2, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot2, shotSpawn3.position, ship.rigidbody.rotation);
+					break;
+				case 2:
+					Instantiate(shot2, shotSpawn1.position, ship.rigidbody.rotation);
+					Instantiate(shot2, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot2, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				case 3:
+					Instantiate(shot2, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot2, shotSpawn3.position, ship.rigidbody.rotation);
+					Instantiate(shot2, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot2, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				}
+			} else if (blasterPower == 3) {
+				switch(this.GetComponent<PlayerCenter> ().getNumBlasters())
+				{
+				case 0:
+					Instantiate(shot3, shotSpawn1.position, ship.rigidbody.rotation);
+					break;
+				case 1:
+					Instantiate(shot3, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot3, shotSpawn3.position, ship.rigidbody.rotation);
+					break;
+				case 2:
+					Instantiate(shot3, shotSpawn1.position, ship.rigidbody.rotation);
+					Instantiate(shot3, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot3, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				case 3:
+					Instantiate(shot3, shotSpawn2.position, ship.rigidbody.rotation);
+					Instantiate(shot3, shotSpawn3.position, ship.rigidbody.rotation);
+					Instantiate(shot3, shotSpawn4.position, ship.rigidbody.rotation);
+					Instantiate(shot3, shotSpawn5.position, ship.rigidbody.rotation);
+					break;
+				}
 			}
 		}
 
 		// Set the movement speed based on the ship's movement level
+		movementLevel = this.GetComponent<PlayerCenter> ().getMovementLevel ();
 		float maxSpeed;
 		if (movementLevel == 0) {
 			maxSpeed = 10;
