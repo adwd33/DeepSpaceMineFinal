@@ -36,6 +36,7 @@ public class PlayerControler : MonoBehaviour
 	void Update ()
 	{
 		// Set the turning speed of the ship based on the ship's movement level
+		movementLevel = this.GetComponent<PlayerCenter> ().getMovementLevel ();
 		float turnSpeed;
 		if (movementLevel == 0) {
 			turnSpeed = 100F;

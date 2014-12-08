@@ -50,6 +50,17 @@ public class PlayerControllerTest : MonoBehaviour
 	
 	void FixedUpdate()
 	{
+		// Set the maximum speed based on movement level. Turning is kind of hard, so it'll be left alone.
+		int movementLevel = this.GetComponent<PlayerCenter> ().getMovementLevel ();
+		if (movementLevel == 0)
+			maxSpeed = 20;
+		else if (movementLevel == 1)
+			maxSpeed = 25;
+		else if (movementLevel == 2)
+			maxSpeed = 30;
+		else if (movementLevel == 3)
+			maxSpeed = 35;
+
 		//ANGULAR DYNAMICS//
 		
 		shipRot = ship.transform.localEulerAngles; //make sure getting the ship.
