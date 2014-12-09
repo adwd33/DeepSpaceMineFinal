@@ -380,7 +380,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_Name
@@ -2331,7 +2331,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: LookAtTarget
@@ -4477,6 +4477,7 @@ GameObject:
   - 114: {fileID: 886125653}
   - 114: {fileID: 886125652}
   - 114: {fileID: 886125651}
+  - 114: {fileID: 886125654}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -4500,6 +4501,7 @@ Transform:
   - {fileID: 1011086804}
   - {fileID: 1927343080}
   - {fileID: 24511652}
+  - {fileID: 954532887}
   m_Father: {fileID: 0}
   m_RootOrder: 12
 --- !u!114 &886125651
@@ -4577,6 +4579,18 @@ MonoBehaviour:
   shotSpawn4: {fileID: 1739401172}
   shotSpawn5: {fileID: 1770291373}
   fireRate: .25
+--- !u!114 &886125654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 886125649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839fc2e3d3e9d1344b04257128ddec75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minePreFab: {fileID: 400000, guid: 6e598ddf7fa939e4da57f4136ea8e477, type: 2}
 --- !u!1 &889277194
 GameObject:
   m_ObjectHideFlags: 0
@@ -4810,6 +4824,62 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &954532886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 954532887}
+  - 33: {fileID: 954532889}
+  - 23: {fileID: 954532888}
+  m_Layer: 0
+  m_Name: minespawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &954532887
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 954532886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0639915466, y: .21930027, z: -1.18078995}
+  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_Children: []
+  m_Father: {fileID: 886125650}
+  m_RootOrder: 6
+--- !u!23 &954532888
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 954532886}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &954532889
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 954532886}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &981923905
 GameObject:
   m_ObjectHideFlags: 0
@@ -6205,7 +6275,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_LocalScale.x
@@ -6739,7 +6809,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: f5484cb479d278843af7c4fb17377dd0, type: 2}
       propertyPath: m_Name
