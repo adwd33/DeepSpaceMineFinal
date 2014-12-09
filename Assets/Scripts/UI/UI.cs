@@ -606,14 +606,14 @@ public class UI : MonoBehaviour
 								// Purchase was not successful (max upgrade level reached, not enough resources)
 						}
 				}
-				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
-				if (GUI.Button (originPosition, "Homing Missiles")) {
-						if (player.GetComponent<PlayerCenter> ().incMissilePower ()) {
+				//originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				//if (GUI.Button (originPosition, "Homing Missiles")) {
+				//		if (player.GetComponent<PlayerCenter> ().incMissilePower ()) {
 								// Purchase was successful
-						} else {
+				//		} else {
 								// Purchase was not successful (max upgrade level reached, not enough resources)
-						}
-				}
+				//		}
+				//}
 					
 				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);
 				//GUI.Label (new Rect (tierTwoRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Defense", boxGUIStyle);
@@ -625,15 +625,15 @@ public class UI : MonoBehaviour
 								// Purchase was not successful (max upgrade level reached, not enough resources)
 						}
 				}
-				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
-				if (GUI.Button (originPosition, "Shields")) {
-						if (player.GetComponent<PlayerCenter> ().incShieldPower ()) {
-								Debug.Log ("Upgrade purchased!");
+				//originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
+				//if (GUI.Button (originPosition, "Shields")) {
+				//		if (player.GetComponent<PlayerCenter> ().incShieldPower ()) {
+				//				Debug.Log ("Upgrade purchased!");
 								// Purchase was successful
-						} else {
+				//		} else {
 								// Purchase was not successful (max upgrade level reached, not enough resources)
-						}
-				}
+				//		}
+				//}
 				originPosition.Set (originPosition.x, originPosition.y + defaultButtonHeight, defaultButtonWidth, defaultButtonHeight);
 				if (GUI.Button (originPosition, "Regen")) {
 						if (player.GetComponent<PlayerCenter> ().incHullRegen ()) {
@@ -647,7 +647,7 @@ public class UI : MonoBehaviour
 				originPosition = new Rect (previousOriginPosition.x + (defaultButtonWidth * 2), previousOriginPosition.y, previousOriginPosition.width, previousOriginPosition.height);	
 				originPosition.Set (originPosition.x + defaultButtonWidth, originPosition.y, defaultButtonWidth, defaultButtonHeight);
 				//GUI.Label (new Rect (tierThreeRightColumnXPos, (bufferSize * 2), defaultButtonWidth, defaultButtonHeight), "Utility", boxGUIStyle);
-				if (GUI.Button (originPosition, "Speed Turning")) {
+				if (GUI.Button (originPosition, "Flight Speed")) {
 						if (player.GetComponent<PlayerCenter> ().incMovementLevel ()) {
 								Debug.Log ("Upgrade purchased!");
 								// Purchase was successful
