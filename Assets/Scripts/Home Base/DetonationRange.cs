@@ -15,6 +15,7 @@ public class DetonationRange : MonoBehaviour {
 
 	}
 
+	//will only detonate if the enemy gets into the bombs collider mesh
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "enemy") {
 			Instantiate (explosionPrefab, gameObject.transform.position, Quaternion.identity);

@@ -19,7 +19,7 @@ function Update () {
 
 }
 
-//changes shields strength
+//changes shields strength and health regen
 function changeShield(level)
 {
 	switch(level)
@@ -43,7 +43,7 @@ function changeShield(level)
 	}
 }
 
-//changes bases health
+//changes bases health and health regen rate
 function changeHealth(level)
 {
 	switch(level)
