@@ -455,23 +455,17 @@ public class UI : MonoBehaviour
 		/// </summary>
 		void drawPlayerHealthReadout ()
 		{
-				if (isPlayerHealthDifferent) {
-						playerHealthbarWidth = playerHealthbarWidth - healthScaleRemovalValue;
-						Rect healthBarRect = new Rect (screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
-						Rect healthBarLabelRect = new Rect (screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
-					
-					
-						GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
-						healthBarRect.Set (healthBarRect.x, healthBarRect.y, healthBarRect.width, healthBarRect.height);
-						GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
-						isPlayerHealthDifferent = false;
-				} else {
+		if(playerController.wasPlayerHit){
+			playerHealthbarWidth -= healthScaleRemovalValue;
+		}
+
+				
 						Rect healthBarRect = new Rect (screenWidth - playerHealthbarWidth, screenHeight - playerHealthbarHeight, playerHealthbarWidth, playerHealthbarHeight);
 						Rect healthBarLabelRect = new Rect (screenWidth - defaultPlayerHealthbarWidth, screenHeight - playerHealthbarHeight, defaultPlayerHealthbarWidth, playerHealthbarHeight);
 						GUI.DrawTexture (healthBarRect, playerHealthbar, ScaleMode.StretchToFill, true, 0.0f);
 						healthBarRect.Set (healthBarRect.x, healthBarRect.y, healthBarRect.width, healthBarRect.height);
 						GUI.Label (healthBarLabelRect, "Health", boxGUIStyle);
-				}
+				playerController.setWasPlayerHit(false);
 		}
 		
 		/// <summary>

@@ -12,6 +12,7 @@ public class PlayerCenter : MonoBehaviour {
 	public float PlayerHealth;
 	public float PlayerHealthMax;
 	private int counter;
+	public bool wasPlayerHit;
 
 	//resources record
 	public int[] resources = new int[11];
@@ -214,6 +215,7 @@ public class PlayerCenter : MonoBehaviour {
 	{
 		return resources;
 	}
+
 	public void setResourceList(int[] resources){
 		this.resources = resources;
 	}
@@ -222,16 +224,24 @@ public class PlayerCenter : MonoBehaviour {
 	{
 		PlayerHealth -= DamageAmount;
 		//Vector3 position = transform.position;
+		//remove the scale value from the health bar here
+		wasPlayerHit = true;
 		
-		if(PlayerHealth < 0f)
+		if(PlayerHealth <= 0f)
 		{
-			Application.LoadLevel("Main"); //call function in GameController.cs
+			//Application.LoadLevel("Main"); //call function in GameController.cs
+			Application.LoadLevel("startMenuUI");
 		}
+		
 	}
 
 	public float GetPlayerHealth()
 	{
 		return PlayerHealth;
+	}
+	
+	public void setWasPlayerHit(bool wasPlayerHit){
+		this.wasPlayerHit = wasPlayerHit;
 	}
 	
 	/// <summary>
