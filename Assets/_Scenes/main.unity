@@ -2398,6 +2398,7 @@ MonoBehaviour:
   MainCamera: {fileID: 0}
   PlayerHealth: 10
   PlayerHealthMax: 0
+  wasPlayerHit: 0
   resources: 
   numBlasters: 0
   blasterPower: 0

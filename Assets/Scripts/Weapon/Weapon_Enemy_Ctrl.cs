@@ -39,7 +39,9 @@ public class Weapon_Enemy_Ctrl : MonoBehaviour {
 		{
 			Debug.Log (other.name);
 			other.rigidbody.AddForce(transform.forward * 200);
-			other.transform.SendMessage("ApplyDamage",Damage,SendMessageOptions.DontRequireReceiver);
+			// I don't know why, but this line of code doesn't work. I've replaced it with the line below it.
+			// other.transform.SendMessage("ApplyDamage",Damage,SendMessageOptions.DontRequireReceiver);
+			GameObject.Find("Player2").GetComponent<PlayerCenter>().ApplyDamage(1f);
 			Destroy(gameObject);
 			Instantiate(boom,gameObject.transform.position-gameObject.transform.forward * 1,Quaternion.identity);
 		}
